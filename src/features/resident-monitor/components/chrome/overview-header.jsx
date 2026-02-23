@@ -1,8 +1,8 @@
 import { IconAppGrid, IconChevronDown } from "../ui-icons/index.js";
 
 const OverviewHeader = () => (
-  <div className="shrink-0 px-4 pb-2 pt-2.5 [z-index:var(--rm-z-header)]">
-    <div className="flex items-center gap-2">
+  <div className="shrink-0 [z-index:var(--rm-z-header)] [padding-left:var(--rm-overview-header-padding-x)] [padding-right:var(--rm-overview-header-padding-x)] [padding-top:var(--rm-overview-header-padding-top)] [padding-bottom:var(--rm-overview-header-padding-bottom)]">
+    <div className="flex items-center [gap:var(--rm-overview-header-gap)]">
       <div className="flex items-center justify-center rounded-[var(--rm-header-grid-radius)] border [width:var(--rm-header-grid-size)] [height:var(--rm-header-grid-size)] [background:var(--rm-header-icon-bg)] [border-color:var(--rm-header-icon-border)]">
         <IconAppGrid fill="var(--rm-header-grid-fill)" />
       </div>
