@@ -16,7 +16,7 @@ const FallClipReviewed = ({ classification, onEdit }) => (
       className="rounded-[20px] px-3 py-[5px] text-[length:var(--rm-fs-meta)] font-bold"
     >
       <span className="text-[length:var(--rm-fs-meta)] font-bold text-[var(--rm-fall-chip-reviewed-text)]">
-        {classification || "Without injury"}
+        {classification || "Fall without injury"}
       </span>
     </Badge>
     <Button

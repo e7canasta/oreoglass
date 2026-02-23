@@ -1,20 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   FallReviewClassificationList,
   FallReviewHeader,
   FallReviewThermalCard,
 } from "../components/fall-review-sections.jsx";
-import { ScreenStage, ScreenTopSpacer } from "../components/screen-stage.jsx";
+import { FALL_CLASSIFICATION_OPTIONS } from "../data/fall-classification-options.js";
+import { ScreenStage } from "../components/screen-stage.jsx";
 
-const FallReviewScreen = () => {
-  const [selected, setSelected] = useState("Fall with injury");
+const FallReviewScreen = ({ room, clip, onBack }) => {
+  const [selected, setSelected] = useState("");
+
+  useEffect(() => {
+    if (clip?.label && FALL_CLASSIFICATION_OPTIONS.includes(clip.label)) {
+      setSelected(clip.label);
+      return;
+    }
+
+    setSelected("");
+  }, [clip]);
 
   return (
     <ScreenStage zToken="--rm-z-screen-fall-review" className="[background:var(--rm-fall-review-bg)]">
-      <ScreenTopSpacer className="h-[calc(var(--rm-screen-top-spacer-compact)+var(--rm-safe-top))]" />
-
-      <FallReviewHeader />
+      <FallReviewHeader room={room} clip={clip} onBack={onBack} />
       <FallReviewThermalCard />
       <FallReviewClassificationList value={selected} onValueChange={setSelected} />
     </ScreenStage>

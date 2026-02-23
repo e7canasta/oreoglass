@@ -20,7 +20,7 @@ const SLEEP_CHART_BARS = [
 const SleepChart = () => (
   <div className="rounded-xl border px-[14px] pb-2.5 pt-3 [background:var(--rm-room-detail-card-bg)] [border-color:var(--rm-room-detail-card-border)]">
     <div className="mb-2.5 flex flex-wrap gap-3.5">
-      {[["calm", "Calm: 12 hours"], ["restless", "Restless: 0 hours"]].map(([tone, label]) => (
+      {[["calm", "Calm: 7 hours"], ["restless", "Restless: 0 hours"]].map(([tone, label]) => (
         <div key={label} className="flex items-center gap-[5px]">
           <div
             className={cn(

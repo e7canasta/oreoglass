@@ -1,7 +1,7 @@
 import { AppHeaderActionButton, AppHeaderRow } from "../chrome/header-layout.jsx";
 import { IconArrowLeft } from "../ui-icons/index.js";
 
-const SleepDetailHeader = ({ onBack }) => (
+const SleepDetailHeader = ({ room, onBack }) => (
   <AppHeaderRow className="[padding-top:var(--rm-sleep-header-padding-top)] [padding-bottom:var(--rm-sleep-header-padding-bottom)]">
     <AppHeaderActionButton
       onClick={onBack}
@@ -11,13 +11,18 @@ const SleepDetailHeader = ({ onBack }) => (
       <IconArrowLeft stroke="var(--rm-sleep-back-icon)" />
     </AppHeaderActionButton>
 
-    <div className="flex min-w-0 flex-1 items-center justify-center [column-gap:var(--rm-sleep-header-glyph-gap)]">
-      <span className="text-[length:var(--rm-fs-body-strong)] tracking-[-1px] text-[var(--rm-sleep-header-glyph)]">
-        z<sup className="text-[length:var(--rm-fs-micro)]">z</sup>
-      </span>
-      <span className="text-[length:var(--rm-fs-title)] font-bold tracking-[-0.3px] text-[var(--rm-sleep-header-title)]">
-        Sleep
-      </span>
+    <div className="min-w-0 flex-1 text-center">
+      <div className="flex items-center justify-center [column-gap:var(--rm-sleep-header-glyph-gap)]">
+        <span className="text-[length:var(--rm-fs-body-strong)] tracking-[-1px] text-[var(--rm-sleep-header-glyph)]">
+          z<sup className="text-[length:var(--rm-fs-micro)]">z</sup>
+        </span>
+        <span className="text-[length:var(--rm-fs-title)] font-bold tracking-[-0.3px] text-[var(--rm-sleep-header-title)]">
+          Sleep insights
+        </span>
+      </div>
+      <div className="mt-0.5 truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-sleep-header-subtitle)]">
+        {room?.number ? `Room ${room.number} · ${room.location}` : "Resident sleep profile"}
+      </div>
     </div>
     <div aria-hidden className="h-[var(--rm-app-header-action-size)] w-[var(--rm-app-header-action-size)] shrink-0" />
   </AppHeaderRow>

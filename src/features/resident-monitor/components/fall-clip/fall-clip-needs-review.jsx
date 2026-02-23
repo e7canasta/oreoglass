@@ -2,8 +2,7 @@ import { IconQuestionCircle } from "../ui-icons/index.js";
 import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { RM_BADGE_PRESETS } from "../../lib/design-system.js";
-
-const FALL_REVIEW_OPTIONS = ["Fall", "Not a fall", "Uncertain", "Safe to ground"];
+import { FALL_CLASSIFICATION_OPTIONS } from "../../data/fall-classification-options.js";
 
 const FallClipNeedsReview = ({ onClassify }) => (
   <>
@@ -24,7 +23,7 @@ const FallClipNeedsReview = ({ onClassify }) => (
     </div>
 
     <div className="mb-3 text-[length:var(--rm-fs-body)] font-bold tracking-[-0.2px] text-[var(--rm-fall-review-question)]">
-      Please review the clip. What happened?
+      Classify this event
     </div>
 
     <RadioGroup
@@ -32,7 +31,7 @@ const FallClipNeedsReview = ({ onClassify }) => (
       onValueChange={onClassify}
       aria-label="Fall classification options"
     >
-      {FALL_REVIEW_OPTIONS.map((option) => (
+      {FALL_CLASSIFICATION_OPTIONS.map((option) => (
         <RadioGroupItem
           key={option}
           value={option}

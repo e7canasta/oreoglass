@@ -294,6 +294,112 @@
   }
 }
 
+@keyframes rmOverviewToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rm-overview-toast {
+  animation: rmOverviewToastIn 0.26s ease-out;
+}
+
+@keyframes rmOverviewAlertPulse {
+  0%,
+  100% {
+    box-shadow: var(--rm-overview-room-alert-shadow);
+    filter: saturate(1) brightness(1);
+  }
+  50% {
+    box-shadow:
+      var(--rm-overview-room-alert-shadow),
+      0 0 0 1px rgb(var(--alarm-siren-rgb) / 0.16),
+      0 0 12px rgb(var(--alarm-siren-rgb) / 0.14);
+    filter: saturate(1.03) brightness(1.01);
+  }
+}
+
+@keyframes rmOverviewOutPulse {
+  0%,
+  100% {
+    opacity: 0.95;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.009);
+  }
+}
+
+@keyframes rmOverviewStaffDotPulse {
+  0%,
+  100% {
+    box-shadow: var(--rm-overview-dot-person-shadow);
+  }
+  55% {
+    box-shadow:
+      var(--rm-overview-dot-person-shadow),
+      0 0 0 2px rgb(76 214 138 / 0.14);
+  }
+}
+
+.rm-overview-room-alert {
+  animation: rmOverviewAlertPulse 3.8s ease-in-out infinite;
+  will-change: box-shadow, filter;
+}
+
+.rm-overview-room-out-pill {
+  animation: rmOverviewOutPulse 3.4s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.rm-overview-room-staff-dot {
+  animation: rmOverviewStaffDotPulse 3.2s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+@keyframes rmActivityTileReviewPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px var(--rm-room-detail-status-alert-border);
+    filter: saturate(1);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px var(--rm-room-detail-status-alert-border),
+      0 0 10px rgb(var(--alarm-siren-rgb) / 0.16);
+    filter: saturate(1.03);
+  }
+}
+
+@keyframes rmActivityTileLivePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px var(--rm-room-detail-status-info-border);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px var(--rm-room-detail-status-info-border),
+      0 0 10px rgb(74 144 226 / 0.2);
+  }
+}
+
+.rm-activity-tile-review {
+  animation: rmActivityTileReviewPulse 3.2s ease-in-out infinite;
+  will-change: box-shadow, filter;
+}
+
+.rm-activity-tile-live {
+  animation: rmActivityTileLivePulse 3.6s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
 .rm-alarm-event-card {
   position: relative;
   isolation: isolate;
@@ -387,7 +493,13 @@
   .rm-alarm-beacon,
   .rm-bed-review-sheet,
   .rm-bed-review-head,
-  .rm-bed-review-option {
+  .rm-bed-review-option,
+  .rm-overview-toast,
+  .rm-overview-room-alert,
+  .rm-overview-room-out-pill,
+  .rm-overview-room-staff-dot,
+  .rm-activity-tile-review,
+  .rm-activity-tile-live {
     animation: none;
   }
 

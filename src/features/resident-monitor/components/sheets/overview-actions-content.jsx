@@ -11,10 +11,17 @@ const OverviewQuickActionTile = ({ action }) => (
     size="tile"
     onClick={action.onClick}
     disabled={action.disabled}
-    className="relative [min-height:var(--rm-overview-action-min-height)] items-start justify-start rounded-2xl px-4 pb-3.5 pt-4 text-left text-[length:var(--rm-overview-action-label-size)] font-bold leading-[1.3] whitespace-pre-line text-[var(--rm-overview-action-text)] transition-transform active:scale-[0.992] max-[720px]:[min-height:var(--rm-overview-action-min-height-mobile)] max-[720px]:text-[length:var(--rm-overview-action-label-size-mobile)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-overview-focus-outline)] disabled:pointer-events-none disabled:opacity-[0.6]"
-    aria-label={action.label ? action.label.replace("\n", " ") : undefined}
+    className="relative [min-height:var(--rm-overview-action-min-height)] items-start justify-start rounded-2xl px-4 pb-3.5 pt-4 text-left text-[length:var(--rm-overview-action-label-size)] font-bold leading-[1.26] text-[var(--rm-overview-action-text)] transition-transform active:scale-[0.992] max-[720px]:[min-height:var(--rm-overview-action-min-height-mobile)] max-[720px]:text-[length:var(--rm-overview-action-label-size-mobile)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-overview-focus-outline)] disabled:pointer-events-none disabled:opacity-[0.6]"
+    aria-label={action.label}
   >
-    {action.label && <span className="pr-7">{action.label}</span>}
+    <span className="pr-7">
+      {action.label && <span className="block">{action.label}</span>}
+      {action.meta && (
+        <span className="mt-1 block text-[length:var(--rm-fs-meta)] font-medium leading-[1.2] text-[var(--rm-overview-action-meta)]">
+          {action.meta}
+        </span>
+      )}
+    </span>
     {action.badge && (
       <Badge
         {...RM_BADGE_PRESETS.critical}

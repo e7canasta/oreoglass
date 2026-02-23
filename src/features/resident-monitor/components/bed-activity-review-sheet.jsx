@@ -82,10 +82,10 @@ const BedActivityReviewSheet = ({
 
     <div className="rm-bed-review-head mb-3.5">
       <h3 className="text-[length:var(--rm-fs-title)] font-bold tracking-[-0.3px] text-[var(--rm-bed-review-title)]">
-        Review options
+        Clip review
       </h3>
       <p className="mt-0.5 text-[length:var(--rm-fs-meta)] text-[var(--rm-bed-review-subtitle)]">
-        Choose how to triage this event
+        Choose the next triage action
       </p>
     </div>
 
@@ -93,14 +93,14 @@ const BedActivityReviewSheet = ({
       <ReviewChoiceButton
         tone="primary"
         icon={<IconPlay width={10} height={11} fill="currentColor" />}
-        title="Open clip"
-        subtitle="Inspect thermal sequence"
+        title="View fall clip"
+        subtitle="Inspect clip"
         onClick={onOpenClip}
       />
       <ReviewChoiceButton
         icon={<IconEdit stroke="currentColor" />}
-        title="Questionnaire"
-        subtitle="Go to classification form"
+        title="Classification form"
+        subtitle="Document clinical outcome"
         onClick={onOpenQuestionnaire}
       />
     </div>

@@ -4,11 +4,11 @@ import { IconChevronLeft, IconChevronRight } from "../ui-icons/index.js";
 
 const SleepTrendsSection = ({ period, weekNum, onPeriodChange, onWeekChange }) => (
   <div className="flex flex-col">
-    <div className="mb-3.5 flex items-center justify-between">
-      <span className="text-[length:var(--rm-fs-title)] font-extrabold tracking-[-0.4px] text-[var(--rm-sleep-title-strong)]">
-        Trends
-      </span>
-      <div className="flex items-center gap-[7px]">
+    <div className="mb-3.5">
+      <div className="mb-2.5 flex items-center justify-between gap-2">
+        <span className="text-[length:var(--rm-fs-title)] font-extrabold tracking-[-0.4px] text-[var(--rm-sleep-title-strong)]">
+          Trends
+        </span>
         <div className="flex rounded-[20px] border p-[3px] [background:var(--rm-sleep-period-bg)] [border-color:var(--rm-sleep-period-border)]">
           {["week", "month"].map((item) => (
             <button
@@ -28,7 +28,9 @@ const SleepTrendsSection = ({ period, weekNum, onPeriodChange, onWeekChange }) =
             </button>
           ))}
         </div>
+      </div>
 
+      <div className="flex items-center justify-end gap-[7px]">
         <button
           type="button"
           onClick={() => onWeekChange(-1)}

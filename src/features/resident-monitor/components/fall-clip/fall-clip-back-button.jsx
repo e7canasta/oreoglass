@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { RM_BUTTON_PRESETS } from "../../lib/design-system.js";
 
 const FallClipBackButton = ({ onBack }) => (
-  <div className="pointer-events-none absolute inset-x-0 top-0 flex [height:var(--rm-fall-back-overlay-height)] items-end px-[14px] pb-2 [background:var(--rm-fall-back-overlay)]">
+  <div className="pointer-events-none absolute left-[14px] [top:calc(var(--rm-safe-top)+8px)] z-[2]">
     <Button
       type="button"
       {...RM_BUTTON_PRESETS.floatingBack}

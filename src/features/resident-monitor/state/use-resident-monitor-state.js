@@ -7,6 +7,8 @@ export function useResidentMonitorState() {
   const state = useResidentMonitorStore(
     useShallow((store) => ({
       selectedRoom: store.selectedRoom,
+      selectedClip: store.selectedClip,
+      bedActivityAnchorEventId: store.bedActivityAnchorEventId,
       screen: store.screen,
       showAlarm: store.showAlarm,
       countdown: store.countdown,
@@ -19,6 +21,8 @@ export function useResidentMonitorState() {
     useShallow((store) => ({
       selectRoom: store.selectRoom,
       closeRoom: store.closeRoom,
+      setSelectedClip: store.setSelectedClip,
+      clearSelectedClip: store.clearSelectedClip,
       openScreen: store.openScreen,
       closeScreen: store.closeScreen,
       openSleepDetail: store.openSleepDetail,
@@ -65,6 +69,8 @@ export function useResidentMonitorState() {
     () => ({
       selectRoom: storeActions.selectRoom,
       closeRoom: storeActions.closeRoom,
+      setSelectedClip: storeActions.setSelectedClip,
+      clearSelectedClip: storeActions.clearSelectedClip,
       openScreen: storeActions.openScreen,
       closeScreen: storeActions.closeScreen,
       openSleepDetail: storeActions.openSleepDetail,

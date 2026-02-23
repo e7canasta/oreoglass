@@ -3,6 +3,7 @@ import "./themes/app-themes.css";
 
 import { AlarmSheet } from "./components/alarm-sheet.jsx";
 import { OverviewHeader } from "./components/app-chrome.jsx";
+import { OverviewActivityToast } from "./components/overview-activity-toast.jsx";
 import { OverviewActionSheet } from "./components/overview-action-sheet.jsx";
 import { CountdownBar, Section } from "./components/room-overview.jsx";
 import { RoomDetailSheet } from "./components/room-detail-sheet.jsx";
@@ -11,7 +12,7 @@ import {
   IconFullscreenEnter,
   IconFullscreenExit,
 } from "./components/ui-icons/index.js";
-import { ROOMS } from "./data/constants.js";
+import { CLIPS, ROOMS } from "./data/constants.js";
 import { createAlarmAudioController, getAlarmFeedbackProfile } from "./lib/alarm-feedback.js";
 import { loadThemeDraft, normalizeThemeDraft, saveThemeDraft } from "./lib/theme-draft.js";
 import { ScreenRouter } from "./navigation/screen-router.jsx";
@@ -30,6 +31,8 @@ export default function App() {
   const { state, actions } = useResidentMonitorState();
   const {
     selectedRoom,
+    selectedClip,
+    bedActivityAnchorEventId,
     screen,
     showAlarm,
     countdown,
@@ -219,6 +222,100 @@ export default function App() {
         : secondsAgo < 45
           ? "medium"
           : "high";
+  const allRooms = useMemo(() => Object.values(ROOMS).flat(), []);
+  const defaultAlertRoom = ROOMS["Bellevue"]?.[1];
+  const defaultAlertClip =
+    CLIPS.find((clip) => clip.room === defaultAlertRoom?.number) ?? CLIPS[0] ?? null;
+
+  const resolveClipForRoom = (room) => {
+    if (!room) {
+      return null;
+    }
+
+    return (
+      CLIPS.find((clip) => clip.room === room.number && clip.location === room.location) ??
+      CLIPS.find((clip) => clip.room === room.number) ??
+      null
+    );
+  };
+
+  const resolveRoomForClip = (clip) => {
+    if (!clip?.room) {
+      return null;
+    }
+
+    return (
+      allRooms.find((room) => room.number === clip.room && room.location === clip.location) ??
+      allRooms.find((room) => room.number === clip.room) ??
+      null
+    );
+  };
+
+  const getCurrentJourneyClip = () =>
+    selectedClip ?? resolveClipForRoom(selectedRoom) ?? defaultAlertClip;
+
+  const handleOpenLatestActivity = () => {
+    if (defaultAlertRoom) {
+      actions.selectRoom(defaultAlertRoom);
+    }
+    if (defaultAlertClip) {
+      actions.setSelectedClip(defaultAlertClip);
+    }
+    handleOpenBedActivity();
+  };
+
+  const handleOpenBedActivity = (anchorEventId = null) => {
+    actions.openBedActivity(anchorEventId);
+  };
+
+  const handleOpenForwardFromOverview = () => {
+    const clip = defaultAlertClip ?? getCurrentJourneyClip();
+    if (!selectedRoom && defaultAlertRoom) {
+      actions.selectRoom(defaultAlertRoom);
+    }
+    actions.openFallReview(clip);
+  };
+
+  const handleOpenLiveFromAlarm = () => {
+    const clip = defaultAlertClip ?? getCurrentJourneyClip();
+    if (!selectedRoom && defaultAlertRoom) {
+      actions.selectRoom(defaultAlertRoom);
+    }
+    if (clip) {
+      actions.setSelectedClip(clip);
+    }
+    actions.openLiveFromAlarm();
+  };
+
+  const handleOpenFallReviewFromAlarm = () => {
+    const clip = defaultAlertClip ?? getCurrentJourneyClip();
+    if (!selectedRoom && defaultAlertRoom) {
+      actions.selectRoom(defaultAlertRoom);
+    }
+    actions.openFallReviewFromAlarm(clip);
+  };
+
+  const handleOpenFallClipFromBedActivity = () => {
+    const clip = getCurrentJourneyClip();
+    actions.openFallClip(clip);
+  };
+
+  const handleOpenFallReviewFromBedActivity = () => {
+    const clip = getCurrentJourneyClip();
+    actions.openFallReview(clip);
+  };
+
+  const handleOpenClipFromCriticalEvents = (clip) => {
+    const clipRoom = resolveRoomForClip(clip);
+    if (clipRoom) {
+      actions.selectRoom(clipRoom);
+    }
+    actions.openFallClip(clip ?? getCurrentJourneyClip());
+  };
+
+  const handleOpenReviewFromLive = () => {
+    actions.openFallReview(getCurrentJourneyClip());
+  };
 
   return (
     <div
@@ -230,6 +327,7 @@ export default function App() {
       <div className="relative flex h-full w-full flex-col overflow-hidden [background:var(--rm-shell-bg)] [background-image:var(--rm-content-bg)]">
         {/* <PhoneStatusBar /> */}
         <OverviewHeader />
+        <OverviewActivityToast active={!selectedRoom && !screen && !showAlarm} />
 
         <div className="flex flex-1 flex-col [row-gap:var(--rm-overview-content-gap)] overflow-y-auto [padding-left:var(--rm-overview-content-padding-x)] [padding-right:var(--rm-overview-content-padding-x)] [padding-bottom:var(--rm-overview-scroll-padding-bottom)] [padding-top:var(--rm-overview-content-padding-top)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-[720px]:[padding-bottom:var(--rm-overview-scroll-padding-bottom-mobile)]">
           {Object.entries(ROOMS).map(([title, rooms]) => (
@@ -256,8 +354,8 @@ export default function App() {
             open={isOverviewSheetOpen}
             onOpenChange={setIsOverviewSheetOpen}
             onOpenCriticalEvents={actions.openCriticalEvents}
-            onOpenLatestActivity={() => actions.selectRoom(ROOMS["Bellevue"][1])}
-            onOpenForward={actions.openFallReview}
+            onOpenLatestActivity={handleOpenLatestActivity}
+            onOpenForward={handleOpenForwardFromOverview}
             onMuteForTenMinutes={handleMuteForTenMinutes}
             hasIncidentContext={alarmTriggered}
             isAlarmMuted={isAlarmMuted}
@@ -278,28 +376,32 @@ export default function App() {
           <RoomDetailSheet
             room={selectedRoom}
             onClose={actions.closeRoom}
-            onOpenFallClip={actions.openFallClip}
             onOpenSleep={actions.openSleepDetail}
-            onOpenBedActivity={actions.openBedActivity}
+            onOpenBedActivity={handleOpenBedActivity}
           />
         )}
 
         <ScreenRouter
           screen={screen}
           room={selectedRoom}
+          clip={selectedClip}
+          bedActivityInitialEventId={bedActivityAnchorEventId}
           onBack={actions.closeScreen}
           onCloseLive={actions.closeLiveView}
-          onOpenClipFromBedActivity={actions.openFallClip}
-          onOpenReviewFromBedActivity={actions.openFallReview}
-          onOpenClipFromCriticalEvents={actions.openFallReview}
+          onOpenClipFromBedActivity={handleOpenFallClipFromBedActivity}
+          onOpenReviewFromBedActivity={handleOpenFallReviewFromBedActivity}
+          onOpenClipFromCriticalEvents={handleOpenClipFromCriticalEvents}
+          onOpenReviewFromLive={handleOpenReviewFromLive}
         />
 
         {showAlarm && !screen && (
           <AlarmSheet
+            room={selectedRoom ?? defaultAlertRoom}
+            clip={selectedClip ?? defaultAlertClip}
             secondsAgo={secondsAgo}
             onClose={actions.hideAlarm}
-            onViewLive={actions.openLiveFromAlarm}
-            onFallReview={actions.openFallReviewFromAlarm}
+            onViewLive={handleOpenLiveFromAlarm}
+            onFallReview={handleOpenFallReviewFromAlarm}
           />
         )}
 

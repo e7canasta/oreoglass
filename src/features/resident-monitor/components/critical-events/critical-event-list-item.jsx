@@ -7,6 +7,12 @@ import { RM_BADGE_PRESETS, RM_BUTTON_PRESETS } from "../../lib/design-system.js"
 
 const CriticalEventListItem = ({ clip, idx, onOpen }) => {
   const isHighSeverity = clip.label.toLowerCase().includes("with injury");
+  const priorityLabel = isHighSeverity ? "High priority" : "Monitor";
+  const clipWindow = `${clip.date} · ${clip.time}`;
+  const eventLabel = clip.event ?? "Possible fall";
+  const contextLabel = [clip.resident, clip.location]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <Button
@@ -32,15 +38,44 @@ const CriticalEventListItem = ({ clip, idx, onOpen }) => {
         />
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-[5px]">
-        <Badge
-          {...(isHighSeverity ? RM_BADGE_PRESETS.critical : RM_BADGE_PRESETS.criticalMuted)}
-          className="w-fit rounded-md border px-2 py-[3px] text-[length:var(--rm-fs-meta)] font-bold tracking-[0.1px] [border-color:var(--rm-critical-item-chip-border)]"
-        >
-          {clip.label}
-        </Badge>
-        <span className="text-[length:var(--rm-fs-meta)] font-medium leading-[1.25] text-[var(--rm-critical-item-reaction)]">
-          Reaction time {clip.reaction}
+      <div className="flex min-w-0 flex-1 flex-col [row-gap:var(--rm-critical-item-content-gap)]">
+        <div className="flex min-w-0 items-center gap-2">
+          <Badge
+            {...(isHighSeverity ? RM_BADGE_PRESETS.critical : RM_BADGE_PRESETS.criticalMuted)}
+            className="w-fit rounded-md border px-2 py-[3px] text-[length:var(--rm-critical-item-chip-size)] font-bold tracking-[0.1px] [border-color:var(--rm-critical-item-chip-border)]"
+          >
+            {clip.label}
+          </Badge>
+          <span
+            className={cn(
+              "shrink-0 rounded-md border px-1.5 py-[3px] text-[length:var(--rm-critical-item-priority-size)] font-semibold tracking-[0.08px]",
+              isHighSeverity
+                ? "[background:var(--rm-critical-item-priority-high-bg)] [border-color:var(--rm-critical-item-priority-high-border)] text-[var(--rm-critical-item-priority-high-text)]"
+                : "[background:var(--rm-critical-item-priority-medium-bg)] [border-color:var(--rm-critical-item-priority-medium-border)] text-[var(--rm-critical-item-priority-medium-text)]",
+            )}
+          >
+            {priorityLabel}
+          </span>
+          {clip.room && (
+            <span className="truncate rounded-md border px-1.5 py-[3px] text-[length:var(--rm-critical-item-room-size)] font-semibold text-[var(--rm-critical-item-room-text)] [border-color:var(--rm-critical-item-room-border)] [background:var(--rm-critical-item-room-bg)]">
+              Room {clip.room}
+            </span>
+          )}
+        </div>
+        <span className="truncate text-[length:var(--rm-critical-item-title-size)] font-semibold tracking-[-0.1px] text-[var(--rm-critical-item-title)]">
+          {eventLabel}
+        </span>
+        {contextLabel && (
+          <span className="truncate text-[length:var(--rm-critical-item-context-size)] font-medium text-[var(--rm-critical-item-context)]">
+            {contextLabel}
+          </span>
+        )}
+        <span className="truncate text-[length:var(--rm-critical-item-meta-size)] font-medium text-[var(--rm-critical-item-meta)]">
+          {clipWindow}
+        </span>
+        <span className="flex items-baseline gap-1.5 text-[length:var(--rm-critical-item-reaction-size)]">
+          <span className="font-medium text-[var(--rm-critical-item-reaction-label)]">Reaction time</span>
+          <span className="font-bold tabular-nums text-[var(--rm-critical-item-reaction-value)]">{clip.reaction}</span>
         </span>
       </div>
 

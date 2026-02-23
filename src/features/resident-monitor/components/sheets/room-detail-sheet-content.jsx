@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
 import { AppHeaderActionButton, AppHeaderLeading, AppHeaderRow } from "../chrome/header-layout.jsx";
-import { IconFalling, IconInBed, IconStanding } from "../icons.jsx";
+import { IconFalling, IconInBed, IconSittingOnBedLarge, IconStanding } from "../icons.jsx";
 import { ActivityTile, SleepChart } from "../room-detail/widgets/index.js";
 import { IconChevronRight, IconClose, IconWideChevronDown } from "../ui-icons/index.js";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,12 @@ const ROOM_STATUS_DOT_TONE_BY_STATUS = Object.freeze({
   alert: "alert",
   sleep: "warm",
   out: "info",
+});
+
+const ROOM_STATUS_LABEL_BY_STATUS = Object.freeze({
+  alert: "Alarm active",
+  sleep: "Monitoring",
+  out: "Out of bed",
 });
 
 const BED_ACTIVITY_SWIPE_THRESHOLD = 42;
@@ -31,7 +37,7 @@ const RoomDetailHeader = ({ room, onClose, dotTone }) => (
       />
       <div className="min-w-0">
         <div className="truncate text-[length:var(--rm-room-detail-title-size)] leading-[1.08] font-bold tracking-[-0.32px] text-[var(--rm-room-detail-text)]">
-          {room.number}
+          Room {room.number}
         </div>
         <div className="truncate text-[length:var(--rm-room-detail-location-size)] leading-[1.24] text-[var(--rm-room-detail-muted)]">
           {room.location}
@@ -39,18 +45,80 @@ const RoomDetailHeader = ({ room, onClose, dotTone }) => (
       </div>
     </AppHeaderLeading>
 
-    <AppHeaderActionButton
-      onClick={onClose}
-      className="[background:var(--rm-room-detail-close-bg)] [border-color:var(--rm-room-detail-close-border)] focus-visible:[outline-color:var(--rm-room-detail-focus)]"
-      aria-label="Close room details"
-    >
-      <IconClose stroke="var(--rm-room-detail-close-icon)" strokeWidth={2.2} />
-    </AppHeaderActionButton>
+    <div className="flex shrink-0 items-center gap-2">
+      <span
+        className={cn(
+          "inline-flex min-h-[var(--rm-hit-chip)] items-center rounded-full border px-2.5 py-1 text-[length:var(--rm-fs-micro)] font-semibold tracking-[0.2px] [background:var(--rm-room-detail-status-bg)] [border-color:var(--rm-room-detail-status-border)] text-[var(--rm-room-detail-status-text)]",
+          dotTone === "alert" &&
+            "[background:var(--rm-room-detail-status-alert-bg)] [border-color:var(--rm-room-detail-status-alert-border)] text-[var(--rm-room-detail-status-alert-text)]",
+          dotTone === "warm" &&
+            "[background:var(--rm-room-detail-status-warm-bg)] [border-color:var(--rm-room-detail-status-warm-border)] text-[var(--rm-room-detail-status-warm-text)]",
+          dotTone === "info" &&
+            "[background:var(--rm-room-detail-status-info-bg)] [border-color:var(--rm-room-detail-status-info-border)] text-[var(--rm-room-detail-status-info-text)]",
+        )}
+      >
+        {ROOM_STATUS_LABEL_BY_STATUS[room.status] ?? "Active"}
+      </span>
+
+      <AppHeaderActionButton
+        onClick={onClose}
+        className="[background:var(--rm-room-detail-close-bg)] [border-color:var(--rm-room-detail-close-border)] focus-visible:[outline-color:var(--rm-room-detail-focus)]"
+        aria-label="Close room details"
+      >
+        <IconClose stroke="var(--rm-room-detail-close-icon)" strokeWidth={2.2} />
+      </AppHeaderActionButton>
+    </div>
   </AppHeaderRow>
 );
 
-const RoomActivitySection = ({ onOpenFallClip, onOpenBedActivity }) => {
+const RoomActivitySection = ({ onOpenBedActivity }) => {
   const touchStartRef = useRef(null);
+
+  const handleOpenAnchoredActivity = (anchorEventId) => {
+    if (typeof onOpenBedActivity === "function") {
+      onOpenBedActivity(anchorEventId);
+    }
+  };
+
+  const activityEvents = [
+    {
+      id: "in-bed",
+      anchorEventId: "in-bed",
+      time: "08:12",
+      label: "In bed",
+      icon: <IconInBed size={36} />,
+      onClick: () => handleOpenAnchoredActivity("in-bed"),
+    },
+    {
+      id: "sitting-edge",
+      anchorEventId: "sitting-edge",
+      time: "09:04",
+      label: "Sitting edge",
+      icon: <IconSittingOnBedLarge size={26} />,
+      onClick: () => handleOpenAnchoredActivity("sitting-edge"),
+    },
+    {
+      id: "fall-alarm",
+      anchorEventId: "fall-alarm",
+      time: "10:52",
+      label: "Fall alarm",
+      icon: <IconFalling size={24} />,
+      isAlarm: true,
+      isReviewPending: true,
+      onClick: () => handleOpenAnchoredActivity("fall-alarm"),
+    },
+    {
+      id: "standing",
+      anchorEventId: "standing",
+      time: "10:52",
+      label: "Standing",
+      icon: <IconStanding size={24} />,
+      isCurrent: true,
+      isLive: true,
+      duration: "3h 33m",
+      onClick: () => handleOpenAnchoredActivity("standing"),
+    },
+  ];
 
   const handleTouchStart = (event) => {
     const [touchPoint] = event.touches;
@@ -87,12 +155,15 @@ const RoomActivitySection = ({ onOpenFallClip, onOpenBedActivity }) => {
         <div className="flex min-w-0 items-center gap-[7px]">
           <IconStanding size={22} />
           <span className="text-[length:var(--rm-fs-title)] font-bold text-[var(--rm-room-detail-text)]">
-            Activity
+            Activity timeline
           </span>
         </div>
         <span className="whitespace-nowrap text-[length:var(--rm-fs-meta)] text-[var(--rm-room-detail-meta)]">
           last 12 hours
         </span>
+      </div>
+      <div className="mb-2 text-[length:var(--rm-fs-meta)] text-[var(--rm-room-detail-meta)]">
+        Tap any event to open the activity feed at that moment
       </div>
 
       <div
@@ -102,10 +173,20 @@ const RoomActivitySection = ({ onOpenFallClip, onOpenBedActivity }) => {
       >
         <div className="overflow-x-auto px-2 pb-2.5 pt-3">
           <div className="flex min-w-max items-stretch gap-1.5">
-            <ActivityTile time="08:12" icon={<IconInBed size={38} />} />
-            <ActivityTile time="09:04" icon={<IconStanding size={24} />} />
-            <ActivityTile time="10:52" icon={<IconFalling size={24} />} isAlarm onClick={onOpenFallClip} />
-            <ActivityTile time="10:52" icon={<IconInBed size={38} />} isCurrent duration="3h 33m" />
+            {activityEvents.map((event) => (
+              <ActivityTile
+                key={event.id}
+                time={event.time}
+                label={event.label}
+                icon={event.icon}
+                isCurrent={event.isCurrent}
+                duration={event.duration}
+                isAlarm={event.isAlarm}
+                isLive={event.isLive}
+                isReviewPending={event.isReviewPending}
+                onClick={event.onClick}
+              />
+            ))}
           </div>
         </div>
 
@@ -140,7 +221,7 @@ const RoomSleepSection = ({ onOpenSleep }) => (
             z<sup className="text-[length:var(--rm-fs-meta)]">z</sup>
           </span>
           <span className="text-[length:var(--rm-fs-title)] font-bold text-[var(--rm-room-detail-text)]">
-            Sleep
+            Sleep insights
           </span>
         </div>
         <div className="flex items-center gap-1.5">
@@ -155,13 +236,13 @@ const RoomSleepSection = ({ onOpenSleep }) => (
   </div>
 );
 
-const RoomDetailSheetContent = ({ room, onClose, onOpenFallClip, onOpenSleep, onOpenBedActivity }) => {
+const RoomDetailSheetContent = ({ room, onClose, onOpenSleep, onOpenBedActivity }) => {
   const dotTone = ROOM_STATUS_DOT_TONE_BY_STATUS[room.status] ?? "default";
 
   return (
     <>
       <RoomDetailHeader room={room} onClose={onClose} dotTone={dotTone} />
-      <RoomActivitySection onOpenFallClip={onOpenFallClip} onOpenBedActivity={onOpenBedActivity} />
+      <RoomActivitySection onOpenBedActivity={onOpenBedActivity} />
       <RoomSleepSection onOpenSleep={onOpenSleep} />
     </>
   );

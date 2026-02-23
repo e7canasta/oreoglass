@@ -13,11 +13,23 @@ const FeaturedClipCard = ({ clip, onOpen }) => (
       <ThermalView />
     </div>
     <div className="absolute inset-0 [background:var(--rm-critical-featured-gradient)]" />
-    <div className="absolute bottom-3 left-3.5 flex items-center gap-3">
-      <span className="text-[length:var(--rm-fs-meta)] font-medium text-[var(--rm-critical-featured-date)]">{clip.date}</span>
-      <span className="text-[length:var(--rm-fs-meta)] font-bold tracking-[0.2px] text-[var(--rm-critical-featured-time)]">
-        {clip.time}
-      </span>
+    {clip.room && (
+      <div className="absolute left-3 top-3 rounded-md border px-2 py-[3px] text-[10px] font-semibold tracking-[0.2px] text-white [background:rgba(18,22,31,0.56)] [border-color:rgba(255,255,255,0.28)]">
+        Room {clip.room}
+      </div>
+    )}
+    <div className="absolute bottom-3 left-3.5 right-3.5">
+      <div className="truncate text-[length:var(--rm-fs-body)] font-semibold text-[var(--rm-critical-featured-time)]">
+        {clip.event ?? clip.label}
+      </div>
+      <div className="mt-0.5 flex items-center justify-between gap-3">
+        <span className="truncate text-[length:var(--rm-fs-meta)] font-medium text-[var(--rm-critical-featured-date)]">
+          {clip.resident ? `${clip.resident} · ${clip.location}` : clip.date}
+        </span>
+        <span className="whitespace-nowrap text-[length:var(--rm-fs-meta)] font-bold tracking-[0.2px] text-[var(--rm-critical-featured-time)]">
+          {clip.time}
+        </span>
+      </div>
     </div>
   </Button>
 );

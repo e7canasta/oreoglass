@@ -42,8 +42,9 @@ const RoomCard = ({ room, onSelect }) => {
         "[width:var(--rm-overview-room-width)] flex-none",
         "[background:var(--rm-overview-room-bg)] [border-color:var(--rm-overview-room-border)] [box-shadow:var(--rm-overview-room-shadow)]",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-overview-room-focus)]",
-        isAlert && "[background:var(--rm-overview-room-alert-bg)] [border-color:var(--rm-overview-room-alert-border)] [box-shadow:var(--rm-overview-room-alert-shadow)]",
-        isOut && "[background:var(--rm-overview-room-out-bg)] [border-color:var(--rm-overview-room-out-border)]",
+        isAlert &&
+          "rm-overview-room-alert [background:var(--rm-overview-room-alert-bg)] [border-color:var(--rm-overview-room-alert-border)] [box-shadow:var(--rm-overview-room-alert-shadow)]",
+        isOut && "rm-overview-room-out [background:var(--rm-overview-room-out-bg)] [border-color:var(--rm-overview-room-out-border)]",
       )}
     >
       <span className="text-[length:var(--rm-overview-room-number-size)] leading-[var(--rm-overview-room-number-line-height)] font-semibold tracking-[var(--rm-overview-room-number-tracking)] text-[var(--rm-overview-room-title)]">
@@ -62,7 +63,7 @@ const RoomCard = ({ room, onSelect }) => {
           />
         ) : isOut ? (
           <div className="relative flex [height:var(--rm-overview-room-out-art-height)] w-full items-end justify-center">
-            <div className="pointer-events-none absolute left-1/2 [top:var(--rm-overview-room-out-pill-top)] z-[1] -translate-x-1/2 [width:var(--rm-overview-room-out-pill-width)] rounded-[var(--rm-overview-room-out-pill-radius)] border [border-width:var(--rm-overview-room-out-pill-border-width)] [border-color:var(--rm-overview-room-out-pill-border)] [padding-left:var(--rm-overview-room-out-pill-padding-x)] [padding-right:var(--rm-overview-room-out-pill-padding-x)] [padding-top:var(--rm-overview-room-out-pill-padding-y)] [padding-bottom:var(--rm-overview-room-out-pill-padding-y)] text-center [background:var(--rm-overview-room-out-pill-bg)] [box-shadow:var(--rm-overview-room-out-pill-shadow)] [backdrop-filter:var(--rm-overview-room-out-pill-backdrop)]">
+            <div className="rm-overview-room-out-pill pointer-events-none absolute left-1/2 [top:var(--rm-overview-room-out-pill-top)] z-[1] -translate-x-1/2 [width:var(--rm-overview-room-out-pill-width)] rounded-[var(--rm-overview-room-out-pill-radius)] border [border-width:var(--rm-overview-room-out-pill-border-width)] [border-color:var(--rm-overview-room-out-pill-border)] [padding-left:var(--rm-overview-room-out-pill-padding-x)] [padding-right:var(--rm-overview-room-out-pill-padding-x)] [padding-top:var(--rm-overview-room-out-pill-padding-y)] [padding-bottom:var(--rm-overview-room-out-pill-padding-y)] text-center [background:var(--rm-overview-room-out-pill-bg)] [box-shadow:var(--rm-overview-room-out-pill-shadow)] [backdrop-filter:var(--rm-overview-room-out-pill-backdrop)]">
               <span className="text-[length:var(--rm-overview-room-out-pill-text-size)] font-semibold text-[var(--rm-overview-room-out-pill-text)]">
                 {`→ ${outLabel}`}
               </span>
@@ -91,7 +92,7 @@ const RoomCard = ({ room, onSelect }) => {
           dot === "person" ? (
             <div
               key={index}
-              className="flex items-center justify-center rounded-full border [border-width:var(--rm-overview-dot-person-border-width)] [border-color:var(--rm-overview-dot-person-border)] [width:var(--rm-overview-room-dot-person-size)] [height:var(--rm-overview-room-dot-person-size)] [background:var(--rm-overview-dot-person-bg)] [box-shadow:var(--rm-overview-dot-person-shadow)]"
+              className="rm-overview-room-staff-dot flex items-center justify-center rounded-full border [border-width:var(--rm-overview-dot-person-border-width)] [border-color:var(--rm-overview-dot-person-border)] [width:var(--rm-overview-room-dot-person-size)] [height:var(--rm-overview-room-dot-person-size)] [background:var(--rm-overview-dot-person-bg)] [box-shadow:var(--rm-overview-dot-person-shadow)]"
             >
               <IconStanding
                 size={18}

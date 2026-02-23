@@ -1,28 +1,44 @@
 import { RadioGroup } from "@/components/ui/radio-group";
+import { AppHeaderActionButton, AppHeaderLeading, AppHeaderRow } from "./chrome/header-layout.jsx";
 import { FallReviewOption } from "./fall-review-option.jsx";
 import { ThermalView } from "./thermal.jsx";
+import { IconArrowLeft } from "./ui-icons/index.js";
 import { VideoScrubber } from "./video.jsx";
+import { FALL_CLASSIFICATION_OPTIONS } from "../data/fall-classification-options.js";
 
-const FALL_REVIEW_OPTIONS = Object.freeze([
-  "Fall with injury",
-  "Fall without injury",
-  "Deliberately on ground",
-  "Not a fall",
-  "Already on ground",
-]);
+const FallReviewHeader = ({ room, clip, onBack }) => (
+  <AppHeaderRow className="[column-gap:var(--rm-fall-review-header-gap)] [padding-top:var(--rm-fall-review-header-padding-top)] [padding-bottom:var(--rm-fall-review-header-padding-bottom)]">
+    <AppHeaderLeading className="min-w-0 flex-1 [column-gap:var(--rm-fall-review-header-leading-gap)]">
+      <AppHeaderActionButton
+        onClick={onBack}
+        aria-label="Back"
+        className="[width:var(--rm-hit-compact)] [height:var(--rm-hit-compact)] [background:var(--rm-fall-review-back-bg)] [border-color:var(--rm-fall-review-back-border)] [backdrop-filter:blur(10px)_saturate(1.08)] focus-visible:[outline-color:var(--rm-fall-review-focus)]"
+      >
+        <IconArrowLeft stroke="var(--rm-fall-review-back-icon)" />
+      </AppHeaderActionButton>
 
-const FallReviewHeader = () => (
-  <header className="flex shrink-0 items-baseline justify-between px-4 pb-3">
-    <span className="text-[length:var(--rm-fs-title-strong)] font-extrabold tracking-[-0.3px] text-[var(--rm-fall-review-title)]">
-      Possible fall
-    </span>
+      <div className="min-w-0">
+        <div className="truncate text-[length:var(--rm-fs-title-strong)] font-extrabold tracking-[-0.3px] text-[var(--rm-fall-review-title)]">
+          Possible fall
+        </div>
+        <div className="truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-fall-review-subtitle)]">
+          {clip?.resident ? `${clip.resident} · ` : ""}
+          {room?.number
+            ? `Room ${room.number} · ${room.location}`
+            : clip?.room
+              ? `Room ${clip.room} · ${clip.location ?? "Triage"}`
+              : "Triage classification"}
+        </div>
+      </div>
+    </AppHeaderLeading>
+
     <div className="flex items-baseline gap-[5px]">
-      <span className="text-[length:var(--rm-fs-body)] font-medium text-[var(--rm-fall-review-date)]">March 31st</span>
+      <span className="text-[length:var(--rm-fs-body)] font-medium text-[var(--rm-fall-review-date)]">{clip?.date ?? "March 31st"}</span>
       <span className="text-[length:var(--rm-fs-body)] font-extrabold tracking-[0.3px] text-[var(--rm-fall-review-time)]">
-        01:24
+        {clip?.time?.split("–")?.[0]?.trim() ?? "01:24"}
       </span>
     </div>
-  </header>
+  </AppHeaderRow>
 );
 
 const FallReviewThermalCard = () => (
@@ -38,25 +54,29 @@ const FallReviewThermalCard = () => (
 );
 
 const FallReviewClassificationList = ({ value, onValueChange }) => (
-  <RadioGroup
-    value={value}
-    onValueChange={onValueChange}
-    className="flex flex-1 flex-col gap-2 overflow-y-auto px-3 [padding-bottom:var(--rm-fall-review-list-padding-bottom)]"
-    aria-label="Fall classification"
-  >
-    {FALL_REVIEW_OPTIONS.map((option) => (
-      <FallReviewOption
-        key={option}
-        label={option}
-        value={option}
-      />
-    ))}
-  </RadioGroup>
+  <div className="flex flex-1 flex-col overflow-hidden px-3">
+    <div className="mb-2 px-0.5 text-[length:var(--rm-fs-meta)] font-semibold text-[var(--rm-fall-review-subtitle)]">
+      Select clinical outcome
+    </div>
+    <RadioGroup
+      value={value}
+      onValueChange={onValueChange}
+      className="flex flex-1 flex-col gap-2 overflow-y-auto [padding-bottom:var(--rm-fall-review-list-padding-bottom)]"
+      aria-label="Fall classification"
+    >
+      {FALL_CLASSIFICATION_OPTIONS.map((option) => (
+        <FallReviewOption
+          key={option}
+          label={option}
+          value={option}
+        />
+      ))}
+    </RadioGroup>
+  </div>
 );
 
 export {
   FallReviewClassificationList,
   FallReviewHeader,
-  FALL_REVIEW_OPTIONS,
   FallReviewThermalCard,
 };

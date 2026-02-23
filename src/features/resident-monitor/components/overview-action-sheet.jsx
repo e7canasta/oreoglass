@@ -11,18 +11,48 @@ const OverviewActionSheet = ({
   isAlarmMuted = false,
 }) => {
   const quickActions = [
-    { id: "fall", label: "Fall clips", arrow: true, badge: 6, tone: "critical", onClick: onOpenCriticalEvents },
+    {
+      id: "fall",
+      label: "Fall clips",
+      meta: "6 pending review",
+      arrow: true,
+      badge: 6,
+      tone: "critical",
+      onClick: onOpenCriticalEvents,
+    },
     {
       id: "mute",
-      label: isAlarmMuted ? "Muted for\n10 minutes" : "Mute for\n10 minutes",
+      label: isAlarmMuted ? "Muted 10 minutes" : "Mute 10 minutes",
+      meta: isAlarmMuted ? "Sound and vibration paused" : "Pause alarm feedback",
       tone: isAlarmMuted ? "muted" : "neutral",
       onClick: isAlarmMuted ? undefined : onMuteForTenMinutes,
       disabled: isAlarmMuted,
     },
-    { id: "latest", label: "Latest\nActivity", arrow: true, tone: "neutral", onClick: onOpenLatestActivity },
+    {
+      id: "latest",
+      label: "Latest activity",
+      meta: "Open full bed timeline",
+      arrow: true,
+      tone: "neutral",
+      onClick: onOpenLatestActivity,
+    },
     hasIncidentContext
-      ? { id: "forward", label: "Forward\nto nurse", arrow: true, tone: "muted", onClick: onOpenForward }
-      : { id: "forward-idle", label: "No active\nalarm", isBlank: true, tone: "blank", disabled: true },
+      ? {
+          id: "forward",
+          label: "Forward to triage",
+          meta: "Escalate incident now",
+          arrow: true,
+          tone: "muted",
+          onClick: onOpenForward,
+        }
+      : {
+          id: "forward-idle",
+          label: "No active alarm",
+          meta: "Forward opens after an incident",
+          isBlank: true,
+          tone: "blank",
+          disabled: true,
+        },
   ];
 
   return (

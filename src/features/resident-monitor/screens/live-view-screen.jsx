@@ -4,15 +4,14 @@ import {
   LiveViewHeader,
   LiveViewThermalStage,
 } from "../components/live-view-sections.jsx";
-import { ScreenStage, ScreenTopSpacer } from "../components/screen-stage.jsx";
+import { ScreenStage } from "../components/screen-stage.jsx";
 
-const LiveViewScreen = ({ onBack }) => (
+const LiveViewScreen = ({ room, clip, onBack, onOpenReview }) => (
   <ScreenStage zToken="--rm-z-screen-live" className="[background:var(--rm-live-bg)]">
-    <ScreenTopSpacer />
-    <LiveViewHeader onBack={onBack} />
+    <LiveViewHeader room={room} clip={clip} onBack={onBack} />
     <LiveViewThermalStage />
-    <LiveViewEventCard />
-    <LiveViewActions onPrimary={onBack} onSecondary={onBack} />
+    <LiveViewEventCard room={room} clip={clip} />
+    <LiveViewActions onPrimary={onBack} onReview={onOpenReview} />
   </ScreenStage>
 );
 

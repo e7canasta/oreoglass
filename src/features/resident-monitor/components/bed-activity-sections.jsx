@@ -2,7 +2,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-import { AppHeaderActionButton, AppHeaderLeading, AppHeaderRow } from "./chrome/header-layout.jsx";
 import {
   IconInBed,
   IconLayingOnFloor,
@@ -11,7 +10,7 @@ import {
   IconStanding,
 } from "./icons.jsx";
 import { ThermalView } from "./thermal.jsx";
-import { IconArrowLeft, IconArrowRight, IconPlay } from "./ui-icons/index.js";
+import { IconArrowLeft, IconArrowRight } from "./ui-icons/index.js";
 
 const BED_ACTIVITY_TIMELINE_EVENTS = Object.freeze([
   {
@@ -57,6 +56,16 @@ const BED_ACTIVITY_TIMELINE_EVENTS = Object.freeze([
   },
 ]);
 
+const resolveBedActivityIndexByEventId = (eventId = null) => {
+  const liveIndex = BED_ACTIVITY_TIMELINE_EVENTS.length - 1;
+  if (!eventId) {
+    return liveIndex;
+  }
+
+  const matchingIndex = BED_ACTIVITY_TIMELINE_EVENTS.findIndex((event) => event.id === eventId);
+  return matchingIndex >= 0 ? matchingIndex : liveIndex;
+};
+
 const toneDotClassName = (tone) => {
   if (tone === "warning") {
     return "[background:var(--rm-bed-activity-dot-warning)]";
@@ -73,76 +82,103 @@ const toneDotClassName = (tone) => {
   return "[background:var(--rm-bed-activity-dot-neutral)]";
 };
 
-const BedActivityHeader = ({ room, onBack }) => (
-  <AppHeaderRow className="[column-gap:var(--rm-bed-activity-header-gap)] [padding-top:var(--rm-bed-activity-header-padding-top)] [padding-bottom:var(--rm-bed-activity-header-padding-bottom)]">
-    <AppHeaderLeading className="min-w-0 flex-1 [column-gap:var(--rm-bed-activity-header-leading-gap)]">
-      <AppHeaderActionButton
-        onClick={onBack}
-        aria-label="Back to room detail"
-        className="[background:var(--rm-bed-activity-back-bg)] [border-color:var(--rm-bed-activity-back-border)] focus-visible:[outline-color:var(--rm-bed-activity-focus)]"
+const BedActivityLiveCard = ({
+  room,
+  selectedEvent,
+  progressPercent = 88,
+  isAtLive = true,
+  onBack,
+  onReturnToLive,
+  onRequestReview,
+}) => {
+  const eventLabel = selectedEvent?.label ?? "Current activity";
+  const eventTime = selectedEvent?.time ?? "23:16";
+  const needsReview = Boolean(selectedEvent?.needsReview);
+
+  return (
+    <section className="mx-[14px] shrink-0 rounded-[18px] border p-3 [background:var(--rm-bed-activity-live-surface)] [border-color:var(--rm-bed-activity-live-border)] [box-shadow:var(--rm-bed-activity-live-shadow)]">
+      <div className="relative overflow-hidden rounded-[14px] border [height:var(--rm-bed-activity-preview-height)] [background:var(--rm-bed-activity-preview-bg)] [border-color:var(--rm-bed-activity-preview-border)]">
+        <button
+          type="button"
+          onClick={onBack}
+          aria-label="Back to room detail"
+          className="absolute left-2.5 top-2.5 z-[2] flex size-[var(--rm-hit-compact)] items-center justify-center rounded-full border [background:var(--rm-bed-activity-back-bg)] [border-color:var(--rm-bed-activity-back-border)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-bed-activity-focus)] active:scale-[0.985]"
+        >
+          <IconArrowLeft stroke="var(--rm-bed-activity-back-icon)" />
+        </button>
+
+        <div className="pointer-events-none absolute left-1/2 top-3 z-[1] inline-flex -translate-x-1/2 items-center gap-1 rounded-[9px] border px-2.5 py-1 text-[length:var(--rm-fs-meta)] font-semibold [background:var(--rm-bed-activity-preview-badge-bg)] [border-color:var(--rm-bed-activity-preview-badge-border)] text-[var(--rm-bed-activity-preview-badge-text)]">
+          <span>{`Room ${room?.number ?? "101"}`}</span>
+        </div>
+
+        {!isAtLive && (
+          <button
+            type="button"
+            onClick={onReturnToLive}
+            className="absolute right-2.5 top-2.5 z-[2] inline-flex min-h-[var(--rm-hit-chip)] items-center gap-1.5 rounded-full border px-2.5 py-1 text-[length:var(--rm-fs-micro)] font-semibold [background:var(--rm-bed-activity-go-live-bg)] [border-color:var(--rm-bed-activity-go-live-border)] text-[var(--rm-bed-activity-go-live-text)] [box-shadow:var(--rm-bed-activity-go-live-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-bed-activity-focus)] active:scale-[0.98]"
+          >
+            <span className="size-1.5 rounded-full [background:var(--rm-bed-activity-go-live-dot)]" />
+            Live
+          </button>
+        )}
+
+        <ThermalView />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 [background:var(--rm-bed-activity-preview-fade)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 px-[12px] pb-2.5 pt-5 [background:var(--rm-bed-activity-preview-progress-overlay)]">
+          <div className="relative h-[3px] rounded-[2px] [background:var(--rm-bed-activity-preview-progress-track)]">
+            <div
+              className="h-full rounded-[2px] [background:var(--rm-bed-activity-preview-progress-fill)]"
+              style={{ width: `${progressPercent}%` }}
+            />
+            <div
+              className="absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full [background:var(--rm-bed-activity-preview-progress-thumb)] [box-shadow:var(--rm-bed-activity-preview-progress-thumb-shadow)]"
+              style={{ left: `${progressPercent}%` }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-3 flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-bed-activity-meta)]">
+            {room?.location ?? "Alma Way"} - Room {room?.number ?? "101"}
+          </div>
+          <h2 className="truncate text-[length:var(--rm-fs-title)] font-bold tracking-[-0.24px] text-[var(--rm-bed-activity-title)]">
+            Activity feed
+          </h2>
+          <p className="truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-bed-activity-meta)]">
+            {eventLabel} · {eventTime}
+          </p>
+        </div>
+        <Badge
+          variant="critical"
+          className={cn(
+            "rounded-[10px] border px-2.5 py-1 text-[length:var(--rm-fs-meta)] font-semibold [box-shadow:none]",
+            needsReview
+              ? "[background:var(--rm-bed-activity-status-bg)] [border-color:var(--rm-bed-activity-status-border)] text-[var(--rm-bed-activity-status-text)]"
+              : "[background:var(--rm-bed-activity-status-muted-bg)] [border-color:var(--rm-bed-activity-status-muted-border)] text-[var(--rm-bed-activity-status-muted-text)]",
+          )}
+        >
+          {needsReview ? "Needs review" : isAtLive ? "Live now" : "Playback"}
+        </Badge>
+      </div>
+
+      <Button
+        type="button"
+        onClick={onRequestReview}
+        variant="unstyled"
+        className="mt-3 min-h-[var(--rm-hit-min)] w-full rounded-[14px] border px-3 py-3 text-[length:var(--rm-fs-body-strong)] font-bold tracking-[-0.15px] [background:var(--rm-bed-activity-review-bg)] [border-color:var(--rm-bed-activity-review-border)] text-[var(--rm-bed-activity-review-text)] [box-shadow:var(--rm-bed-activity-review-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-bed-activity-focus)] active:scale-[0.992]"
       >
-        <IconArrowLeft stroke="var(--rm-bed-activity-back-icon)" />
-      </AppHeaderActionButton>
+        Review fall clip
+      </Button>
+    </section>
+  );
+};
 
-      <div className="min-w-0 text-left">
-        <div className="truncate text-[length:var(--rm-fs-title)] font-bold tracking-[-0.3px] text-[var(--rm-bed-activity-header-text)]">
-          {room?.number ?? "101"} Activity
-        </div>
-        <div className="truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-bed-activity-header-muted)]">
-          {room?.location ?? "Alma Way"} - last 12 hours
-        </div>
-      </div>
-    </AppHeaderLeading>
-
-    <div className="inline-flex min-h-[var(--rm-hit-chip)] shrink-0 items-center justify-center rounded-full border px-3 py-1 text-[length:var(--rm-fs-micro)] font-semibold tracking-[0.4px] [background:var(--rm-bed-activity-chip-bg)] [border-color:var(--rm-bed-activity-chip-border)] text-[var(--rm-bed-activity-chip-text)] [box-shadow:var(--rm-bed-activity-chip-shadow)]">
-      LIVE
-    </div>
-  </AppHeaderRow>
-);
-
-const BedActivityLiveCard = ({ room, onRequestReview }) => (
-  <section className="mx-[14px] shrink-0 rounded-[18px] border p-3 [background:var(--rm-bed-activity-live-surface)] [border-color:var(--rm-bed-activity-live-border)] [box-shadow:var(--rm-bed-activity-live-shadow)]">
-    <div className="relative overflow-hidden rounded-[14px] border [height:var(--rm-bed-activity-preview-height)] [background:var(--rm-bed-activity-preview-bg)] [border-color:var(--rm-bed-activity-preview-border)]">
-      <div className="pointer-events-none absolute left-2.5 top-2.5 z-[1] inline-flex items-center gap-1 rounded-[9px] border px-2.5 py-1 text-[length:var(--rm-fs-meta)] font-semibold [background:var(--rm-bed-activity-preview-badge-bg)] [border-color:var(--rm-bed-activity-preview-badge-border)] text-[var(--rm-bed-activity-preview-badge-text)]">
-        <IconPlay width={8} height={9} fill="currentColor" />
-        <span>View 1</span>
-      </div>
-      <ThermalView />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 [background:var(--rm-bed-activity-preview-fade)]" />
-    </div>
-
-    <div className="mt-3 flex items-start justify-between gap-3">
-      <div className="min-w-0">
-        <div className="truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-bed-activity-meta)]">
-          {room?.location ?? "Alma Way"} - Room {room?.number ?? "101"}
-        </div>
-        <h2 className="truncate text-[length:var(--rm-fs-title)] font-bold tracking-[-0.24px] text-[var(--rm-bed-activity-title)]">
-          Activity feed
-        </h2>
-        <p className="truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-bed-activity-meta)]">Detected event at 23:13</p>
-      </div>
-      <Badge
-        variant="critical"
-        className="rounded-[10px] border px-2.5 py-1 text-[length:var(--rm-fs-meta)] font-semibold [background:var(--rm-bed-activity-status-bg)] [border-color:var(--rm-bed-activity-status-border)] text-[var(--rm-bed-activity-status-text)] [box-shadow:none]"
-      >
-        Needs review
-      </Badge>
-    </div>
-
-    <Button
-      type="button"
-      onClick={onRequestReview}
-      variant="unstyled"
-      className="mt-3 min-h-[var(--rm-hit-min)] w-full rounded-[14px] border px-3 py-3 text-[length:var(--rm-fs-body-strong)] font-bold tracking-[-0.15px] [background:var(--rm-bed-activity-review-bg)] [border-color:var(--rm-bed-activity-review-border)] text-[var(--rm-bed-activity-review-text)] [box-shadow:var(--rm-bed-activity-review-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-bed-activity-focus)] active:scale-[0.992]"
-    >
-      Review fall clip
-    </Button>
-  </section>
-);
-
-const BedActivityTimelineEvent = ({ event, isLast, onRequestReview }) => {
-  const isInteractive = event.needsReview && typeof onRequestReview === "function";
+const BedActivityTimelineEvent = ({ event, isLast, isSelected, onSelectEvent }) => {
+  const isInteractive = typeof onSelectEvent === "function";
   const EventElement = isInteractive ? "button" : "div";
+  const isLiveEvent = isLast;
 
   return (
     <div className={cn("relative flex items-stretch gap-2 pb-3.5", isLast && "pb-0")}>
@@ -157,13 +193,17 @@ const BedActivityTimelineEvent = ({ event, isLast, onRequestReview }) => {
 
       <EventElement
         type={isInteractive ? "button" : undefined}
-        onClick={isInteractive ? onRequestReview : undefined}
+        onClick={isInteractive ? onSelectEvent : undefined}
         className={cn(
-          "flex min-h-[68px] min-w-0 flex-1 items-center gap-3 rounded-[13px] border px-3 py-2.5 text-left [background:var(--rm-bed-activity-event-bg)] [border-color:var(--rm-bed-activity-event-border)]",
+          "group flex min-h-[68px] min-w-0 flex-1 items-center gap-3 rounded-[13px] border px-3 py-2.5 text-left [background:var(--rm-bed-activity-event-bg)] [border-color:var(--rm-bed-activity-event-border)] transition-colors duration-150",
           isInteractive &&
-            "cursor-pointer [background:var(--rm-bed-activity-event-alert-bg)] [border-color:var(--rm-bed-activity-event-alert-border)] [box-shadow:var(--rm-bed-activity-event-alert-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-bed-activity-focus)] active:scale-[0.995]",
+            "cursor-pointer hover:[background:var(--rm-bed-activity-event-hover-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-bed-activity-focus)] active:scale-[0.995]",
+          event.needsReview &&
+            "[background:var(--rm-bed-activity-event-alert-bg)] [border-color:var(--rm-bed-activity-event-alert-border)] [box-shadow:var(--rm-bed-activity-event-alert-shadow)]",
+          isSelected &&
+            "[background:var(--rm-bed-activity-event-selected-bg)] [border-color:var(--rm-bed-activity-event-selected-border)] [box-shadow:var(--rm-bed-activity-event-selected-shadow)]",
         )}
-        aria-label={isInteractive ? `Review ${event.label}` : undefined}
+        aria-label={isInteractive ? `Open event ${event.label} at ${event.time}` : undefined}
       >
         <div className="flex size-11 shrink-0 items-center justify-center rounded-[10px] border [background:var(--rm-bed-activity-event-icon-bg)] [border-color:var(--rm-bed-activity-event-icon-border)]">
           {event.icon}
@@ -178,10 +218,23 @@ const BedActivityTimelineEvent = ({ event, isLast, onRequestReview }) => {
           </div>
         </div>
 
-        {event.needsReview && (
-          <div className="inline-flex items-center gap-2 text-[length:var(--rm-fs-meta)] font-semibold text-[var(--rm-bed-activity-event-action)]">
-            <span>Review</span>
-            <IconArrowRight stroke="var(--rm-bed-activity-event-action)" />
+        {isInteractive && (
+          <div className="inline-flex items-center gap-2">
+            {event.needsReview && (
+              <span className="inline-flex min-h-[var(--rm-hit-chip)] items-center rounded-full border px-2 py-0.5 text-[length:var(--rm-fs-micro)] font-semibold [background:var(--rm-bed-activity-status-bg)] [border-color:var(--rm-bed-activity-status-border)] text-[var(--rm-bed-activity-status-text)]">
+                Review
+              </span>
+            )}
+            {!event.needsReview && isLiveEvent && (
+              <span className="inline-flex min-h-[var(--rm-hit-chip)] items-center rounded-full border px-2 py-0.5 text-[length:var(--rm-fs-micro)] font-semibold [background:var(--rm-bed-activity-status-muted-bg)] [border-color:var(--rm-bed-activity-status-muted-border)] text-[var(--rm-bed-activity-status-muted-text)]">
+                Live
+              </span>
+            )}
+            {!event.needsReview && !isLiveEvent && (
+              <span className="opacity-[0.78] transition-opacity group-hover:opacity-100">
+                <IconArrowRight stroke="var(--rm-bed-activity-event-action)" />
+              </span>
+            )}
           </div>
         )}
       </EventElement>
@@ -189,14 +242,14 @@ const BedActivityTimelineEvent = ({ event, isLast, onRequestReview }) => {
   );
 };
 
-const BedActivityTimeline = ({ onRequestReview }) => (
+const BedActivityTimeline = ({ selectedIndex = BED_ACTIVITY_TIMELINE_EVENTS.length - 1, onSelectEvent }) => (
   <section className="mx-[14px] mb-2 mt-[14px] rounded-[18px] border px-3 py-3.5 [background:var(--rm-bed-activity-timeline-bg)] [border-color:var(--rm-bed-activity-timeline-border)] [box-shadow:var(--rm-bed-activity-timeline-shadow)]">
     <div className="mb-3 flex items-baseline justify-between gap-2 px-1">
       <h3 className="text-[length:var(--rm-fs-body-strong)] font-bold tracking-[-0.15px] text-[var(--rm-bed-activity-timeline-title)]">
         Bed activity timeline
       </h3>
       <span className="text-[length:var(--rm-fs-meta)] text-[var(--rm-bed-activity-timeline-subtitle)]">
-        Expanded view
+        Tap any event
       </span>
     </div>
 
@@ -205,12 +258,18 @@ const BedActivityTimeline = ({ onRequestReview }) => (
         <BedActivityTimelineEvent
           key={event.id}
           event={event}
+          isSelected={index === selectedIndex}
           isLast={index === BED_ACTIVITY_TIMELINE_EVENTS.length - 1}
-          onRequestReview={onRequestReview}
+          onSelectEvent={onSelectEvent ? () => onSelectEvent(index) : undefined}
         />
       ))}
     </div>
   </section>
 );
 
-export { BedActivityHeader, BedActivityLiveCard, BedActivityTimeline };
+export {
+  BED_ACTIVITY_TIMELINE_EVENTS,
+  BedActivityLiveCard,
+  BedActivityTimeline,
+  resolveBedActivityIndexByEventId,
+};

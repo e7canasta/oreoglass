@@ -10,20 +10,24 @@ import { SCREENS } from "../state/screens.js";
 function ScreenRouter({
   screen,
   room,
+  clip,
+  bedActivityInitialEventId,
   onBack,
   onCloseLive,
   onOpenClipFromBedActivity,
   onOpenReviewFromBedActivity,
   onOpenClipFromCriticalEvents,
+  onOpenReviewFromLive,
 }) {
   switch (screen) {
     case SCREENS.SLEEP_DETAIL:
-      return <SleepDetailScreen onBack={onBack} />;
+      return <SleepDetailScreen room={room} onBack={onBack} />;
 
     case SCREENS.BED_ACTIVITY:
       return (
         <BedActivityScreen
           room={room}
+          initialEventId={bedActivityInitialEventId}
           onBack={onBack}
           onOpenFallClip={onOpenClipFromBedActivity}
           onOpenFallReview={onOpenReviewFromBedActivity}
@@ -39,13 +43,13 @@ function ScreenRouter({
       );
 
     case SCREENS.FALL_CLIP:
-      return <FallClipScreen onBack={onBack} />;
+      return <FallClipScreen room={room} clip={clip} onBack={onBack} />;
 
     case SCREENS.LIVE:
-      return <LiveViewScreen onBack={onCloseLive} />;
+      return <LiveViewScreen room={room} clip={clip} onBack={onCloseLive} onOpenReview={onOpenReviewFromLive} />;
 
     case SCREENS.FALL_REVIEW:
-      return <FallReviewScreen />;
+      return <FallReviewScreen room={room} clip={clip} onBack={onBack} />;
 
     case SCREENS.COMPONENT_LAB:
       return <ComponentLabScreen onBack={onBack} />;

@@ -4,10 +4,10 @@ const SleepBehaviourSection = () => (
   <div className="flex flex-col">
     <div className="mb-3">
       <span className="text-[length:var(--rm-fs-body-strong)] font-bold tracking-[-0.3px] text-[var(--rm-sleep-title-strong)]">
-        Usual behaviour{" "}
+        Usual behavior{" "}
       </span>
       <span className="text-[length:var(--rm-fs-body)] font-normal text-[var(--rm-sleep-title-light)]">
-        during the week
+        this week
       </span>
     </div>
 

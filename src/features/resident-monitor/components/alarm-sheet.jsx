@@ -1,7 +1,7 @@
 import { AlarmSheetContent, BottomSheetHandle, BottomSheetShell } from "./sheets/index.js";
 import { ALERT_SHEET_BEHAVIOR } from "../lib/sheet-behaviors.js";
 
-const AlarmSheet = ({ onClose, onViewLive, onFallReview, secondsAgo }) => (
+const AlarmSheet = ({ room, clip, onClose, onViewLive, onFallReview, secondsAgo }) => (
   <div className="relative z-20">
     <BottomSheetShell
       open
@@ -20,6 +20,8 @@ const AlarmSheet = ({ onClose, onViewLive, onFallReview, secondsAgo }) => (
         className="[background:var(--alarm-handle-bg)]"
       />
       <AlarmSheetContent
+        room={room}
+        clip={clip}
         onClose={onClose}
         onViewLive={onViewLive}
         onFallReview={onFallReview}
