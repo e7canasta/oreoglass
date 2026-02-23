@@ -1,4 +1,4 @@
-import { InsightCard } from "../sleep-detail-widgets.jsx";
+import { InsightCard } from "./widgets/index.js";
 
 const SleepBehaviourSection = () => (
   <div className="flex flex-col">

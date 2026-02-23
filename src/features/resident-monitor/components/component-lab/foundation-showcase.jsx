@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { IconFalling, IconInBed, IconLayingOnFloor, IconPersonGreen, IconSittingOnBedLarge, IconStaffEnter, IconStanding } from "../icons.jsx";
-import { ActivityTile, SleepChart } from "../room-detail-widgets.jsx";
+import { ActivityTile, SleepChart } from "../room-detail/widgets/index.js";
 import { CountdownBar, RoomCard } from "../room-overview.jsx";
 import { ThermalThumb, ThermalView, ThermalViewLive } from "../thermal.jsx";
 import {

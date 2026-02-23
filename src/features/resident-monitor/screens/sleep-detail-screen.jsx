@@ -6,7 +6,7 @@ import {
   SleepTrendsSection,
 } from "../components/sleep-detail/index.js";
 import { ScreenStage } from "../components/screen-stage.jsx";
-import { Sleep24hBar } from "../components/sleep-detail-widgets.jsx";
+import { Sleep24hBar } from "../components/sleep-detail/widgets/index.js";
 
 const SleepDetailScreen = ({ onBack }) => {
   const [period, setPeriod] = useState("week");

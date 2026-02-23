@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { TrendsChart } from "../sleep-detail-widgets.jsx";
+import { TrendsChart } from "./widgets/index.js";
 import { IconChevronLeft, IconChevronRight } from "../ui-icons/index.js";
 
 const SleepTrendsSection = ({ period, weekNum, onPeriodChange, onWeekChange }) => (

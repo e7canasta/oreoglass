@@ -1,6 +1,6 @@
 import { AlarmSheet } from "../alarm-sheet.jsx";
 import { IconFalling, IconInBed, IconStanding } from "../icons.jsx";
-import { ActivityTile } from "../room-detail-widgets.jsx";
+import { ActivityTile } from "../room-detail/widgets/index.js";
 import { RoomCard } from "../room-overview.jsx";
 import { LegacyFallReviewOption } from "./legacy-fall-review-option.jsx";
 

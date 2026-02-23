@@ -19,11 +19,11 @@ const buttonVariants = cva(
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
         surface:
-          "border border-white/12 bg-[#252830] text-white hover:bg-[#2d313a] active:bg-[#21242c]",
+          "border [border-color:var(--rm-button-surface-border)] [background:var(--rm-button-surface-bg)] [color:var(--rm-button-surface-text)] hover:[background:var(--rm-button-surface-bg-hover)] active:[background:var(--rm-button-surface-bg-active)]",
         "surface-pill":
-          "rounded-full border border-white/12 bg-[#252830] text-white hover:bg-[#2d313a] active:bg-[#21242c]",
+          "rounded-full border [border-color:var(--rm-button-surface-border)] [background:var(--rm-button-surface-bg)] [color:var(--rm-button-surface-text)] hover:[background:var(--rm-button-surface-bg-hover)] active:[background:var(--rm-button-surface-bg-active)]",
         glass:
-          "border border-white/10 bg-[rgba(19,21,26,0.70)] text-white backdrop-blur-md hover:bg-[rgba(19,21,26,0.78)] active:bg-[rgba(19,21,26,0.64)]",
+          "border [border-color:var(--rm-button-glass-border)] [background:var(--rm-button-glass-bg)] [color:var(--rm-button-glass-text)] backdrop-blur-md hover:[background:var(--rm-button-glass-bg-hover)] active:[background:var(--rm-button-glass-bg-active)]",
         "alarm-close":
           "rounded-full border [border-color:var(--alarm-close-border)] [background:var(--alarm-close-bg)] text-[var(--alarm-text)] hover:[background:var(--alarm-close-bg-hover)]",
         "alarm-primary":

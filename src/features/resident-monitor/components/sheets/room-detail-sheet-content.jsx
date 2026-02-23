@@ -1,5 +1,5 @@
 import { IconFalling, IconInBed, IconStanding } from "../icons.jsx";
-import { ActivityTile, SleepChart } from "../room-detail-widgets.jsx";
+import { ActivityTile, SleepChart } from "../room-detail/widgets/index.js";
 import { IconChevronRight, IconClose, IconWideChevronDown } from "../ui-icons/index.js";
 import { cn } from "@/lib/utils";
 

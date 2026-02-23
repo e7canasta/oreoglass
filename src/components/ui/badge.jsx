@@ -18,15 +18,15 @@ const badgeVariants = cva(
         ghost: "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         link: "text-primary underline-offset-4 [a&]:hover:underline",
         critical:
-          "bg-[var(--critical-orange-600)] text-white shadow-[0_0_8px_rgba(232,67,10,0.35)]",
+          "[background:var(--rm-badge-critical-bg)] [color:var(--rm-badge-critical-text)] [box-shadow:var(--rm-badge-critical-shadow)]",
         "critical-muted":
-          "bg-[#c84000] text-white shadow-[0_0_8px_rgba(200,64,0,0.3)]",
+          "[background:var(--rm-badge-critical-muted-bg)] [color:var(--rm-badge-critical-muted-text)] [box-shadow:var(--rm-badge-critical-muted-shadow)]",
         warning:
-          "bg-[#d4860a] text-white shadow-[0_2px_10px_rgba(212,134,10,0.4)]",
+          "[background:var(--rm-badge-warning-bg)] [color:var(--rm-badge-warning-text)] [box-shadow:var(--rm-badge-warning-shadow)]",
         success:
-          "border border-[#2ea855] bg-[#1a7a3a] text-white",
+          "border [border-color:var(--rm-badge-success-border)] [background:var(--rm-badge-success-bg)] [color:var(--rm-badge-success-text)]",
         dashed:
-          "border-[1.5px] border-dashed border-white/35 bg-transparent text-white/75 shadow-none",
+          "border-[1.5px] border-dashed [border-color:var(--rm-badge-dashed-border)] bg-transparent [color:var(--rm-badge-dashed-text)] shadow-none",
         unstyled: "",
       },
     },
