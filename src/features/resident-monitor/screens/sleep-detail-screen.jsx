@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { InsightCard, Sleep24hBar, TrendsChart } from "../components/sleep-detail-widgets.jsx";
-import { IconArrowLeft, IconChevronLeft, IconChevronRight } from "../components/ui-icons.jsx";
+import { IconArrowLeft, IconChevronLeft, IconChevronRight } from "../components/ui-icons";
 
 const SleepDetailScreen = ({ onBack }) => {
   const [period, setPeriod] = useState("week");

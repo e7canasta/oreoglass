@@ -1,5 +1,5 @@
 import { ThermalThumb, ThermalView } from "./thermal.jsx";
-import { IconArrowLeft, IconChevronRight, IconPlay } from "./ui-icons.jsx";
+import { IconArrowLeft, IconChevronRight, IconPlay } from "./ui-icons";
 
 const CriticalEventsHeader = ({ onBack }) => (
   <div

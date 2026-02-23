@@ -1,6 +1,6 @@
 import { IconFalling, IconInBed, IconStanding } from "./icons.jsx";
 import { ActivityTile, SleepChart } from "./room-detail-widgets.jsx";
-import { IconChevronRight, IconClose, IconWideChevronDown } from "./ui-icons.jsx";
+import { IconChevronRight, IconClose, IconWideChevronDown } from "./ui-icons";
 
 const RoomDetailSheet = ({ room, onClose, onOpenFallClip, onOpenSleep }) => (
   <div style={{position:"absolute",inset:0,zIndex:10,display:"flex",flexDirection:"column",justifyContent:"flex-end"}}>

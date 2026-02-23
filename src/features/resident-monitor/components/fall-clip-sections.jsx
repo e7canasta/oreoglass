@@ -7,7 +7,7 @@ import {
   IconQuestionCircle,
   IconStatClock,
   IconStatReaction,
-} from "./ui-icons.jsx";
+} from "./ui-icons";
 
 const FallClipMetaRow = () => (
   <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:14}}>
