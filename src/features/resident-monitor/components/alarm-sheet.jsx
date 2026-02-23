@@ -2,6 +2,7 @@ import { IconSittingOnBedLarge } from "./icons.jsx";
 import { IconAlertMark, IconArrowRight, IconClose } from "./ui-icons/index.js";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
+import { RM_BUTTON_PRESETS } from "../lib/design-system.js";
 import "./alarm-sheet.css";
 
 const AlarmSheet = ({ onClose, onViewLive, onFallReview, secondsAgo }) => (
@@ -19,7 +20,12 @@ const AlarmSheet = ({ onClose, onViewLive, onFallReview, secondsAgo }) => (
 
         <header className="alarm-sheet-header">
           <span className="alarm-sheet-room">122.2</span>
-          <Button type="button" variant="unstyled" size="unstyled" onClick={onClose} className="alarm-sheet-close">
+          <Button
+            type="button"
+            {...RM_BUTTON_PRESETS.alarmClose}
+            onClick={onClose}
+            className="alarm-sheet-close"
+          >
             <IconClose />
           </Button>
         </header>
@@ -46,19 +52,17 @@ const AlarmSheet = ({ onClose, onViewLive, onFallReview, secondsAgo }) => (
         <div className="alarm-sheet-actions-grid">
           <Button
             type="button"
-            variant="unstyled"
-            size="unstyled"
+            {...RM_BUTTON_PRESETS.alarmPrimary}
             onClick={onClose}
-            className="alarm-sheet-action alarm-sheet-action-primary"
+            className="alarm-sheet-action"
           >
             On my<br />way
           </Button>
           <Button
             type="button"
-            variant="unstyled"
-            size="unstyled"
+            {...RM_BUTTON_PRESETS.alarmSecondary}
             onClick={onViewLive}
-            className="alarm-sheet-action alarm-sheet-action-secondary"
+            className="alarm-sheet-action"
           >
             View<br />live
           </Button>
@@ -67,8 +71,7 @@ const AlarmSheet = ({ onClose, onViewLive, onFallReview, secondsAgo }) => (
         <div className="alarm-sheet-forward-wrap">
           <Button
             type="button"
-            variant="unstyled"
-            size="unstyled"
+            {...RM_BUTTON_PRESETS.alarmForward}
             onClick={onFallReview}
             className="alarm-sheet-forward"
           >

@@ -73,9 +73,6 @@
   width: var(--rm-hit-min);
   height: var(--rm-hit-min);
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  background: rgba(34, 18, 14, 0.28);
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,17 +163,6 @@
   line-height: 1.25;
   font-weight: 700;
   text-align: center;
-  border: 1.5px solid transparent;
-}
-
-.alarm-sheet-action-primary {
-  background: var(--alarm-btn-primary-bg);
-  border-color: var(--alarm-btn-primary-border);
-}
-
-.alarm-sheet-action-secondary {
-  background: var(--alarm-btn-secondary-bg);
-  border-color: var(--alarm-btn-secondary-border);
 }
 
 .alarm-sheet-action:active,
@@ -197,8 +183,6 @@
   color: var(--alarm-text);
   font-size: var(--rm-fs-body-strong);
   font-weight: 700;
-  background: var(--alarm-forward-bg);
-  border: 1.5px solid var(--alarm-forward-border);
   display: flex;
   align-items: center;
   justify-content: space-between;

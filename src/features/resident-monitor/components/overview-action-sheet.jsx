@@ -5,6 +5,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
+import { RM_BADGE_PRESETS, RM_OVERVIEW_ACTION_VARIANT_BY_TONE } from "../lib/design-system.js";
 import "./overview-action-sheet.css";
 
 const OverviewActionSheet = ({
@@ -40,16 +41,16 @@ const OverviewActionSheet = ({
           {quickActions.map((btn, i) => (
             <Button
               type="button"
-              variant="unstyled"
-              size="unstyled"
+              variant={RM_OVERVIEW_ACTION_VARIANT_BY_TONE[btn.tone] || "surface"}
+              size="tile"
               key={btn.id ?? i}
               onClick={btn.onClick}
-              className={`overview-sheet-action overview-sheet-action-${btn.tone}`}
+              className="overview-sheet-action"
               aria-label={btn.label ? btn.label.replace("\n", " ") : undefined}
             >
               {btn.label && <span className="overview-sheet-action-label">{btn.label}</span>}
               {btn.badge && (
-                <Badge variant="unstyled" className="overview-sheet-action-badge">{btn.badge}</Badge>
+                <Badge {...RM_BADGE_PRESETS.critical} className="overview-sheet-action-badge">{btn.badge}</Badge>
               )}
               {btn.isBlank && (
                 <span className="overview-sheet-action-placeholder">

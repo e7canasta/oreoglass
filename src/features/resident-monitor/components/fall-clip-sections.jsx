@@ -10,6 +10,7 @@ import {
 } from "./ui-icons/index.js";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { RM_BADGE_PRESETS, RM_BUTTON_PRESETS } from "../lib/design-system.js";
 import "./fall-clip-sections.css";
 
 const FallClipMetaRow = () => (
@@ -29,14 +30,14 @@ const FallClipNeedsReview = ({ onClassify }) => (
   <>
     <div className="fall-clip-review-header">
       <Badge
-        variant="dashed"
+        {...RM_BADGE_PRESETS.dashed}
         className="fall-clip-chip-dashed px-3 py-[5px] text-[length:var(--rm-fs-meta)] font-semibold"
       >
         <span className="fall-clip-chip-dashed-label">Fall</span>
         <IconQuestionCircle />
       </Badge>
       <Badge
-        variant="warning"
+        {...RM_BADGE_PRESETS.warning}
         className="fall-clip-chip-warning px-[14px] py-[6px] text-[length:var(--rm-fs-meta)] font-bold"
       >
         <span className="fall-clip-chip-warning-label">Needs review</span>
@@ -50,8 +51,7 @@ const FallClipNeedsReview = ({ onClassify }) => (
         <Button
           type="button"
           key={opt}
-          variant="surface"
-          size="unstyled"
+          {...RM_BUTTON_PRESETS.fallReviewOption}
           onClick={() => onClassify(opt)}
           className="fall-clip-review-option"
         >
@@ -65,21 +65,20 @@ const FallClipNeedsReview = ({ onClassify }) => (
 const FallClipReviewed = ({ classification, onEdit }) => (
   <div className="fall-clip-reviewed-row">
     <Badge
-      variant="critical"
+      {...RM_BADGE_PRESETS.critical}
       className="fall-clip-chip-critical px-3 py-[5px] text-[length:var(--rm-fs-meta)] font-bold"
     >
       <span className="fall-clip-chip-critical-label">Fall</span>
     </Badge>
     <Badge
-      variant="success"
+      {...RM_BADGE_PRESETS.success}
       className="fall-clip-chip-reviewed px-3 py-[5px] text-[length:var(--rm-fs-meta)] font-bold"
     >
       <span className="fall-clip-chip-reviewed-label">{classification || "Without injury"}</span>
     </Badge>
     <Button
       type="button"
-      variant="surface-pill"
-      size="unstyled"
+      {...RM_BUTTON_PRESETS.fallEdit}
       onClick={onEdit}
       className="fall-clip-edit-button"
     >
@@ -160,8 +159,7 @@ const FallClipBackButton = ({ onBack }) => (
   <div className="fall-clip-back-wrap">
     <Button
       type="button"
-      variant="glass"
-      size="unstyled"
+      {...RM_BUTTON_PRESETS.floatingBack}
       onClick={onBack}
       className="fall-clip-back-button"
     >

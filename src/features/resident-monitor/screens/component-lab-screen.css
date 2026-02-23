@@ -218,12 +218,8 @@
 }
 
 .lab-modern-overlay {
-  position: absolute;
-  inset: 0;
   background: var(--lab-modern-overlay-bg);
   backdrop-filter: blur(2px);
-  display: flex;
-  align-items: flex-end;
 }
 
 .lab-modern-drawer {
@@ -253,6 +249,7 @@
   font-size: 11px;
   font-weight: 700;
   padding: 4px 8px;
+  box-shadow: none;
 }
 
 .lab-modern-drawer h4 {
@@ -306,13 +303,18 @@
   gap: 8px;
 }
 
-.lab-modern-drawer-actions button {
-  border: none;
+.lab-modern-drawer-action {
   border-radius: 11px;
   padding: 10px 10px;
   font-size: 12px;
   font-weight: 700;
-  cursor: pointer;
+  min-height: 40px;
+  white-space: normal;
+}
+
+.lab-modern-secondary-btn,
+.lab-modern-primary-btn {
+  border-color: transparent;
 }
 
 .lab-modern-secondary-btn {
@@ -332,17 +334,14 @@
 }
 
 .lab-modern-radio-group {
-  border: none;
-  margin: 0;
   padding: 12px;
   display: grid;
   gap: 8px;
 }
 
-.lab-modern-radio-group legend {
+.lab-modern-radio-group-legend {
   font-size: 12px;
   color: var(--lab-pane-copy);
-  padding: 0;
 }
 
 .lab-modern-radio {
@@ -354,11 +353,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.lab-modern-radio input {
-  margin: 0;
-  accent-color: var(--lab-radio-accent);
+  outline: none;
 }
 
 .lab-modern-radio-copy {
@@ -376,7 +371,7 @@
   font-size: 11px;
 }
 
-.lab-modern-radio-selected {
+.lab-modern-radio[data-state="checked"] {
   border-color: var(--lab-modern-radio-selected-border);
   background: var(--lab-modern-radio-selected-bg);
 }
@@ -391,6 +386,25 @@
   justify-content: center;
   background: var(--lab-modern-check-bg);
   border: 1px solid var(--lab-modern-check-border);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.lab-modern-radio[data-state="checked"] .lab-modern-radio-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.lab-modern-radio-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lab-modern-radio:focus-visible {
+  outline: 2px solid var(--lab-modern-radio-selected-border);
+  outline-offset: 2px;
 }
 
 .lab-modern-room-grid {
@@ -408,8 +422,10 @@
   padding: 10px;
   text-align: left;
   display: grid;
+  align-items: start;
   gap: 6px;
   cursor: pointer;
+  white-space: normal;
 }
 
 .lab-modern-room-card-alert {

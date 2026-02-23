@@ -2,6 +2,7 @@ import { ThermalThumb, ThermalView } from "./thermal.jsx";
 import { IconArrowLeft, IconChevronRight, IconPlay } from "./ui-icons/index.js";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { RM_BADGE_PRESETS, RM_BUTTON_PRESETS } from "../lib/design-system.js";
 import "./critical-events-list.css";
 
 const CriticalEventsHeader = ({ onBack }) => (
@@ -12,8 +13,7 @@ const CriticalEventsHeader = ({ onBack }) => (
     </div>
     <Button
       type="button"
-      variant="unstyled"
-      size="unstyled"
+      {...RM_BUTTON_PRESETS.criticalHeaderBack}
       onClick={onBack}
       className="critical-events-header-back"
     >
@@ -32,8 +32,7 @@ const CriticalEventsHeader = ({ onBack }) => (
 const FeaturedClipCard = ({ clip, onOpen }) => (
   <Button
     type="button"
-    variant="unstyled"
-    size="unstyled"
+    {...RM_BUTTON_PRESETS.criticalCard}
     onClick={onOpen}
     className="critical-events-featured-card"
   >
@@ -54,8 +53,7 @@ const CriticalEventListItem = ({ clip, idx, onOpen }) => {
   return (
     <Button
       type="button"
-      variant="unstyled"
-      size="unstyled"
+      {...RM_BUTTON_PRESETS.criticalCard}
       onClick={onOpen}
       className="critical-events-item"
     >
@@ -77,7 +75,7 @@ const CriticalEventListItem = ({ clip, idx, onOpen }) => {
 
       <div className="critical-events-item-copy">
         <Badge
-          variant={isHighSeverity ? "critical" : "critical-muted"}
+          {...(isHighSeverity ? RM_BADGE_PRESETS.critical : RM_BADGE_PRESETS.criticalMuted)}
           className="critical-events-item-chip rounded-md border border-white/18 px-2 py-[3px] text-[length:var(--rm-fs-meta)] font-bold tracking-[0.1px]"
         >
           {clip.label}

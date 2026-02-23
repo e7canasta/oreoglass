@@ -24,6 +24,22 @@ const buttonVariants = cva(
           "rounded-full border border-white/12 bg-[#252830] text-white hover:bg-[#2d313a] active:bg-[#21242c]",
         glass:
           "border border-white/10 bg-[rgba(19,21,26,0.70)] text-white backdrop-blur-md hover:bg-[rgba(19,21,26,0.78)] active:bg-[rgba(19,21,26,0.64)]",
+        "alarm-close":
+          "rounded-full border border-white/24 bg-[rgba(34,18,14,0.28)] text-[var(--alarm-text)] hover:bg-[rgba(34,18,14,0.36)]",
+        "alarm-primary":
+          "border-[1.5px] border-[var(--alarm-btn-primary-border)] bg-[var(--alarm-btn-primary-bg)] text-[var(--alarm-text)] hover:bg-[var(--alarm-btn-primary-bg)]",
+        "alarm-secondary":
+          "border-[1.5px] border-[var(--alarm-btn-secondary-border)] bg-[var(--alarm-btn-secondary-bg)] text-[var(--alarm-text)] hover:bg-[var(--alarm-btn-secondary-bg)]",
+        "alarm-forward":
+          "border-[1.5px] border-[var(--alarm-forward-border)] bg-[var(--alarm-forward-bg)] text-[var(--alarm-text)] hover:bg-[var(--alarm-forward-bg)]",
+        "overview-critical":
+          "border border-[rgba(232,67,10,0.42)] bg-[linear-gradient(145deg,#4a2f33,#3b252a)] text-white shadow-[0_6px_24px_rgba(232,67,10,0.28)]",
+        "overview-neutral":
+          "bg-[linear-gradient(145deg,#24457d,#1d3969)] text-white shadow-[0_6px_22px_rgba(20,60,160,0.3)]",
+        "overview-muted":
+          "bg-[linear-gradient(145deg,#304058,#27364c)] text-white shadow-[0_6px_22px_rgba(24,40,70,0.34)]",
+        "overview-blank":
+          "bg-[linear-gradient(145deg,#283140,#222a37)] text-white shadow-[0_6px_22px_rgba(10,16,28,0.3)]",
         unstyled: "",
       },
       size: {
@@ -31,6 +47,10 @@ const buttonVariants = cva(
         xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        touch: "h-auto min-h-11 px-3 py-2",
+        tile: "h-auto w-full p-0",
+        inline: "h-auto p-0",
+        "icon-touch": "size-11",
         icon: "size-9",
         "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",

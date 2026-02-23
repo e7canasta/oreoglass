@@ -53,7 +53,6 @@
 }
 
 .overview-sheet-action {
-  border: none;
   border-radius: 16px;
   min-height: 108px;
   padding: 16px 16px 14px;
@@ -81,27 +80,6 @@
   outline-offset: 2px;
 }
 
-.overview-sheet-action-critical {
-  background: linear-gradient(145deg, #4a2f33, #3b252a);
-  border: 1px solid rgba(232, 67, 10, 0.42);
-  box-shadow: 0 6px 24px rgba(232, 67, 10, 0.28);
-}
-
-.overview-sheet-action-neutral {
-  background: linear-gradient(145deg, #24457d, #1d3969);
-  box-shadow: 0 6px 22px rgba(20, 60, 160, 0.3);
-}
-
-.overview-sheet-action-muted {
-  background: linear-gradient(145deg, #304058, #27364c);
-  box-shadow: 0 6px 22px rgba(24, 40, 70, 0.34);
-}
-
-.overview-sheet-action-blank {
-  background: linear-gradient(145deg, #283140, #222a37);
-  box-shadow: 0 6px 22px rgba(10, 16, 28, 0.3);
-}
-
 .overview-sheet-action-label {
   padding-right: 30px;
 }
@@ -113,9 +91,6 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--critical-orange-600);
-  box-shadow: 0 0 10px var(--critical-glow);
-  color: white;
   font-size: var(--rm-fs-caption);
   font-weight: 800;
   display: flex;
