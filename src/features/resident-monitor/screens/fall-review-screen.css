@@ -8,12 +8,13 @@
   background: var(--fall-review-bg);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   animation: slideInRight 0.3s cubic-bezier(0.32, 0.72, 0, 1);
   font-family: "SF Pro Display", system-ui, -apple-system;
 }
 
 .fall-review-screen-spacer {
-  height: 50px;
+  height: calc(50px + env(safe-area-inset-top, 0px));
   flex-shrink: 0;
 }
 
@@ -62,7 +63,7 @@
 }
 
 .fall-review-screen-thermal-main {
-  height: 186px;
+  height: clamp(172px, 30vh, 186px);
   position: relative;
 }
 

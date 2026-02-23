@@ -5,12 +5,13 @@
   background: #10131a;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   animation: slideInRight 0.3s cubic-bezier(0.32, 0.72, 0, 1);
   font-family: "SF Pro Display", system-ui, -apple-system;
 }
 
 .critical-events-screen-spacer {
-  height: 52px;
+  height: calc(52px + env(safe-area-inset-top, 0px));
   flex-shrink: 0;
 }
 

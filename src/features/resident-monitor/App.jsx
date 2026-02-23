@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./app-shell.css";
 
 import { AlarmSheet } from "./components/alarm-sheet.jsx";
 import { OverviewHeader } from "./components/app-chrome.jsx";
@@ -67,21 +68,12 @@ export default function App() {
   };
 
   return (
-    <div style={{ width: "100vw", height: "100vh", background: "#0c0e12", overflow: "hidden", fontFamily: "'SF Pro Display',system-ui,-apple-system" }}>
-      <style>{`
-        html,body,#root{width:100%;height:100%;margin:0}
-        @keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
-        @keyframes slideInRight{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        ::-webkit-scrollbar{display:none}
-        *{-webkit-tap-highlight-color:transparent}
-      `}</style>
-
-      <div style={{ width: "100%", height: "100%", background: "#0c0e12", overflow: "hidden", position: "relative", display: "flex", flexDirection: "column" }}>
+    <div className="monitor-app-root">
+      <div className="monitor-app-shell">
         {/* <PhoneStatusBar /> */}
         <OverviewHeader />
 
-        <div style={{ flex: 1, overflowY: "auto", padding: "4px 12px", display: "flex", flexDirection: "column", gap: 12, paddingBottom: 160 }}>
+        <div className="monitor-app-content">
           {Object.entries(ROOMS).map(([title, rooms]) => (
             <Section key={title} title={title} rooms={rooms} onSelect={actions.selectRoom} />
           ))}
@@ -92,7 +84,7 @@ export default function App() {
         )}
 
         {!showAlarm && countdown === 0 && !alarmTriggered && (
-          <button onClick={actions.showAlarm} style={{ position: "absolute", bottom: 140, left: "50%", transform: "translateX(-50%)", background: "#e8430a", border: "none", borderRadius: 14, padding: "12px 24px", color: "white", fontWeight: "700", fontSize: 15, cursor: "pointer", zIndex: 4 }}>
+          <button type="button" onClick={actions.showAlarm} className="monitor-app-trigger-alarm-btn">
             Trigger Alarm
           </button>
         )}
@@ -135,27 +127,7 @@ export default function App() {
           disabled={!isFullscreenSupported}
           title={isFullscreen ? "Salir de pantalla completa" : "Entrar en pantalla completa"}
           aria-label={isFullscreen ? "Salir de pantalla completa" : "Entrar en pantalla completa"}
-          style={{
-            position: "absolute",
-            right: 12,
-            top: "calc(72px + env(safe-area-inset-top, 0px))",
-            zIndex: 14,
-            width: 32,
-            height: 32,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background:
-              "linear-gradient(155deg, rgba(255,255,255,0.18), rgba(255,255,255,0.03))",
-            border: "1px solid rgba(255,255,255,0.14)",
-            borderRadius: "50%",
-            cursor: isFullscreenSupported ? "pointer" : "not-allowed",
-            backdropFilter: "blur(18px) saturate(1.15)",
-            boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.22), 0 4px 14px rgba(0,0,0,0.2)",
-            opacity: isFullscreenSupported ? 0.58 : 0.38,
-            transition: "opacity 120ms ease, transform 120ms ease",
-          }}
+          className={`monitor-app-fullscreen-btn${isFullscreenSupported ? "" : " is-disabled"}`}
         >
           {isFullscreen ? <IconFullscreenExit /> : <IconFullscreenEnter />}
         </button>

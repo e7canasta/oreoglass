@@ -1,0 +1,62 @@
+.fall-clip-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  background: #13151a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideInRight 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  font-family: "SF Pro Display", system-ui, -apple-system;
+}
+
+.fall-clip-screen-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.fall-clip-screen-video {
+  position: relative;
+  height: clamp(216px, 36vh, 240px);
+  background: #8da5bc;
+  flex-shrink: 0;
+}
+
+.fall-clip-screen-progress-wrap {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 20px 14px 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+}
+
+.fall-clip-screen-progress-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  position: relative;
+}
+
+.fall-clip-screen-progress-fill {
+  width: 38%;
+  height: 100%;
+  border-radius: 2px;
+  background: white;
+}
+
+.fall-clip-screen-progress-thumb {
+  position: absolute;
+  left: 38%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.fall-clip-screen-content {
+  padding: 14px 16px calc(30px + env(safe-area-inset-bottom, 0px));
+}
