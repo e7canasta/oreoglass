@@ -25,7 +25,7 @@ const buttonVariants = cva(
         glass:
           "border border-white/10 bg-[rgba(19,21,26,0.70)] text-white backdrop-blur-md hover:bg-[rgba(19,21,26,0.78)] active:bg-[rgba(19,21,26,0.64)]",
         "alarm-close":
-          "rounded-full border border-white/24 bg-[rgba(34,18,14,0.28)] text-[var(--alarm-text)] hover:bg-[rgba(34,18,14,0.36)]",
+          "rounded-full border [border-color:var(--alarm-close-border)] [background:var(--alarm-close-bg)] text-[var(--alarm-text)] hover:[background:var(--alarm-close-bg-hover)]",
         "alarm-primary":
           "border-[1.5px] border-[var(--alarm-btn-primary-border)] bg-[var(--alarm-btn-primary-bg)] text-[var(--alarm-text)] hover:bg-[var(--alarm-btn-primary-bg)]",
         "alarm-secondary":
@@ -33,13 +33,13 @@ const buttonVariants = cva(
         "alarm-forward":
           "border-[1.5px] border-[var(--alarm-forward-border)] bg-[var(--alarm-forward-bg)] text-[var(--alarm-text)] hover:bg-[var(--alarm-forward-bg)]",
         "overview-critical":
-          "border border-[rgba(232,67,10,0.42)] bg-[linear-gradient(145deg,#4a2f33,#3b252a)] text-white shadow-[0_6px_24px_rgba(232,67,10,0.28)]",
+          "border [border-color:var(--rm-overview-critical-border)] [background:var(--rm-overview-critical-bg)] text-[var(--rm-overview-action-text)] [box-shadow:var(--rm-overview-critical-shadow)]",
         "overview-neutral":
-          "bg-[linear-gradient(145deg,#24457d,#1d3969)] text-white shadow-[0_6px_22px_rgba(20,60,160,0.3)]",
+          "[background:var(--rm-overview-neutral-bg)] text-[var(--rm-overview-action-text)] [box-shadow:var(--rm-overview-neutral-shadow)]",
         "overview-muted":
-          "bg-[linear-gradient(145deg,#304058,#27364c)] text-white shadow-[0_6px_22px_rgba(24,40,70,0.34)]",
+          "[background:var(--rm-overview-muted-bg)] text-[var(--rm-overview-action-text)] [box-shadow:var(--rm-overview-muted-shadow)]",
         "overview-blank":
-          "bg-[linear-gradient(145deg,#283140,#222a37)] text-white shadow-[0_6px_22px_rgba(10,16,28,0.3)]",
+          "[background:var(--rm-overview-blank-bg)] text-[var(--rm-overview-action-text)] [box-shadow:var(--rm-overview-blank-shadow)]",
         unstyled: "",
       },
       size: {

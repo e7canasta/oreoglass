@@ -76,6 +76,13 @@
   --lab-legacy-timeline-border: rgba(218, 217, 212, 0.16);
   --lab-legacy-timeline-bg: rgba(31, 30, 29, 0.92);
   --lab-legacy-timeline-label: rgba(221, 220, 212, 0.68);
+  --lab-section-bg: linear-gradient(162deg, rgba(30, 31, 35, 0.95), rgba(20, 20, 22, 0.94));
+  --lab-section-border: rgba(218, 217, 212, 0.2);
+  --lab-section-title: #faf9f5;
+  --lab-surface-bg: rgba(16, 19, 26, 0.82);
+  --lab-surface-border: rgba(218, 217, 212, 0.16);
+  --lab-surface-copy: rgba(229, 229, 226, 0.72);
+  --lab-thermal-bg: #8da5bc;
   --lab-radio-accent: #c96442;
   --lab-mode-fab-bg: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
   --lab-mode-fab-border: rgba(255, 255, 255, 0.2);
@@ -161,6 +168,13 @@
   --lab-legacy-timeline-border: rgba(180, 172, 150, 0.34);
   --lab-legacy-timeline-bg: rgba(255, 255, 255, 0.84);
   --lab-legacy-timeline-label: rgba(83, 81, 70, 0.72);
+  --lab-section-bg: linear-gradient(164deg, rgba(255, 255, 255, 0.94), rgba(247, 243, 234, 0.92));
+  --lab-section-border: rgba(180, 172, 150, 0.36);
+  --lab-section-title: #3d3929;
+  --lab-surface-bg: rgba(255, 255, 255, 0.9);
+  --lab-surface-border: rgba(180, 172, 150, 0.34);
+  --lab-surface-copy: rgba(83, 81, 70, 0.72);
+  --lab-thermal-bg: #8da5bc;
   --lab-radio-accent: #c96442;
   --lab-mode-fab-bg: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.62));
   --lab-mode-fab-border: rgba(180, 172, 150, 0.48);

@@ -1,9 +1,9 @@
-const IconAppGrid = () => (
+const IconAppGrid = ({ fill = "#1a2540" }) => (
   <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
-    <rect x="1" y="1" width="6.5" height="9" rx="1.5" fill="#1a2540" />
-    <rect x="10" y="1" width="7" height="5.5" rx="1.5" fill="#1a2540" />
-    <rect x="1" y="12" width="6.5" height="5" rx="1.5" fill="#1a2540" />
-    <rect x="10" y="9" width="7" height="8" rx="1.5" fill="#1a2540" />
+    <rect x="1" y="1" width="6.5" height="9" rx="1.5" fill={fill} />
+    <rect x="10" y="1" width="7" height="5.5" rx="1.5" fill={fill} />
+    <rect x="1" y="12" width="6.5" height="5" rx="1.5" fill={fill} />
+    <rect x="10" y="9" width="7" height="8" rx="1.5" fill={fill} />
   </svg>
 );
 

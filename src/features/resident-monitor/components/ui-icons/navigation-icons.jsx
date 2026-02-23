@@ -49,9 +49,9 @@ const IconChevronLeft = ({
   </svg>
 );
 
-const IconWideChevronDown = () => (
+const IconWideChevronDown = ({ stroke = "rgba(255,255,255,0.35)" }) => (
   <svg width="24" height="10" viewBox="0 0 24 10" fill="none">
-    <path d="M3 3L12 8L21 3" stroke="rgba(255,255,255,0.35)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M3 3L12 8L21 3" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -103,6 +103,19 @@ const IconThemeMoon = ({ stroke = "rgba(255,255,255,0.78)" }) => (
   </svg>
 );
 
+const IconThemeIdea = ({ stroke = "rgba(255,255,255,0.78)" }) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path
+      d="M6 10.8H10M6.5 13H9.5M8 1.8C5.8 1.8 4 3.5 4 5.7C4 7.2 4.8 8.3 5.7 9.3C6.2 9.8 6.4 10.2 6.5 10.8H9.5C9.6 10.2 9.8 9.8 10.3 9.3C11.2 8.3 12 7.2 12 5.7C12 3.5 10.2 1.8 8 1.8Z"
+      stroke={stroke}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path d="M8 0.9V0.2M2.7 2.8L2.2 2.3M13.3 2.8L13.8 2.3" stroke={stroke} strokeWidth="1.3" strokeLinecap="round" />
+  </svg>
+);
+
 export {
   IconArrowLeft,
   IconArrowRight,
@@ -111,6 +124,7 @@ export {
   IconChevronRight,
   IconFullscreenEnter,
   IconFullscreenExit,
+  IconThemeIdea,
   IconThemeMoon,
   IconThemeSun,
   IconWideChevronDown,

@@ -35,7 +35,6 @@ import {
 import { VideoControls, VideoScrubber } from "../video.jsx";
 import { IconGrid } from "./icon-grid.jsx";
 import { LabSection } from "./lab-section.jsx";
-import "./foundation-showcase.css";
 
 const LAB_ROOMS = [
   { number: "513", location: "Bellevue", status: "alert", dots: ["orange"] },
@@ -98,16 +97,16 @@ const FoundationShowcase = () => {
       </LabSection>
 
       <LabSection title="Thermal Primitives">
-        <div className="lab-foundation-stack">
-          <div className="lab-thermal-preview-tile">
+        <div className="grid gap-2.5">
+          <div className="h-[150px] overflow-hidden rounded-xl [background:var(--lab-thermal-bg)]">
             <ThermalView />
           </div>
-          <div className="lab-thermal-preview-tile">
+          <div className="h-[150px] overflow-hidden rounded-xl [background:var(--lab-thermal-bg)]">
             <ThermalViewLive />
           </div>
-          <div className="lab-thermal-thumb-grid">
+          <div className="grid grid-cols-3 gap-2">
             {[0, 1, 2].map((variant) => (
-              <div key={variant} className="lab-thermal-thumb-tile">
+              <div key={variant} className="h-[72px] overflow-hidden rounded-[10px] [background:var(--lab-thermal-bg)]">
                 <ThermalThumb variant={variant} />
               </div>
             ))}
@@ -116,21 +115,21 @@ const FoundationShowcase = () => {
       </LabSection>
 
       <LabSection title="Legacy Widgets">
-        <div className="lab-foundation-stack">
-          <div className="lab-legacy-video-stage">
+        <div className="grid gap-2.5">
+          <div className="relative h-[180px] overflow-hidden rounded-xl [background:var(--lab-thermal-bg)]">
             <ThermalView />
             <VideoControls isPlaying={isPlaying} onToggle={() => setIsPlaying((prev) => !prev)} />
           </div>
-          <div className="lab-scrubber-shell">
+          <div className="rounded-xl border px-3 py-2.5 [border-color:var(--lab-surface-border)] [background:var(--lab-surface-bg)]">
             <VideoScrubber />
           </div>
-          <div className="lab-room-row">
+          <div className="flex gap-2">
             {LAB_ROOMS.map((room) => (
               <RoomCard key={room.number} room={room} onSelect={noop} />
             ))}
           </div>
-          <div className="lab-activity-shell">
-            <div className="lab-activity-row">
+          <div className="overflow-x-auto rounded-xl border p-2 [border-color:var(--lab-surface-border)] [background:var(--lab-surface-bg)]">
+            <div className="flex min-w-max gap-2">
               <ActivityTile time="08:12" icon={<IconInBed size={32} />} />
               <ActivityTile time="09:04" icon={<IconStanding size={24} />} />
               <ActivityTile time="10:52" icon={<IconFalling size={24} />} isAlarm />
@@ -142,7 +141,7 @@ const FoundationShowcase = () => {
       </LabSection>
 
       <LabSection title="Overlay Example">
-        <div className="lab-overlay-shell">
+        <div className="relative h-[140px] overflow-hidden rounded-xl border [border-color:var(--lab-surface-border)] [background:var(--lab-surface-bg)]">
           <CountdownBar seconds={5} total={8} />
         </div>
       </LabSection>

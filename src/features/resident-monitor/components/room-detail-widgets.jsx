@@ -1,4 +1,4 @@
-import "./room-detail-widgets.css";
+import { cn } from "@/lib/utils";
 
 const SleepChart = () => {
   const bars = [
@@ -19,16 +19,25 @@ const SleepChart = () => {
   ];
 
   return (
-    <div className="sleep-chart">
-      <div className="sleep-chart-legend">
+    <div className="rounded-xl border px-[14px] pb-2.5 pt-3 [background:var(--rm-room-detail-card-bg)] [border-color:var(--rm-room-detail-card-border)]">
+      <div className="mb-2.5 flex flex-wrap gap-3.5">
         {[["calm", "Calm: 12 hours"], ["restless", "Restless: 0 hours"]].map(([tone, label]) => (
-          <div key={label} className="sleep-chart-legend-item">
-            <div className={`sleep-chart-legend-dot sleep-chart-legend-dot-${tone}`} />
-            <span className="sleep-chart-legend-label">{label}</span>
+          <div key={label} className="flex items-center gap-[5px]">
+            <div
+              className={cn(
+                "size-2.5 rounded-full",
+                tone === "calm"
+                  ? "[background:var(--rm-room-detail-sleep-legend-calm)]"
+                  : "[background:var(--rm-room-detail-sleep-legend-restless)]"
+              )}
+            />
+            <span className="text-[length:var(--rm-fs-caption)] leading-[1.2] text-[var(--rm-room-detail-sleep-legend-label)]">
+              {label}
+            </span>
           </div>
         ))}
       </div>
-      <div className="sleep-chart-graph-wrap">
+      <div className="relative mb-1.5 h-[52px]">
         <svg width="100%" height="52" viewBox="0 0 100 52" preserveAspectRatio="none">
           {bars.map((b, i) => (
             <rect
@@ -37,17 +46,25 @@ const SleepChart = () => {
               y="0"
               width={`${b.w}%`}
               height="52"
-              fill={i % 5 === 2 ? "#6d28d9" : "#7c3aed"}
+              fill={i % 5 === 2 ? "var(--rm-room-detail-sleep-bar-alt)" : "var(--rm-room-detail-sleep-bar)"}
               rx="1"
               opacity={0.85 + (i % 3) * 0.05}
             />
           ))}
-          <rect x="94%" y="0" width="2" height="52" fill="#f5c842" />
+          <rect x="94%" y="0" width="2" height="52" fill="var(--rm-room-detail-sleep-axis-now)" />
         </svg>
       </div>
-      <div className="sleep-chart-axis">
+      <div className="flex justify-between gap-1.5">
         {["02", "06", "10", "Now"].map((t, i) => (
-          <span key={i} className={i === 3 ? "sleep-chart-axis-label sleep-chart-axis-label-now" : "sleep-chart-axis-label"}>
+          <span
+            key={i}
+            className={cn(
+              "text-[length:var(--rm-fs-micro)] font-normal",
+              i === 3
+                ? "font-bold [color:var(--rm-room-detail-sleep-axis-now)]"
+                : "text-[var(--rm-room-detail-sleep-axis)]"
+            )}
+          >
             {t}
           </span>
         ))}
@@ -59,14 +76,13 @@ const SleepChart = () => {
 const ActivityTile = ({ time, icon, isCurrent, duration, isAlarm, onClick }) => {
   const isInteractive = typeof onClick === "function";
   const TileElement = isInteractive ? "button" : "div";
-  const className = [
-    "activity-tile",
-    isCurrent ? "activity-tile-current" : "",
-    isAlarm ? "activity-tile-alarm" : "",
-    isInteractive ? "activity-tile-interactive" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const className = cn(
+    "relative flex min-h-[72px] min-w-[68px] flex-col items-center gap-1 rounded-xl border px-1.5 py-2 [background:var(--rm-room-detail-tile-bg)] border-transparent",
+    isCurrent && "min-w-[90px] [background:var(--rm-room-detail-tile-current-bg)] [border-color:var(--rm-room-detail-tile-current-border)]",
+    isAlarm && "[background:var(--rm-room-detail-tile-alarm-bg)] [border-color:var(--rm-room-detail-tile-alarm-border)] [box-shadow:var(--rm-room-detail-tile-alarm-shadow)]",
+    isInteractive &&
+      "cursor-pointer transition-transform active:scale-[0.992] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-room-detail-focus)]"
+  );
 
   return (
     <TileElement
@@ -76,19 +92,27 @@ const ActivityTile = ({ time, icon, isCurrent, duration, isAlarm, onClick }) => 
       aria-label={isInteractive ? `Open activity event at ${time}` : undefined}
     >
       {isCurrent && !isAlarm && (
-        <div className="activity-tile-current-strip">
-          <span>{time} – now</span>
+        <div className="absolute inset-x-0 top-0 rounded-t-xl py-[3px] text-center [background:var(--rm-room-detail-tile-current-strip-bg)]">
+          <span className="text-[length:var(--rm-fs-micro)] font-semibold [color:var(--rm-room-detail-tile-current-strip-text)]">
+            {time} - now
+          </span>
         </div>
       )}
 
-      {!isCurrent && <span className="activity-tile-time">{time}</span>}
+      {!isCurrent && <span className="text-[length:var(--rm-fs-caption)] text-[var(--rm-room-detail-tile-time)]">{time}</span>}
 
-      <div className={isCurrent && !isAlarm ? "activity-tile-icon activity-tile-icon-current" : "activity-tile-icon"}>
+      <div className={cn("flex h-[42px] items-center justify-center", isCurrent && !isAlarm && "mt-[14px]")}>
         {icon}
       </div>
 
-      {isCurrent && duration && !isAlarm && <span className="activity-tile-duration">{duration}</span>}
-      {isAlarm && <div className="activity-tile-alarm-dot" />}
+      {isCurrent && duration && !isAlarm && (
+        <span className="text-[length:var(--rm-fs-meta)] font-bold leading-[1.2] text-[var(--rm-room-detail-text)]">
+          {duration}
+        </span>
+      )}
+      {isAlarm && (
+        <div className="size-2.5 rounded-full [background:var(--rm-overview-dot-orange-bg)] [box-shadow:var(--rm-overview-dot-orange-shadow)]" />
+      )}
     </TileElement>
   );
 };

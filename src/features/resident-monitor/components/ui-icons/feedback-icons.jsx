@@ -4,10 +4,10 @@ const IconClose = ({ width = 13, height = 13, stroke = "white", strokeWidth = 2.
   </svg>
 );
 
-const IconAlertMark = () => (
+const IconAlertMark = ({ color = "#e8430a" }) => (
   <svg width="3.5" height="13" viewBox="0 0 3.5 16" fill="none">
-    <path d="M1.75 1V9.5" stroke="#e8430a" strokeWidth="2.8" strokeLinecap="round" />
-    <circle cx="1.75" cy="14.2" r="1.75" fill="#e8430a" />
+    <path d="M1.75 1V9.5" stroke={color} strokeWidth="2.8" strokeLinecap="round" />
+    <circle cx="1.75" cy="14.2" r="1.75" fill={color} />
   </svg>
 );
 

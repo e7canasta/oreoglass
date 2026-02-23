@@ -32,14 +32,7 @@ const RM_OVERVIEW_ACTION_VARIANT_BY_TONE = Object.freeze({
   blank: "overview-blank",
 });
 
-const LAB_MODERN_DOT_CLASS_BY_COLOR = Object.freeze({
-  orange: "lab-modern-room-dot-orange",
-  blue: "lab-modern-room-dot-blue",
-  yellow: "lab-modern-room-dot-yellow",
-});
-
 export {
-  LAB_MODERN_DOT_CLASS_BY_COLOR,
   RM_BADGE_PRESETS,
   RM_BUTTON_PRESETS,
   RM_OVERVIEW_ACTION_VARIANT_BY_TONE,

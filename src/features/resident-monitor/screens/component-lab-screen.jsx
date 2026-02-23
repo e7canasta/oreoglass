@@ -10,7 +10,6 @@ import {
 } from "../components/component-lab/index.js";
 import { IconArrowLeft, IconThemeMoon, IconThemeSun } from "../components/ui-icons/index.js";
 import "../themes/component-lab-themes.css";
-import "./component-lab-screen.css";
 
 const ComponentLabScreen = ({ onBack }) => {
   const [isLightMode, setIsLightMode] = useState(false);
@@ -32,20 +31,28 @@ const ComponentLabScreen = ({ onBack }) => {
   };
 
   return (
-    <div className="lab-screen" data-mode={isLightMode ? "light" : "dark"}>
-      <div className="lab-header-spacer" />
+    <div
+      className="lab-screen absolute inset-0 z-[35] flex flex-col bg-[var(--lab-bg)] [font-family:'SF_Pro_Display',system-ui,-apple-system]"
+      data-mode={isLightMode ? "light" : "dark"}
+      style={{ animation: "slideInRight 0.24s cubic-bezier(0.32, 0.72, 0, 1)" }}
+    >
+      <div className="h-[52px] shrink-0" />
 
-      <header className="lab-header">
-        <button type="button" onClick={onBack} className="lab-back-button">
+      <header className="flex shrink-0 items-center justify-between px-3.5 pb-3">
+        <button
+          type="button"
+          onClick={onBack}
+          className="flex items-center gap-2 bg-transparent p-0 [color:var(--lab-header-text)]"
+        >
           <IconArrowLeft />
-          <span>Component Lab</span>
+          <span className="text-lg font-bold">Component Lab</span>
         </button>
-        <span className="lab-header-badge">Design System · Claude</span>
+        <span className="text-xs font-semibold [color:var(--lab-header-muted)]">Design System · Claude</span>
       </header>
 
       <button
         type="button"
-        className="lab-mode-fab"
+        className="absolute right-3 top-[calc(72px+env(safe-area-inset-top,0px))] z-[45] flex size-8 items-center justify-center rounded-full border [border-color:var(--lab-mode-fab-border)] [background:var(--lab-mode-fab-bg)] [box-shadow:var(--lab-mode-fab-shadow)] [backdrop-filter:blur(16px)_saturate(1.12)] transition-all active:scale-95"
         onClick={() => setIsLightMode((prev) => !prev)}
         title={isLightMode ? "Cambiar a modo noche" : "Cambiar a modo dia"}
         aria-label={isLightMode ? "Cambiar a modo noche" : "Cambiar a modo dia"}
@@ -57,11 +64,11 @@ const ComponentLabScreen = ({ onBack }) => {
         )}
       </button>
 
-      <div className="lab-content">
-        <section className="lab-catalog-shell">
+      <div className="flex flex-1 flex-col gap-2.5 overflow-y-auto px-3 pb-6">
+        <section className="flex flex-col gap-3 rounded-2xl border [border-color:var(--lab-shell-border)] [background:var(--lab-shell-bg)] p-3.5">
           <div>
-            <h2>A/B Catalog</h2>
-            <p>
+            <h2 className="m-0 text-[17px] font-bold tracking-[-0.2px] [color:var(--lab-shell-title)]">A/B Catalog</h2>
+            <p className="mb-0 mt-1 text-xs [color:var(--lab-shell-copy)]">
               Compara arriba/abajo el impacto entre componentes legacy y la base
               modernizada para migrar con menor riesgo.
             </p>
