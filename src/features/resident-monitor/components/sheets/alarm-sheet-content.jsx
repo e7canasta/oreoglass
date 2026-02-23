@@ -70,19 +70,23 @@ const AlarmPrimaryActions = ({ onClose, onViewLive }) => (
       type="button"
       {...RM_BUTTON_PRESETS.alarmPrimary}
       onClick={onClose}
-      className="[min-height:var(--rm-alarm-action-min-height)] rounded-[var(--rm-alarm-action-radius)] px-2.5 py-3.5 text-left [background:var(--alarm-cta-bg)] [border-color:var(--alarm-cta-border)] text-[var(--alarm-cta-text)] [box-shadow:var(--alarm-cta-shadow)] focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--alarm-focus-outline)] active:scale-[0.99]"
+      className="[min-height:var(--rm-alarm-action-min-height)] flex-col items-start justify-center gap-1 rounded-[var(--rm-alarm-action-radius)] px-2.5 py-3.5 text-left whitespace-normal [background:var(--alarm-cta-bg)] [border-color:var(--alarm-cta-border)] text-[var(--alarm-cta-text)] [box-shadow:var(--alarm-cta-shadow)] focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--alarm-focus-outline)] active:scale-[0.99]"
     >
       <span className="block text-[length:var(--rm-fs-body-strong)] font-bold leading-[1.2]">On my way</span>
-      <span className="mt-0.5 block text-[length:var(--rm-fs-meta)] font-medium text-[var(--alarm-primary-meta)]">Acknowledge and respond</span>
+      <span className="block text-[length:var(--rm-fs-meta)] font-medium leading-[1.2] text-[var(--alarm-primary-meta)]">
+        Acknowledge and respond
+      </span>
     </Button>
     <Button
       type="button"
       {...RM_BUTTON_PRESETS.alarmSecondary}
       onClick={onViewLive}
-      className="[min-height:var(--rm-alarm-action-min-height)] rounded-[var(--rm-alarm-action-radius)] px-2.5 py-3.5 text-left [background:var(--alarm-btn-secondary-bg)] [border-color:var(--alarm-btn-secondary-border)] text-[var(--alarm-btn-secondary-text)] [box-shadow:var(--alarm-secondary-shadow)] focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--alarm-focus-outline)] active:scale-[0.99]"
+      className="[min-height:var(--rm-alarm-action-min-height)] flex-col items-start justify-center gap-1 rounded-[var(--rm-alarm-action-radius)] px-2.5 py-3.5 text-left whitespace-normal [background:var(--alarm-btn-secondary-bg)] [border-color:var(--alarm-btn-secondary-border)] text-[var(--alarm-btn-secondary-text)] [box-shadow:var(--alarm-secondary-shadow)] focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--alarm-focus-outline)] active:scale-[0.99]"
     >
       <span className="block text-[length:var(--rm-fs-body-strong)] font-bold leading-[1.2]">View live</span>
-      <span className="mt-0.5 block text-[length:var(--rm-fs-meta)] font-medium text-[var(--alarm-secondary-meta)]">Open live view</span>
+      <span className="block text-[length:var(--rm-fs-meta)] font-medium leading-[1.2] text-[var(--alarm-secondary-meta)]">
+        Open live view
+      </span>
     </Button>
   </div>
 );
@@ -93,7 +97,7 @@ const AlarmForwardAction = ({ onFallReview }) => (
       type="button"
       {...RM_BUTTON_PRESETS.alarmForward}
       onClick={onFallReview}
-      className="flex [min-height:var(--rm-alarm-action-min-height)] w-full items-center justify-between rounded-[var(--rm-alarm-action-radius)] px-[18px] py-[13px] [background:var(--alarm-forward-bg)] [border-color:var(--alarm-forward-border)] [box-shadow:var(--alarm-forward-shadow)] focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--alarm-focus-outline)] active:scale-[0.99]"
+      className="flex [min-height:var(--rm-alarm-action-min-height)] w-full items-center justify-between rounded-[var(--rm-alarm-action-radius)] px-[18px] py-[13px] text-left whitespace-normal [background:var(--alarm-forward-bg)] [border-color:var(--alarm-forward-border)] [box-shadow:var(--alarm-forward-shadow)] focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--alarm-focus-outline)] active:scale-[0.99]"
     >
       <span className="min-w-0">
         <span className="block text-[length:var(--rm-fs-body-strong)] font-bold text-[var(--alarm-btn-forward-text)]">Forward to triage</span>
