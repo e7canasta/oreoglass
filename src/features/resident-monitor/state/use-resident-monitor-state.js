@@ -1,66 +1,39 @@
-import { useEffect, useMemo, useReducer } from "react";
+import { useEffect, useMemo } from "react";
+import { useShallow } from "zustand/react/shallow";
 
-import { SCREENS } from "./screens.js";
-
-const INITIAL_STATE = {
-  selectedRoom: null,
-  screen: null,
-  showAlarm: false,
-  countdown: 8,
-  secondsAgo: 0,
-  alarmTriggered: false,
-};
-
-function residentMonitorReducer(state, action) {
-  switch (action.type) {
-    case "room/select":
-      return { ...state, selectedRoom: action.payload };
-
-    case "room/clear":
-      return { ...state, selectedRoom: null };
-
-    case "screen/open":
-      return { ...state, screen: action.payload };
-
-    case "screen/close":
-      return { ...state, screen: null };
-
-    case "alarm/show":
-      return { ...state, showAlarm: true };
-
-    case "alarm/hide":
-      return { ...state, showAlarm: false };
-
-    case "alarm/open-live":
-      return { ...state, showAlarm: false, screen: SCREENS.LIVE };
-
-    case "alarm/open-fall-review":
-      return { ...state, showAlarm: false, screen: SCREENS.FALL_REVIEW };
-
-    case "live/close":
-      return { ...state, showAlarm: false, screen: null };
-
-    case "countdown/tick":
-      if (state.countdown <= 1) {
-        return {
-          ...state,
-          countdown: 0,
-          showAlarm: true,
-          alarmTriggered: true,
-        };
-      }
-      return { ...state, countdown: state.countdown - 1 };
-
-    case "alarm/seconds-tick":
-      return { ...state, secondsAgo: state.secondsAgo + 1 };
-
-    default:
-      return state;
-  }
-}
+import { useResidentMonitorStore } from "./resident-monitor-store.js";
 
 export function useResidentMonitorState() {
-  const [state, dispatch] = useReducer(residentMonitorReducer, INITIAL_STATE);
+  const state = useResidentMonitorStore(
+    useShallow((store) => ({
+      selectedRoom: store.selectedRoom,
+      screen: store.screen,
+      showAlarm: store.showAlarm,
+      countdown: store.countdown,
+      secondsAgo: store.secondsAgo,
+      alarmTriggered: store.alarmTriggered,
+    }))
+  );
+
+  const storeActions = useResidentMonitorStore(
+    useShallow((store) => ({
+      selectRoom: store.selectRoom,
+      closeRoom: store.closeRoom,
+      openScreen: store.openScreen,
+      closeScreen: store.closeScreen,
+      openSleepDetail: store.openSleepDetail,
+      openCriticalEvents: store.openCriticalEvents,
+      openFallClip: store.openFallClip,
+      openFallReview: store.openFallReview,
+      showAlarmSheet: store.showAlarmSheet,
+      hideAlarm: store.hideAlarm,
+      openLiveFromAlarm: store.openLiveFromAlarm,
+      openFallReviewFromAlarm: store.openFallReviewFromAlarm,
+      closeLiveView: store.closeLiveView,
+      tickCountdown: store.tickCountdown,
+      tickAlarmSeconds: store.tickAlarmSeconds,
+    }))
+  );
 
   useEffect(() => {
     if (state.alarmTriggered) {
@@ -68,11 +41,11 @@ export function useResidentMonitorState() {
     }
 
     const interval = setInterval(() => {
-      dispatch({ type: "countdown/tick" });
+      storeActions.tickCountdown();
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [state.alarmTriggered]);
+  }, [state.alarmTriggered, storeActions.tickCountdown]);
 
   useEffect(() => {
     if (!state.showAlarm) {
@@ -80,29 +53,29 @@ export function useResidentMonitorState() {
     }
 
     const interval = setInterval(() => {
-      dispatch({ type: "alarm/seconds-tick" });
+      storeActions.tickAlarmSeconds();
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [state.showAlarm]);
+  }, [state.showAlarm, storeActions.tickAlarmSeconds]);
 
   const actions = useMemo(
     () => ({
-      selectRoom: (room) => dispatch({ type: "room/select", payload: room }),
-      closeRoom: () => dispatch({ type: "room/clear" }),
-      openScreen: (screen) => dispatch({ type: "screen/open", payload: screen }),
-      closeScreen: () => dispatch({ type: "screen/close" }),
-      openSleepDetail: () => dispatch({ type: "screen/open", payload: SCREENS.SLEEP_DETAIL }),
-      openCriticalEvents: () => dispatch({ type: "screen/open", payload: SCREENS.CRITICAL_EVENTS }),
-      openFallClip: () => dispatch({ type: "screen/open", payload: SCREENS.FALL_CLIP }),
-      openFallReview: () => dispatch({ type: "screen/open", payload: SCREENS.FALL_REVIEW }),
-      showAlarm: () => dispatch({ type: "alarm/show" }),
-      hideAlarm: () => dispatch({ type: "alarm/hide" }),
-      openLiveFromAlarm: () => dispatch({ type: "alarm/open-live" }),
-      openFallReviewFromAlarm: () => dispatch({ type: "alarm/open-fall-review" }),
-      closeLiveView: () => dispatch({ type: "live/close" }),
+      selectRoom: storeActions.selectRoom,
+      closeRoom: storeActions.closeRoom,
+      openScreen: storeActions.openScreen,
+      closeScreen: storeActions.closeScreen,
+      openSleepDetail: storeActions.openSleepDetail,
+      openCriticalEvents: storeActions.openCriticalEvents,
+      openFallClip: storeActions.openFallClip,
+      openFallReview: storeActions.openFallReview,
+      showAlarm: storeActions.showAlarmSheet,
+      hideAlarm: storeActions.hideAlarm,
+      openLiveFromAlarm: storeActions.openLiveFromAlarm,
+      openFallReviewFromAlarm: storeActions.openFallReviewFromAlarm,
+      closeLiveView: storeActions.closeLiveView,
     }),
-    []
+    [storeActions]
   );
 
   return { state, actions };

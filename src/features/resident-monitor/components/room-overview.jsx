@@ -1,4 +1,5 @@
 import { IconInBed, IconSittingOnBedLarge } from "./icons.jsx";
+import { IconPersonGlyph } from "./ui-icons.jsx";
 
 const RoomCard = ({ room, onSelect }) => {
   const isOut=room.status==="out";
@@ -29,7 +30,7 @@ const RoomCard = ({ room, onSelect }) => {
         {room.dots.map((dot,i)=>(
           dot==="person"?(
             <div key={i} style={{width:22,height:22,borderRadius:"50%",background:"linear-gradient(145deg,#4cd68a,#29a85e)",display:"flex",alignItems:"center",justifyContent:"center"}}>
-              <svg width="12" height="13" viewBox="0 0 14 16" fill="none"><circle cx="7" cy="4" r="3" fill="white"/><path d="M2 14c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="white" strokeWidth="1.5" strokeLinecap="round" fill="none"/></svg>
+              <IconPersonGlyph />
             </div>
           ):(
             <div key={i} style={{width:13,height:13,borderRadius:"50%",background:dot==="yellow"?"#f5c842":dot==="orange"?"#e8621a":dot==="blue"?"#4a90e2":"#555",boxShadow:dot==="yellow"?"0 0 7px rgba(245,200,66,0.6)":dot==="orange"?"0 0 7px rgba(232,98,26,0.6)":dot==="blue"?"0 0 7px rgba(74,144,226,0.6)":"none"}}/>
