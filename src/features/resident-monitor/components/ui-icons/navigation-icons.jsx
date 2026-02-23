@@ -55,11 +55,35 @@ const IconWideChevronDown = () => (
   </svg>
 );
 
+const IconFullscreenEnter = ({ stroke = "rgba(255,255,255,0.7)" }) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M1.5 6V1.5H6" stroke={stroke} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M10 1.5H14.5V6" stroke={stroke} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M14.5 10V14.5H10" stroke={stroke} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6 14.5H1.5V10" stroke={stroke} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const IconFullscreenExit = ({ stroke = "rgba(255,255,255,0.7)" }) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M6 1.5H1.5V6" stroke={stroke} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M10 1.5H14.5V6" stroke={stroke} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M10 14.5H14.5V10" stroke={stroke} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6 14.5H1.5V10" stroke={stroke} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M5.2 5.2L1.5 1.5" stroke={stroke} strokeWidth="1.4" strokeLinecap="round" />
+    <path d="M10.8 5.2L14.5 1.5" stroke={stroke} strokeWidth="1.4" strokeLinecap="round" />
+    <path d="M10.8 10.8L14.5 14.5" stroke={stroke} strokeWidth="1.4" strokeLinecap="round" />
+    <path d="M5.2 10.8L1.5 14.5" stroke={stroke} strokeWidth="1.4" strokeLinecap="round" />
+  </svg>
+);
+
 export {
   IconArrowLeft,
   IconArrowRight,
   IconChevronDown,
   IconChevronLeft,
   IconChevronRight,
+  IconFullscreenEnter,
+  IconFullscreenExit,
   IconWideChevronDown,
 };

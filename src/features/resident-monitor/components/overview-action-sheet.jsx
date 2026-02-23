@@ -6,12 +6,14 @@ import {
   IconSupportTab,
 } from "./ui-icons/index.js";
 
-const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity }) => {
+const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity, onOpenComponentLab }) => {
   const quickActions = [
     { label: "Fall clips", arrow: true, badge: 6, accent: "#1e3a6e", onClick: onOpenCriticalEvents },
     { label: "Mute for\n10 minutes", accent: "#1e3a6e" },
     { label: "Latest\nActivity", arrow: true, accent: "#1e3a6e", onClick: onOpenLatestActivity },
-    { label: null, isBlank: true, accent: "#1e2230" },
+    onOpenComponentLab
+      ? { label: "Component\nLab", arrow: true, accent: "#2a384e", onClick: onOpenComponentLab }
+      : { label: null, isBlank: true, accent: "#1e2230" },
   ];
 
   const tabs = [
@@ -21,9 +23,9 @@ const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity }) => 
   ];
 
   return (
-    <div style={{position:"absolute",bottom:0,left:0,right:0,zIndex:5,background:"rgba(22,25,32,0.97)",backdropFilter:"blur(20px)",borderRadius:"22px 22px 0 0",padding:"10px 14px 0",boxShadow:"0 -4px 40px rgba(0,0,0,0.65)",border:"1px solid rgba(255,255,255,0.09)"}}>
-      <div style={{width:36,height:4,borderRadius:2,background:"rgba(255,255,255,0.22)",margin:"0 auto 14px"}} />
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}>
+    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 5, background: "rgba(22,25,32,0.97)", backdropFilter: "blur(20px)", borderRadius: "22px 22px 0 0", padding: "10px 14px 0", boxShadow: "0 -4px 40px rgba(0,0,0,0.65)", border: "1px solid rgba(255,255,255,0.09)" }}>
+      <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.22)", margin: "0 auto 14px" }} />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
         {quickActions.map((btn, i) => (
           <button
             key={i}
@@ -51,8 +53,8 @@ const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity }) => 
           >
             {btn.label && <span>{btn.label}</span>}
             {btn.badge && (
-              <div style={{position:"absolute",bottom:10,left:14,width:22,height:22,borderRadius:"50%",background:"#e8621a",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <span style={{color:"white",fontSize:11,fontWeight:"800"}}>{btn.badge}</span>
+              <div style={{ position: "absolute", bottom: 10, left: 14, width: 22, height: 22, borderRadius: "50%", background: "#e8621a", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <span style={{ color: "white", fontSize: 11, fontWeight: "800" }}>{btn.badge}</span>
               </div>
             )}
             {btn.isBlank && (
@@ -64,6 +66,7 @@ const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity }) => 
           </button>
         ))}
       </div>
+      {/*
       <div style={{display:"flex",justifyContent:"space-around",borderTop:"1px solid rgba(255,255,255,0.07)",paddingTop:10,paddingBottom:28}}>
         {tabs.map((tab) => (
           <button key={tab.label} style={{background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:4,position:"relative"}}>
@@ -77,6 +80,7 @@ const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity }) => 
           </button>
         ))}
       </div>
+      */}
     </div>
   );
 };

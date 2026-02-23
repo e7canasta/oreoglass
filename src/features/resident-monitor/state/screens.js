@@ -4,4 +4,5 @@ export const SCREENS = Object.freeze({
   FALL_CLIP: "fallclip",
   LIVE: "live",
   FALL_REVIEW: "fallreview",
+  COMPONENT_LAB: "component-lab",
 });

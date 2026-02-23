@@ -1,3 +1,4 @@
+import { ComponentLabScreen } from "../screens/component-lab-screen.jsx";
 import { CriticalEventsScreen } from "../screens/critical-events-screen.jsx";
 import { FallClipScreen } from "../screens/fall-clip-screen.jsx";
 import { FallReviewScreen } from "../screens/fall-review-screen.jsx";
@@ -31,6 +32,9 @@ function ScreenRouter({
 
     case SCREENS.FALL_REVIEW:
       return <FallReviewScreen onBack={onBack} />;
+
+    case SCREENS.COMPONENT_LAB:
+      return <ComponentLabScreen onBack={onBack} />;
 
     default:
       return null;

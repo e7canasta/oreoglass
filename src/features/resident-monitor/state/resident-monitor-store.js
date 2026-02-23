@@ -22,6 +22,7 @@ export const useResidentMonitorStore = create((set) => ({
   openCriticalEvents: () => set({ screen: SCREENS.CRITICAL_EVENTS }),
   openFallClip: () => set({ screen: SCREENS.FALL_CLIP }),
   openFallReview: () => set({ screen: SCREENS.FALL_REVIEW }),
+  openComponentLab: () => set({ screen: SCREENS.COMPONENT_LAB }),
 
   showAlarmSheet: () => set({ showAlarm: true }),
   hideAlarm: () => set({ showAlarm: false }),
