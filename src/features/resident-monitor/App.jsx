@@ -106,7 +106,7 @@ export default function App() {
         {/* <PhoneStatusBar /> */}
         <OverviewHeader />
 
-        <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-3 pb-[214px] pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-[720px]:pb-[188px]">
+        <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-3 [padding-bottom:var(--rm-overview-scroll-padding-bottom)] pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-[720px]:[padding-bottom:var(--rm-overview-scroll-padding-bottom-mobile)]">
           {Object.entries(ROOMS).map(([title, rooms]) => (
             <Section key={title} title={title} rooms={rooms} onSelect={actions.selectRoom} />
           ))}

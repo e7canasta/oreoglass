@@ -107,7 +107,7 @@ const ModernPreview = ({
           />
           <Badge
             {...RM_BADGE_PRESETS.warning}
-            className="inline-flex rounded-[99px] border px-2 py-1 text-[length:var(--lab-modern-pill-font-size)] font-bold [background:var(--lab-modern-pill-bg)] [border-color:var(--lab-modern-pill-border)] [color:var(--lab-modern-pill-text)] shadow-none"
+            className="inline-flex rounded-[var(--lab-modern-pill-radius)] border [padding-left:var(--lab-modern-pill-padding-x)] [padding-right:var(--lab-modern-pill-padding-x)] [padding-top:var(--lab-modern-pill-padding-y)] [padding-bottom:var(--lab-modern-pill-padding-y)] text-[length:var(--lab-modern-pill-font-size)] font-bold [background:var(--lab-modern-pill-bg)] [border-color:var(--lab-modern-pill-border)] [color:var(--lab-modern-pill-text)] shadow-none"
           >
             Possible fall
           </Badge>
@@ -120,15 +120,15 @@ const ModernPreview = ({
             </span>
           </div>
 
-          <div className="mt-2.5 w-full overflow-hidden rounded-[99px] [height:var(--lab-modern-progress-height)] [background:var(--lab-modern-progress-track)]">
-            <div className="h-full w-[46%] [background:var(--lab-modern-progress-fill)]" />
+          <div className="mt-2.5 w-full overflow-hidden rounded-[var(--lab-modern-progress-radius)] [height:var(--lab-modern-progress-height)] [background:var(--lab-modern-progress-track)]">
+            <div className="h-full [width:var(--lab-modern-progress-fill-width)] [background:var(--lab-modern-progress-fill)]" />
           </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-2">
+          <div className="mt-3 grid grid-cols-2 [gap:var(--lab-modern-actions-gap)]">
             <Button
               type="button"
               {...RM_BUTTON_PRESETS.labDrawerSecondary}
-              className="[min-height:var(--lab-modern-action-min-height)] rounded-[var(--lab-modern-action-radius)] border-transparent px-2.5 py-2.5 text-[length:var(--lab-modern-action-font-size)] font-bold [background:var(--lab-modern-secondary-bg)] [color:var(--lab-modern-secondary-text)]"
+              className="[min-height:var(--lab-modern-action-min-height)] rounded-[var(--lab-modern-action-radius)] border-transparent [padding-left:var(--lab-modern-action-padding-x)] [padding-right:var(--lab-modern-action-padding-x)] [padding-top:var(--lab-modern-action-padding-y)] [padding-bottom:var(--lab-modern-action-padding-y)] text-[length:var(--lab-modern-action-font-size)] font-bold [background:var(--lab-modern-secondary-bg)] [color:var(--lab-modern-secondary-text)]"
               onClick={onCloseSheet}
             >
               On my way
@@ -136,7 +136,7 @@ const ModernPreview = ({
             <Button
               type="button"
               {...RM_BUTTON_PRESETS.labDrawerPrimary}
-              className="[min-height:var(--lab-modern-action-min-height)] rounded-[var(--lab-modern-action-radius)] border-transparent px-2.5 py-2.5 text-[length:var(--lab-modern-action-font-size)] font-bold [background:var(--lab-modern-primary-bg)] [color:var(--lab-modern-primary-text)]"
+              className="[min-height:var(--lab-modern-action-min-height)] rounded-[var(--lab-modern-action-radius)] border-transparent [padding-left:var(--lab-modern-action-padding-x)] [padding-right:var(--lab-modern-action-padding-x)] [padding-top:var(--lab-modern-action-padding-y)] [padding-bottom:var(--lab-modern-action-padding-y)] text-[length:var(--lab-modern-action-font-size)] font-bold [background:var(--lab-modern-primary-bg)] [color:var(--lab-modern-primary-text)]"
               onClick={onCloseSheet}
             >
               View live
@@ -154,14 +154,14 @@ const ModernPreview = ({
         value={selectedClassification}
         onValueChange={onSelectClassification}
       >
-        <span className="text-xs [color:var(--lab-pane-copy)]">Classification</span>
+        <span className="text-[length:var(--lab-modern-classification-size)] [color:var(--lab-pane-copy)]">Classification</span>
         {MODERN_REVIEW_OPTIONS.map((option) => {
           return (
             <RadioGroupPrimitive.Item
               key={option.id}
               value={option.id}
               className={cn(
-                "group flex w-full cursor-pointer items-center gap-2.5 rounded-xl border p-2.5 text-left outline-none",
+                "group flex w-full cursor-pointer items-center [gap:var(--lab-modern-radio-gap)] rounded-[var(--lab-modern-radio-radius)] border [padding:var(--lab-modern-radio-padding)] text-left outline-none",
                 "[border-color:var(--lab-modern-radio-border)] [background:var(--lab-modern-radio-bg)]",
                 "data-[state=checked]:[border-color:var(--lab-modern-radio-selected-border)] data-[state=checked]:[background:var(--lab-modern-radio-selected-bg)]",
                 "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--lab-modern-radio-selected-border)]"
@@ -171,7 +171,7 @@ const ModernPreview = ({
                 <strong className="text-[length:var(--lab-modern-radio-title-size)] [color:var(--lab-modern-radio-strong)]">{option.label}</strong>
                 <small className="text-[length:var(--lab-modern-radio-copy-size)] [color:var(--lab-modern-radio-copy)]">{option.helper}</small>
               </span>
-              <span className="ml-auto flex items-center justify-center rounded-full border [width:var(--lab-modern-check-size)] [height:var(--lab-modern-check-size)] [background:var(--lab-modern-check-bg)] [border-color:var(--lab-modern-check-border)] opacity-0 scale-90 transition-all group-data-[state=checked]:scale-100 group-data-[state=checked]:opacity-100">
+              <span className="ml-auto flex items-center justify-center rounded-[var(--lab-modern-check-radius)] border [width:var(--lab-modern-check-size)] [height:var(--lab-modern-check-size)] [background:var(--lab-modern-check-bg)] [border-color:var(--lab-modern-check-border)] opacity-0 scale-90 transition-all group-data-[state=checked]:scale-100 group-data-[state=checked]:opacity-100">
                 <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
                   <IconCheck />
                 </RadioGroupPrimitive.Indicator>
@@ -191,7 +191,7 @@ const ModernPreview = ({
           type="button"
           {...RM_BUTTON_PRESETS.labRoomCard}
           className={cn(
-            "grid items-start [row-gap:var(--lab-modern-room-gap)] rounded-[var(--lab-modern-room-radius)] border p-2.5 text-left [border-color:var(--lab-modern-room-border)] [background:var(--lab-modern-room-bg)] [color:var(--lab-modern-room-text)]",
+            "grid items-start [row-gap:var(--lab-modern-room-gap)] rounded-[var(--lab-modern-room-radius)] border [padding:var(--lab-modern-room-padding)] text-left [border-color:var(--lab-modern-room-border)] [background:var(--lab-modern-room-bg)] [color:var(--lab-modern-room-text)]",
             modernRoomToneClassByTone[room.tone]
           )}
         >

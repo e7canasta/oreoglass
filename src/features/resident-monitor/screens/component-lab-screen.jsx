@@ -52,7 +52,7 @@ const ComponentLabScreen = ({ onBack }) => {
 
       <button
         type="button"
-        className="absolute right-3 [top:calc(var(--lab-mode-fab-top)+var(--lab-safe-top))] [z-index:var(--lab-z-floating)] flex size-8 items-center justify-center rounded-full border [border-color:var(--lab-mode-fab-border)] [background:var(--lab-mode-fab-bg)] [box-shadow:var(--lab-mode-fab-shadow)] [backdrop-filter:blur(16px)_saturate(1.12)] transition-all active:scale-95"
+        className="absolute [right:var(--lab-mode-fab-right)] [top:calc(var(--lab-mode-fab-top)+var(--lab-safe-top))] [z-index:var(--lab-z-floating)] flex [width:var(--lab-mode-fab-size)] [height:var(--lab-mode-fab-size)] items-center justify-center rounded-[var(--lab-mode-fab-radius)] border [border-color:var(--lab-mode-fab-border)] [background:var(--lab-mode-fab-bg)] [box-shadow:var(--lab-mode-fab-shadow)] [backdrop-filter:blur(16px)_saturate(1.12)] transition-all active:scale-95"
         onClick={() => setIsLightMode((prev) => !prev)}
         title={isLightMode ? "Cambiar a modo noche" : "Cambiar a modo dia"}
         aria-label={isLightMode ? "Cambiar a modo noche" : "Cambiar a modo dia"}
