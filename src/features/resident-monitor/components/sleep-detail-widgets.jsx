@@ -1,4 +1,5 @@
 import { IconTrendDown, IconTrendUp } from "./ui-icons/index.js";
+import "./sleep-detail-widgets.css";
 
 const Sleep24hBar = () => {
   const blocks = [
@@ -15,31 +16,43 @@ const Sleep24hBar = () => {
   const labels = ["20", "00", "04", "08", "12", "16", "20"];
 
   return (
-    <div style={{ background: "#1c1f27", borderRadius: 16, padding: "14px 14px 12px", border: "1px solid rgba(255,255,255,0.06)" }}>
-      <div style={{ marginBottom: 12 }}>
-        <span style={{ color: "white", fontSize: 22, fontWeight: "800", letterSpacing: -0.3 }}>7 hours </span>
-        <span style={{ color: "rgba(255,255,255,0.45)", fontSize: 16 }}>of sleep in the past 24 hours</span>
+    <div className="sleep-detail-widget-card">
+      <div className="sleep-detail-summary">
+        <span className="sleep-detail-summary-value">7 hours </span>
+        <span className="sleep-detail-summary-label">of sleep in the past 24 hours</span>
       </div>
-      <div style={{ position: "relative", marginBottom: 2, height: 16 }}>
-        <div style={{ position: "absolute", left: `${NOW_PCT}%`, transform: "translateX(-50%)", color: "#f5c842", fontSize: 12, fontWeight: "700" }}>Now</div>
+      <div className="sleep-detail-now-row">
+        <div className="sleep-detail-now-label" style={{ "--now-pct": `${NOW_PCT}%` }}>
+          Now
+        </div>
       </div>
-      <div style={{ position: "relative", height: 48, background: "rgba(255,255,255,0.06)", borderRadius: 10, marginBottom: 10 }}>
+      <div className="sleep-detail-bars-track">
         {blocks.map(([s, w, rest], i) => (
-          <div key={i} style={{ position: "absolute", left: `${s}%`, width: `${w}%`, top: 0, bottom: 0, background: rest ? "#d946ef" : "#8b5cf6", borderRadius: 5, opacity: 0.9 }} />
+          <div
+            key={i}
+            className="sleep-detail-bars-segment"
+            style={{
+              "--bar-left": `${s}%`,
+              "--bar-width": `${w}%`,
+              "--bar-color": rest ? "#d946ef" : "#8b5cf6",
+            }}
+          />
         ))}
-        <div style={{ position: "absolute", left: `${NOW_PCT}%`, top: -4, bottom: -4, width: 2, background: "#f5c842", borderRadius: 1 }} />
+        <div className="sleep-detail-now-line" style={{ "--now-pct": `${NOW_PCT}%` }} />
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
+      <div className="sleep-detail-axis-row">
         {labels.map((t, i) => (
-          <span key={i} style={{ color: i === 4 ? "#f5c842" : "rgba(255,255,255,0.4)", fontSize: 11, fontWeight: i === 4 ? "700" : "400" }}>{t}</span>
+          <span key={i} className={i === 4 ? "sleep-detail-axis-label is-now" : "sleep-detail-axis-label"}>
+            {t}
+          </span>
         ))}
       </div>
-      <div style={{ display: "flex", gap: 18 }}>
+      <div className="sleep-detail-legend-row">
         {[["#8b5cf6", "Calm", "7 hours"], ["#d946ef", "Restless", "0 hours"]].map(([c, l, v]) => (
-          <div key={l} style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <div style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
-            <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>{l}:</span>
-            <span style={{ color: "rgba(255,255,255,0.8)", fontSize: 12, fontWeight: "600" }}>{v}</span>
+          <div key={l} className="sleep-detail-legend-item">
+            <div className="sleep-detail-legend-dot" style={{ "--dot-color": c }} />
+            <span className="sleep-detail-legend-name">{l}:</span>
+            <span className="sleep-detail-legend-value">{v}</span>
           </div>
         ))}
       </div>
@@ -67,13 +80,21 @@ const TrendsChart = ({ period }) => {
         ];
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+    <div className="sleep-trends-list">
       {days.map((day, i) => (
-        <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ color: i === 0 ? "#f5c842" : "rgba(255,255,255,0.5)", fontSize: 12, fontWeight: i === 0 ? "700" : "500", minWidth: 58, textAlign: "right", flexShrink: 0 }}>{day.label}</span>
-          <div style={{ flex: 1, height: 26, background: "rgba(255,255,255,0.06)", borderRadius: 8, position: "relative", overflow: "hidden" }}>
+        <div key={i} className="sleep-trends-row">
+          <span className={i === 0 ? "sleep-trends-label is-today" : "sleep-trends-label"}>{day.label}</span>
+          <div className="sleep-trends-track">
             {day.bars.map(([s, w, rest], j) => (
-              <div key={j} style={{ position: "absolute", left: `${s}%`, width: `${w}%`, top: 3, bottom: 3, background: rest ? "#d946ef" : "#8b5cf6", borderRadius: 5, opacity: 0.88 }} />
+              <div
+                key={j}
+                className="sleep-trends-segment"
+                style={{
+                  "--trend-left": `${s}%`,
+                  "--trend-width": `${w}%`,
+                  "--trend-color": rest ? "#d946ef" : "#8b5cf6",
+                }}
+              />
             ))}
           </div>
         </div>
@@ -83,10 +104,10 @@ const TrendsChart = ({ period }) => {
 };
 
 const InsightCard = ({ children, trend }) => (
-  <div style={{ background: "#1c1f27", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "13px 14px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
-    <span style={{ color: "white", fontSize: 14, fontWeight: "500", lineHeight: 1.4, flex: 1 }}>{children}</span>
+  <div className="sleep-insight-card">
+    <span className="sleep-insight-text">{children}</span>
     {trend && (
-      <div style={{ flexShrink: 0, color: trend === "down" ? "#4cd68a" : "#f5c842" }}>
+      <div className={trend === "down" ? "sleep-insight-trend is-down" : "sleep-insight-trend is-up"}>
         {trend === "down" ? <IconTrendDown /> : <IconTrendUp />}
       </div>
     )}

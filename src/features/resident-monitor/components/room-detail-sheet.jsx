@@ -1,64 +1,68 @@
 import { IconFalling, IconInBed, IconStanding } from "./icons.jsx";
 import { ActivityTile, SleepChart } from "./room-detail-widgets.jsx";
 import { IconChevronRight, IconClose, IconWideChevronDown } from "./ui-icons/index.js";
+import "./room-detail-sheet.css";
 
 const RoomDetailSheet = ({ room, onClose, onOpenFallClip, onOpenSleep }) => (
-  <div style={{position:"absolute",inset:0,zIndex:10,display:"flex",flexDirection:"column",justifyContent:"flex-end"}}>
-    <div onClick={onClose} style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.35)"}} />
-    <div style={{position:"relative",zIndex:1,background:"#6e7278",borderRadius:"22px 22px 0 0",maxHeight:"91%",overflowY:"auto",paddingBottom:100,animation:"slideUp 0.32s cubic-bezier(0.32,0.72,0,1)"}}>
-      <div style={{display:"flex",justifyContent:"center",padding:"10px 0 4px"}}>
-        <div style={{width:36,height:4,borderRadius:2,background:"rgba(255,255,255,0.3)"}} />
-      </div>
-      <div style={{padding:"8px 18px 16px",display:"flex",alignItems:"flex-start",justifyContent:"space-between"}}>
-        <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <div style={{width:16,height:16,borderRadius:"50%",background:room.dotColor,boxShadow:`0 0 8px ${room.dotColor}`}} />
-          <div>
-            <div style={{color:"white",fontSize:28,fontWeight:"700",lineHeight:1.1,fontFamily:"'SF Pro Display',system-ui"}}>{room.number}</div>
-            <div style={{color:"rgba(255,255,255,0.7)",fontSize:15}}>{room.location}</div>
-          </div>
-        </div>
-        <button onClick={onClose} style={{width:34,height:34,borderRadius:"50%",background:"rgba(255,255,255,0.22)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
-          <IconClose strokeWidth={2.2} />
-        </button>
+  <div className="room-detail-root">
+    <button type="button" onClick={onClose} className="room-detail-overlay" aria-label="Close room details" />
+    <section className="room-detail-panel" role="dialog" aria-modal="true" aria-label={`Room ${room.number} details`}>
+      <div className="room-detail-handle-wrap">
+        <div className="room-detail-handle" />
       </div>
 
-      <div style={{padding:"0 14px 16px"}}>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-          <div style={{display:"flex",alignItems:"center",gap:7}}>
-            <IconStanding size={22} />
-            <span style={{color:"white",fontSize:20,fontWeight:"700",fontFamily:"'SF Pro Display',system-ui"}}>Activity</span>
+      <header className="room-detail-header">
+        <div className="room-detail-title-wrap">
+          <div className="room-detail-status-dot" style={{ background: room.dotColor, boxShadow: `0 0 8px ${room.dotColor}` }} />
+          <div className="room-detail-heading">
+            <div className="room-detail-room-number">{room.number}</div>
+            <div className="room-detail-room-location">{room.location}</div>
           </div>
-          <span style={{color:"rgba(255,255,255,0.55)",fontSize:13}}>last 12 hours</span>
         </div>
-        <div style={{background:"#1e2023",borderRadius:14,padding:"12px 8px 14px",overflowX:"auto"}}>
-          <div style={{display:"flex",gap:6,alignItems:"stretch",minWidth:"max-content"}}>
+
+        <button type="button" onClick={onClose} className="room-detail-close-button" aria-label="Close room details">
+          <IconClose strokeWidth={2.2} />
+        </button>
+      </header>
+
+      <div className="room-detail-section">
+        <div className="room-detail-section-header">
+          <div className="room-detail-section-title-wrap">
+            <IconStanding size={22} />
+            <span className="room-detail-section-title">Activity</span>
+          </div>
+          <span className="room-detail-section-meta">last 12 hours</span>
+        </div>
+
+        <div className="room-detail-activity-card">
+          <div className="room-detail-activity-row">
             <ActivityTile time="08:12" icon={<IconInBed size={38} />} />
             <ActivityTile time="09:04" icon={<IconStanding size={24} />} />
             <ActivityTile time="10:52" icon={<IconFalling size={24} />} isAlarm onClick={onOpenFallClip} />
             <ActivityTile time="10:52" icon={<IconInBed size={38} />} isCurrent duration="3h 33m" />
           </div>
-          <div style={{display:"flex",justifyContent:"center",marginTop:10}}>
+          <div className="room-detail-activity-hint">
             <IconWideChevronDown />
           </div>
         </div>
       </div>
 
-      <div style={{padding:"0 14px 16px"}}>
-        <div onClick={onOpenSleep} style={{cursor:"pointer"}}>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-            <div style={{display:"flex",alignItems:"center",gap:7}}>
-              <span style={{color:"white",fontSize:20,letterSpacing:-1}}>z<sup style={{fontSize:13}}>z</sup></span>
-              <span style={{color:"white",fontSize:20,fontWeight:"700",fontFamily:"'SF Pro Display',system-ui"}}>Sleep</span>
+      <div className="room-detail-section room-detail-section-last">
+        <button type="button" onClick={onOpenSleep} className="room-detail-sleep-trigger">
+          <div className="room-detail-section-header">
+            <div className="room-detail-section-title-wrap">
+              <span className="room-detail-sleep-glyph">z<sup>z</sup></span>
+              <span className="room-detail-section-title">Sleep</span>
             </div>
-            <div style={{display:"flex",alignItems:"center",gap:6}}>
-              <span style={{color:"rgba(255,255,255,0.55)",fontSize:13}}>Last 24 hours</span>
+            <div className="room-detail-sleep-meta-wrap">
+              <span className="room-detail-section-meta">Last 24 hours</span>
               <IconChevronRight />
             </div>
           </div>
           <SleepChart />
-        </div>
+        </button>
       </div>
-    </div>
+    </section>
   </div>
 );
 

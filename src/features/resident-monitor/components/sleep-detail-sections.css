@@ -1,0 +1,170 @@
+.sleep-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 54px 18px 14px;
+  flex-shrink: 0;
+}
+
+.sleep-detail-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.sleep-detail-back-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.82);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.sleep-detail-header-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sleep-detail-header-sleep-glyph {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+  letter-spacing: -1px;
+}
+
+.sleep-detail-header-sleep-glyph sup {
+  font-size: 11px;
+}
+
+.sleep-detail-header-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.sleep-detail-header-spacer {
+  width: 36px;
+}
+
+.sleep-detail-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sleep-detail-trends-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.sleep-detail-trends-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.sleep-detail-trends-controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.sleep-detail-period-switch {
+  background: #1c1f27;
+  border-radius: 20px;
+  padding: 3px;
+  display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sleep-detail-period-btn {
+  background: none;
+  border: none;
+  border-radius: 17px;
+  padding: 5px 12px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.sleep-detail-period-btn.is-active {
+  background: #2d3245;
+  color: white;
+}
+
+.sleep-detail-period-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.75);
+  outline-offset: 1px;
+}
+
+.sleep-detail-week-nav-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #1c1f27;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sleep-detail-week-nav-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.75);
+  outline-offset: 1px;
+}
+
+.sleep-detail-week-label {
+  background: #1c1f27;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 5px 10px;
+  min-width: 62px;
+  text-align: center;
+}
+
+.sleep-detail-week-label span {
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sleep-detail-trends-chart-wrap {
+  background: #1c1f27;
+  border-radius: 16px;
+  padding: 14px 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sleep-detail-behaviour-title-row {
+  margin-bottom: 12px;
+}
+
+.sleep-detail-behaviour-title-strong {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.sleep-detail-behaviour-title-light {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.sleep-detail-insights-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.sleep-detail-insights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}

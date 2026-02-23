@@ -1,0 +1,141 @@
+.sleep-chart {
+  background: #1e2023;
+  border-radius: 12px;
+  padding: 12px 14px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sleep-chart-legend {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.sleep-chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sleep-chart-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.sleep-chart-legend-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.sleep-chart-graph-wrap {
+  position: relative;
+  height: 52px;
+  margin-bottom: 6px;
+}
+
+.sleep-chart-axis {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.sleep-chart-axis-label {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.sleep-chart-axis-label-now {
+  color: #f5c842;
+  font-weight: 700;
+}
+
+.activity-tile {
+  min-width: 68px;
+  min-height: 72px;
+  background: #282b30;
+  border-radius: 12px;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.activity-tile-current {
+  min-width: 90px;
+  background: #3a3d42;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.activity-tile-alarm {
+  background: #3d1a10;
+  border-color: rgba(232, 98, 26, 0.45);
+  box-shadow: 0 0 12px rgba(232, 98, 26, 0.2);
+}
+
+.activity-tile-interactive {
+  cursor: pointer;
+}
+
+.activity-tile-interactive:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.72);
+  outline-offset: 2px;
+}
+
+.activity-tile-interactive:active {
+  transform: scale(0.992);
+}
+
+.activity-tile-time {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+}
+
+.activity-tile-current-strip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 12px 12px 0 0;
+  padding: 3px 0;
+  text-align: center;
+}
+
+.activity-tile-current-strip span {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.activity-tile-icon {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-tile-icon-current {
+  margin-top: 14px;
+}
+
+.activity-tile-duration {
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.activity-tile-alarm-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--critical-orange-600);
+  box-shadow: 0 0 8px var(--critical-glow);
+}

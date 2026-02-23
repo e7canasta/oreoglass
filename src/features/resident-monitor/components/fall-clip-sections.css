@@ -1,0 +1,307 @@
+.fall-clip-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.fall-clip-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fall-clip-meta-label {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.fall-clip-review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.fall-clip-chip-dashed {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.35);
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+
+.fall-clip-chip-dashed-label {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fall-clip-chip-warning {
+  background: #d4860a;
+  border-radius: 20px;
+  padding: 6px 14px;
+  box-shadow: 0 2px 10px rgba(212, 134, 10, 0.4);
+}
+
+.fall-clip-chip-warning-label {
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.fall-clip-review-question {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.2px;
+}
+
+.fall-clip-review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.fall-clip-review-option {
+  background: #252830;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  min-height: 52px;
+  padding: 13px 8px;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.24;
+  text-align: center;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+.fall-clip-reviewed-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.fall-clip-chip-critical {
+  background: var(--critical-orange-700);
+  border-radius: 20px;
+  padding: 5px 12px;
+  box-shadow: 0 0 10px rgba(232, 67, 10, 0.3);
+}
+
+.fall-clip-chip-critical-label {
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.fall-clip-chip-reviewed {
+  background: #1a7a3a;
+  border: 1.5px solid #2ea855;
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+
+.fall-clip-chip-reviewed-label {
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.fall-clip-edit-button {
+  background: #252830;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 5px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.fall-clip-edit-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fall-clip-reviewed-status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 24px;
+}
+
+.fall-clip-reviewed-status-label {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.fall-clip-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.fall-clip-stat-card {
+  background: #1c1f27;
+  border-radius: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.fall-clip-stat-label {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.fall-clip-stat-value-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fall-clip-stat-value {
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.fall-clip-timeline {
+  padding-left: 0;
+}
+
+.fall-clip-timeline-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+}
+
+.fall-clip-timeline-rail {
+  width: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.fall-clip-timeline-connector-top {
+  width: 2px;
+  height: 20px;
+  margin-bottom: -2px;
+}
+
+.fall-clip-timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.fall-clip-timeline-connector {
+  width: 2px;
+  flex: 1;
+  min-height: 22px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.fall-clip-timeline-connector-staff {
+  width: 2px;
+  height: 16px;
+  background: #4cd68a;
+}
+
+.fall-clip-timeline-dot-staff {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4cd68a;
+  box-shadow: 0 0 8px rgba(76, 214, 138, 0.5);
+}
+
+.fall-clip-timeline-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.fall-clip-timeline-time {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+  font-weight: 500;
+  min-width: 38px;
+  font-variant-numeric: tabular-nums;
+}
+
+.fall-clip-timeline-label {
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  line-height: 1.22;
+}
+
+.fall-clip-back-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(52px + env(safe-area-inset-top, 0px));
+  display: flex;
+  align-items: flex-end;
+  padding: 0 14px 8px;
+  background: linear-gradient(to bottom, rgba(19, 21, 26, 0) 0%, rgba(19, 21, 26, 0) 100%);
+  pointer-events: none;
+}
+
+.fall-clip-back-button {
+  background: rgba(19, 21, 26, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  min-height: 34px;
+  padding: 6px 14px 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: all;
+}
+
+.fall-clip-back-label {
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fall-clip-review-option:focus-visible,
+.fall-clip-edit-button:focus-visible,
+.fall-clip-back-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.72);
+  outline-offset: 2px;
+}
+
+.fall-clip-review-option:active,
+.fall-clip-edit-button:active,
+.fall-clip-back-button:active {
+  transform: scale(0.994);
+}

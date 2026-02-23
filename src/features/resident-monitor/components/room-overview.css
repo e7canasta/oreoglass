@@ -1,0 +1,189 @@
+.room-overview-card {
+  flex: 1 1 0;
+  min-width: 0;
+  background: linear-gradient(155deg, #2d3f70, #1c2d58);
+  border-radius: 14px;
+  padding: 12px 8px 10px;
+  border: 1px solid rgba(80, 120, 220, 0.18);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.room-overview-card.is-alert {
+  background: linear-gradient(155deg, #7a2010, #5a1408);
+  border-color: rgba(232, 98, 26, 0.35);
+  box-shadow: 0 0 16px rgba(180, 40, 10, 0.35);
+}
+
+.room-overview-card.is-out {
+  background: linear-gradient(155deg, #2a2e38, #1e2230);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.room-overview-card:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.82);
+  outline-offset: 2px;
+}
+
+.room-overview-card:active {
+  transform: scale(0.992);
+}
+
+.room-overview-room-number {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "SF Pro Display", system-ui, -apple-system, sans-serif;
+}
+
+.room-overview-alert-icon-wrap {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-overview-out-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.room-overview-out-pill {
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 7px;
+  padding: 4px 0;
+  text-align: center;
+  width: 90%;
+  margin-bottom: 4px;
+}
+
+.room-overview-out-pill span {
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.room-overview-dots-row {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  height: 22px;
+  margin-top: 2px;
+}
+
+.room-overview-person-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #4cd68a, #29a85e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-overview-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+}
+
+.room-overview-dot.dot-yellow {
+  background: #f5c842;
+  box-shadow: 0 0 7px rgba(245, 200, 66, 0.6);
+}
+
+.room-overview-dot.dot-orange {
+  background: var(--critical-orange-600);
+  box-shadow: 0 0 7px var(--critical-glow);
+}
+
+.room-overview-dot.dot-blue {
+  background: #4a90e2;
+  box-shadow: 0 0 7px rgba(74, 144, 226, 0.6);
+}
+
+.room-overview-dot.dot-neutral {
+  background: #555;
+}
+
+.room-overview-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 14px 12px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.room-overview-section-title {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 12px 2px;
+  font-family: "SF Pro Display", system-ui, -apple-system, sans-serif;
+}
+
+.room-overview-section-grid {
+  display: flex;
+  gap: 10px;
+}
+
+.room-overview-countdown {
+  position: absolute;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(22, 25, 32, 0.92);
+  border-radius: 24px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 3;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.room-overview-countdown-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(232, 67, 10, 0.2);
+  border: 2px solid var(--critical-orange-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-overview-countdown-badge span {
+  color: var(--critical-orange-600);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.room-overview-countdown-label {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.room-overview-countdown-track {
+  width: 60px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+.room-overview-countdown-progress {
+  width: var(--countdown-progress);
+  height: 100%;
+  background: var(--critical-orange-600);
+  border-radius: 2px;
+  transition: width 1s linear;
+}

@@ -1,86 +1,43 @@
 import { IconInBed } from "./icons.jsx";
 import {
   IconArrowRight,
-  IconOverviewTab,
-  IconSettingsTab,
-  IconSupportTab,
 } from "./ui-icons/index.js";
+import "./overview-action-sheet.css";
 
 const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity, onOpenComponentLab }) => {
   const quickActions = [
-    { label: "Fall clips", arrow: true, badge: 6, accent: "#1e3a6e", onClick: onOpenCriticalEvents },
-    { label: "Mute for\n10 minutes", accent: "#1e3a6e" },
-    { label: "Latest\nActivity", arrow: true, accent: "#1e3a6e", onClick: onOpenLatestActivity },
+    { id: "fall", label: "Fall clips", arrow: true, badge: 6, tone: "critical", onClick: onOpenCriticalEvents },
+    { id: "mute", label: "Mute for\n10 minutes", tone: "neutral" },
+    { id: "latest", label: "Latest\nActivity", arrow: true, tone: "neutral", onClick: onOpenLatestActivity },
     onOpenComponentLab
-      ? { label: "Component\nLab", arrow: true, accent: "#2a384e", onClick: onOpenComponentLab }
-      : { label: null, isBlank: true, accent: "#1e2230" },
-  ];
-
-  const tabs = [
-    { label: "Overview", active: true, icon: <IconOverviewTab /> },
-    { label: "Support", badge: 7, icon: <IconSupportTab /> },
-    { label: "Settings", icon: <IconSettingsTab /> },
+      ? { id: "lab", label: "Component\nLab", arrow: true, tone: "muted", onClick: onOpenComponentLab }
+      : { id: "soon", label: "Coming\nsoon", isBlank: true, tone: "blank" },
   ];
 
   return (
-    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 5, background: "rgba(22,25,32,0.97)", backdropFilter: "blur(20px)", borderRadius: "22px 22px 0 0", padding: "10px 14px 0", boxShadow: "0 -4px 40px rgba(0,0,0,0.65)", border: "1px solid rgba(255,255,255,0.09)" }}>
-      <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.22)", margin: "0 auto 14px" }} />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
+    <div className="overview-sheet-root">
+      <div className="overview-sheet-handle" />
+      <div className="overview-sheet-grid">
         {quickActions.map((btn, i) => (
           <button
-            key={i}
+            type="button"
+            key={btn.id ?? i}
             onClick={btn.onClick}
-            style={{
-              background: `linear-gradient(145deg,${btn.accent},${btn.accent}cc)`,
-              border: "none",
-              borderRadius: 14,
-              padding: "15px 14px",
-              cursor: "pointer",
-              color: "white",
-              fontWeight: "700",
-              fontSize: 15,
-              fontFamily: "'SF Pro Display',system-ui",
-              display: "flex",
-              alignItems: btn.isBlank ? "center" : "flex-start",
-              justifyContent: btn.isBlank ? "center" : "space-between",
-              textAlign: "left",
-              whiteSpace: "pre-wrap",
-              lineHeight: 1.3,
-              minHeight: 64,
-              position: "relative",
-              boxShadow: "0 4px 18px rgba(20,60,160,0.28)",
-            }}
+            className={`overview-sheet-action overview-sheet-action-${btn.tone}`}
           >
-            {btn.label && <span>{btn.label}</span>}
+            {btn.label && <span className="overview-sheet-action-label">{btn.label}</span>}
             {btn.badge && (
-              <div style={{ position: "absolute", bottom: 10, left: 14, width: 22, height: 22, borderRadius: "50%", background: "#e8621a", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ color: "white", fontSize: 11, fontWeight: "800" }}>{btn.badge}</span>
-              </div>
+              <span className="overview-sheet-action-badge">{btn.badge}</span>
             )}
             {btn.isBlank && (
-              <div style={{ opacity: 0.15 }}>
+              <span className="overview-sheet-action-placeholder">
                 <IconInBed size={32} />
-              </div>
+              </span>
             )}
-            {btn.arrow && <IconArrowRight />}
+            {btn.arrow && <span className="overview-sheet-action-arrow"><IconArrowRight /></span>}
           </button>
         ))}
       </div>
-      {/*
-      <div style={{display:"flex",justifyContent:"space-around",borderTop:"1px solid rgba(255,255,255,0.07)",paddingTop:10,paddingBottom:28}}>
-        {tabs.map((tab) => (
-          <button key={tab.label} style={{background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:4,position:"relative"}}>
-            {tab.badge && (
-              <div style={{position:"absolute",top:-3,right:-5,width:17,height:17,borderRadius:"50%",background:"#e8621a",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <span style={{color:"white",fontSize:10,fontWeight:"700"}}>{tab.badge}</span>
-              </div>
-            )}
-            {tab.icon}
-            <span style={{color:tab.active?"white":"rgba(255,255,255,0.4)",fontSize:11,fontWeight:tab.active?"600":"400"}}>{tab.label}</span>
-          </button>
-        ))}
-      </div>
-      */}
     </div>
   );
 };
