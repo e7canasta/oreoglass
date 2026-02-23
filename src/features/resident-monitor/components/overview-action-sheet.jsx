@@ -21,9 +21,13 @@ const OverviewActionSheet = ({
       open={open}
       onOpenChange={onOpenChange}
       overlayClassName="[background:var(--rm-overview-sheet-overlay)]"
-      className="fixed inset-x-0 bottom-0 [min-height:var(--rm-overview-sheet-min-height)] rounded-t-[var(--rm-overview-sheet-radius)] border px-4 [padding-bottom:var(--rm-overview-sheet-padding-bottom)] pt-3 [background:var(--rm-overview-sheet-bg)] [box-shadow:var(--rm-overview-sheet-shadow)] [border-color:var(--rm-overview-sheet-border)] backdrop-blur-[20px]"
+      className="fixed inset-x-0 bottom-0 [min-height:var(--rm-overview-sheet-min-height)] rounded-t-[var(--rm-overview-sheet-radius)] border px-4 [padding-bottom:var(--rm-overview-sheet-padding-bottom)] pt-3 [background:var(--rm-overview-sheet-bg)] [box-shadow:var(--rm-overview-sheet-shadow)] [border-color:var(--rm-overview-sheet-border)] [backdrop-filter:blur(22px)_saturate(1.08)]"
       ariaLabel="Quick actions"
     >
+      <div
+        aria-hidden
+        className="pointer-events-none mx-auto mb-2 h-[2px] w-[calc(100%-34px)] rounded-full [background:var(--rm-overview-sheet-accent-line)] [box-shadow:var(--rm-overview-sheet-accent-line-shadow)]"
+      />
       <BottomSheetHandle
         wrapperClassName="mb-3"
         className="[background:var(--rm-overview-handle-bg)]"

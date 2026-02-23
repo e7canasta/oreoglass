@@ -36,8 +36,13 @@ const IconSettingsTab = ({ stroke = "var(--rm-icon-faint)" }) => (
   </svg>
 );
 
-const IconPersonGlyph = ({ fill = "var(--rm-icon-solid)", stroke = "var(--rm-icon-solid)" }) => (
-  <svg width="12" height="13" viewBox="0 0 14 16" fill="none">
+const IconPersonGlyph = ({
+  fill = "var(--rm-icon-solid)",
+  stroke = "var(--rm-icon-solid)",
+  size = 12,
+  className,
+}) => (
+  <svg className={className} width={size} height={(size * 13) / 12} viewBox="0 0 14 16" fill="none">
     <circle cx="7" cy="4" r="3" fill={fill} />
     <path d="M2 14c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" fill="none" />
   </svg>

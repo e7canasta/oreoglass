@@ -4,8 +4,9 @@ const IconSittingOnBedLarge = ({
   surface = "var(--rm-pictogram-surface)",
   surfaceMuted = "var(--rm-pictogram-surface-muted)",
   surfaceSoft = "var(--rm-pictogram-surface-soft)",
+  className,
 }) => (
-  <svg width={size} height={size * 0.85} viewBox="0 0 80 68" fill="none">
+  <svg className={className} width={size} height={size * 0.85} viewBox="0 0 80 68" fill="none">
     <rect x="4" y="38" width="72" height="18" rx="5" fill={surface} />
     <rect x="4" y="30" width="10" height="26" rx="3" fill={surfaceMuted} />
     <rect x="16" y="30" width="30" height="10" rx="3" fill={surfaceSoft} />

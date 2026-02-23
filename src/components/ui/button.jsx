@@ -25,15 +25,15 @@ const buttonVariants = cva(
         glass:
           "border [border-color:var(--rm-button-glass-border)] [background:var(--rm-button-glass-bg)] [color:var(--rm-button-glass-text)] backdrop-blur-md hover:[background:var(--rm-button-glass-bg-hover)] active:[background:var(--rm-button-glass-bg-active)]",
         "alarm-close":
-          "rounded-full border [border-color:var(--alarm-close-border)] [background:var(--alarm-close-bg)] text-[var(--alarm-text)] hover:[background:var(--alarm-close-bg-hover)]",
+          "rounded-full border [border-color:var(--alarm-close-border)] [background:var(--alarm-close-bg)] text-[var(--alarm-close-icon)] hover:[background:var(--alarm-close-bg-hover)]",
         "alarm-primary":
-          "border-[1.5px] border-[var(--alarm-btn-primary-border)] bg-[var(--alarm-btn-primary-bg)] text-[var(--alarm-text)] hover:bg-[var(--alarm-btn-primary-bg)]",
+          "border-[1.5px] border-[var(--alarm-btn-primary-border)] bg-[var(--alarm-btn-primary-bg)] text-[var(--alarm-btn-primary-text)] hover:bg-[var(--alarm-btn-primary-bg)]",
         "alarm-secondary":
-          "border-[1.5px] border-[var(--alarm-btn-secondary-border)] bg-[var(--alarm-btn-secondary-bg)] text-[var(--alarm-text)] hover:bg-[var(--alarm-btn-secondary-bg)]",
+          "border-[1.5px] border-[var(--alarm-btn-secondary-border)] bg-[var(--alarm-btn-secondary-bg)] text-[var(--alarm-btn-secondary-text)] hover:bg-[var(--alarm-btn-secondary-bg)]",
         "alarm-forward":
-          "border-[1.5px] border-[var(--alarm-forward-border)] bg-[var(--alarm-forward-bg)] text-[var(--alarm-text)] hover:bg-[var(--alarm-forward-bg)]",
+          "border-[1.5px] border-[var(--alarm-forward-border)] bg-[var(--alarm-forward-bg)] text-[var(--alarm-btn-forward-text)] hover:bg-[var(--alarm-forward-bg)]",
         "overview-critical":
-          "border [border-color:var(--rm-overview-critical-border)] [background:var(--rm-overview-critical-bg)] text-[var(--rm-overview-action-text)] [box-shadow:var(--rm-overview-critical-shadow)]",
+          "border-[1.5px] [border-color:var(--rm-overview-critical-border)] [background:var(--rm-overview-critical-bg)] text-[var(--rm-overview-action-text)] [box-shadow:var(--rm-overview-critical-shadow)]",
         "overview-neutral":
           "[background:var(--rm-overview-neutral-bg)] text-[var(--rm-overview-action-text)] [box-shadow:var(--rm-overview-neutral-shadow)]",
         "overview-muted":

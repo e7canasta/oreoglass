@@ -1,4 +1,5 @@
 export { IconInBed } from "./icon-in-bed.jsx";
+export { IconOutOfRoomBed } from "./icon-out-of-room-bed.jsx";
 export { IconSittingOnBedLarge } from "./icon-sitting-on-bed-large.jsx";
 export { IconFalling } from "./icon-falling.jsx";
 export { IconPersonGreen } from "./icon-person-green.jsx";

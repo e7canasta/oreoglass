@@ -11,7 +11,7 @@ const CLIPS = [
 const ROOMS = {
   "Alma Way":[
     {number:"206",location:"Alma Way",status:"out",dotColor:"#4a90e2",dots:["blue"]},
-    {number:"210",location:"Alma Way",status:"sleep",dotColor:"#4a90e2",dots:["blue"]},
+    {number:"210",location:"Alma Way",status:"sleep",dotColor:"#f5c842",dots:["yellow","person"]},
     {number:"405",location:"Alma Way",status:"sleep",dotColor:"#f5c842",dots:["yellow"]},
     {number:"406",location:"Alma Way",status:"sleep",dotColor:"#f5c842",dots:["yellow"]},
   ],

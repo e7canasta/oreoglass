@@ -1,6 +1,7 @@
 export {
   IconFalling,
   IconInBed,
+  IconOutOfRoomBed,
   IconLayingOnFloor,
   IconPersonGreen,
   IconSittingOnBedLarge,

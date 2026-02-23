@@ -2,8 +2,9 @@ const IconInBed = ({
   size = 54,
   color = "var(--rm-icon-solid)",
   accent = "var(--rm-pictogram-accent)",
+  className,
 }) => (
-  <svg width={size} height={size * 0.62} viewBox="0 0 60 37" fill="none">
+  <svg className={className} width={size} height={size * 0.62} viewBox="0 0 60 37" fill="none">
     <rect x="3" y="21" width="54" height="10" rx="3" fill={accent} opacity="0.7" />
     <rect x="3" y="15" width="6" height="16" rx="2" fill={accent} opacity="0.8" />
     <rect x="10" y="13" width="13" height="9" rx="3" fill={color} opacity="0.55" />

@@ -15,10 +15,10 @@
   --rm-open-actions-border: rgba(217, 119, 87, 0.38);
   --rm-open-actions-text: rgba(250, 249, 245, 0.94);
   --rm-open-actions-shadow: 0 9px 24px rgba(0, 0, 0, 0.4);
-  --rm-overview-sheet-bg: rgba(19, 23, 31, 0.96);
-  --rm-overview-sheet-border: rgba(217, 119, 87, 0.28);
-  --rm-overview-sheet-shadow: 0 -10px 40px rgba(0, 0, 0, 0.58);
-  --rm-overview-sheet-overlay: rgba(8, 12, 18, 0.24);
+  --rm-overview-sheet-bg: linear-gradient(170deg, rgba(19, 23, 31, 0.94) 0%, rgba(16, 20, 29, 0.96) 62%, rgba(31, 22, 18, 0.94) 100%);
+  --rm-overview-sheet-border: rgba(217, 119, 87, 0.4);
+  --rm-overview-sheet-shadow: 0 -14px 44px rgba(0, 0, 0, 0.62), 0 0 0 1px rgba(217, 119, 87, 0.24), 0 -4px 20px rgba(217, 119, 87, 0.3);
+  --rm-overview-sheet-overlay: radial-gradient(circle at 52% 92%, rgba(217, 119, 87, 0.36), rgba(8, 12, 18, 0.3) 44%, rgba(8, 12, 18, 0.52) 100%);
   --rm-overview-handle-bg: rgba(255, 203, 176, 0.42);
   --rm-overview-focus-outline: rgba(255, 214, 192, 0.82);
   --rm-overview-title: #fff7f2;
@@ -27,9 +27,9 @@
   --rm-overview-action-icon: rgba(255, 248, 243, 0.92);
   --rm-overview-action-arrow-opacity: 0.9;
   --rm-overview-action-placeholder-opacity: 0.2;
-  --rm-overview-critical-bg: linear-gradient(145deg, #6a2d1d, #42221a);
-  --rm-overview-critical-border: rgba(232, 101, 57, 0.56);
-  --rm-overview-critical-shadow: 0 6px 24px rgba(217, 119, 87, 0.34);
+  --rm-overview-critical-bg: linear-gradient(145deg, #7b331f, #4a251b);
+  --rm-overview-critical-border: rgba(232, 101, 57, 0.62);
+  --rm-overview-critical-shadow: 0 8px 24px rgba(217, 119, 87, 0.36), 0 0 0 1px rgba(232, 101, 57, 0.24);
   --rm-overview-neutral-bg: linear-gradient(145deg, #2c4d7d, #213b5e);
   --rm-overview-neutral-shadow: 0 6px 22px rgba(28, 72, 147, 0.32);
   --rm-overview-muted-bg: linear-gradient(145deg, #2f394d, #252d3d);

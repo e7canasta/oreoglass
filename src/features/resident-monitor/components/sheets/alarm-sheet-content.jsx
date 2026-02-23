@@ -31,7 +31,7 @@ const AlarmStatusRow = () => (
 );
 
 const AlarmEventCard = ({ secondsAgo }) => (
-  <div className="mx-[14px] mb-3.5 flex items-start justify-between rounded-[20px] border-[1.5px] px-4 pb-4 pt-4 [background:var(--alarm-card-bg)] [border-color:var(--alarm-card-border)]">
+  <div className="mx-[14px] mb-3.5 flex items-start justify-between rounded-[20px] border-[1.5px] px-4 pb-4 pt-4 [background:var(--alarm-card-bg)] [border-color:var(--alarm-card-border)] [box-shadow:var(--alarm-card-shadow)]">
     <div className="flex-1">
       <div className="text-[length:var(--rm-fs-hero)] font-extrabold leading-[1.18] tracking-[-0.5px] text-[var(--alarm-text)]">
         Sitting on
@@ -43,7 +43,14 @@ const AlarmEventCard = ({ secondsAgo }) => (
       </div>
     </div>
     <div className="ml-2 mt-0.5 shrink-0">
-      <IconSittingOnBedLarge size={76} />
+      <IconSittingOnBedLarge
+        size={84}
+        className="drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
+        color="var(--alarm-pictogram-color)"
+        surface="var(--alarm-pictogram-surface)"
+        surfaceMuted="var(--alarm-pictogram-surface-muted)"
+        surfaceSoft="var(--alarm-pictogram-surface-soft)"
+      />
     </div>
   </div>
 );
