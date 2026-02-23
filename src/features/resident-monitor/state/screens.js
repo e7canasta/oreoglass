@@ -1,0 +1,7 @@
+export const SCREENS = Object.freeze({
+  SLEEP_DETAIL: "sleepdetail",
+  CRITICAL_EVENTS: "criticalevents",
+  FALL_CLIP: "fallclip",
+  LIVE: "live",
+  FALL_REVIEW: "fallreview",
+});
