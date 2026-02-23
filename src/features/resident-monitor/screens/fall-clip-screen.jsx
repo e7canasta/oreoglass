@@ -14,7 +14,7 @@ import {
   FallClipReviewed,
   FallClipStats,
   FallClipTimeline,
-} from "../components/fall-clip-sections.jsx";
+} from "../components/fall-clip/index.js";
 import { FallClipVideoStage } from "../components/fall-clip-video-stage.jsx";
 import { ScreenStage } from "../components/screen-stage.jsx";
 
