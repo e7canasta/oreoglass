@@ -1,0 +1,52 @@
+.fall-review-option {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 14px;
+  padding: 14px 16px;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.fall-review-option-label {
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: left;
+  letter-spacing: -0.15px;
+}
+
+.fall-review-option-selected {
+  border-color: rgba(255, 255, 255, 0.56);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 5px 16px var(--critical-card-glow);
+}
+
+.fall-review-option-selected .fall-review-option-label {
+  font-weight: 700;
+}
+
+.fall-review-option-check {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2.5px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fall-review-option:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.78);
+  outline-offset: 2px;
+}
+
+.fall-review-option:active {
+  transform: scale(0.994);
+}

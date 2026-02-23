@@ -1,0 +1,90 @@
+.fall-review-screen {
+  --fall-review-bg: linear-gradient(165deg, var(--critical-orange-500) 0%, var(--critical-orange-600) 45%, var(--critical-orange-700) 100%);
+  --fall-review-panel-shadow: 0 8px 24px rgba(23, 9, 6, 0.34);
+
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: var(--fall-review-bg);
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  font-family: "SF Pro Display", system-ui, -apple-system;
+}
+
+.fall-review-screen-spacer {
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.fall-review-screen-header {
+  padding: 0 16px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-shrink: 0;
+}
+
+.fall-review-screen-title {
+  color: white;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.fall-review-screen-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.fall-review-screen-date {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.fall-review-screen-time {
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.fall-review-screen-thermal {
+  margin: 0 12px 14px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #9ab0c4;
+  box-shadow: var(--fall-review-panel-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.fall-review-screen-thermal-main {
+  height: 186px;
+  position: relative;
+}
+
+.fall-review-screen-thermal-fade {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 44px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent);
+}
+
+.fall-review-screen-scrubber-wrap {
+  background: rgba(14, 8, 6, 0.58);
+  padding: 6px 14px 10px;
+}
+
+.fall-review-screen-options {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 12px calc(32px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
