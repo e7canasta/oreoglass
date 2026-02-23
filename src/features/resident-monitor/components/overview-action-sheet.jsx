@@ -17,6 +17,10 @@ const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity, onOpe
   return (
     <div className="overview-sheet-root">
       <div className="overview-sheet-handle" />
+      <div className="overview-sheet-header">
+        <span className="overview-sheet-title">Quick actions</span>
+        <span className="overview-sheet-subtitle">Triage and response shortcuts</span>
+      </div>
       <div className="overview-sheet-grid">
         {quickActions.map((btn, i) => (
           <button
@@ -24,6 +28,7 @@ const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity, onOpe
             key={btn.id ?? i}
             onClick={btn.onClick}
             className={`overview-sheet-action overview-sheet-action-${btn.tone}`}
+            aria-label={btn.label ? btn.label.replace("\n", " ") : undefined}
           >
             {btn.label && <span className="overview-sheet-action-label">{btn.label}</span>}
             {btn.badge && (

@@ -51,7 +51,7 @@
 .monitor-app-content {
   flex: 1;
   overflow-y: auto;
-  padding: 4px 12px 160px;
+  padding: 4px 12px 214px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -63,7 +63,7 @@
 
 .monitor-app-trigger-alarm-btn {
   position: absolute;
-  bottom: 140px;
+  bottom: calc(236px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   background: var(--critical-orange-600);
@@ -124,4 +124,14 @@
 
 .monitor-app-root * {
   -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-height: 720px) {
+  .monitor-app-content {
+    padding-bottom: 188px;
+  }
+
+  .monitor-app-trigger-alarm-btn {
+    bottom: calc(196px + env(safe-area-inset-bottom, 0px));
+  }
 }

@@ -4,42 +4,63 @@
   bottom: 0;
   left: 0;
   z-index: 5;
-  background: rgba(22, 25, 32, 0.97);
+  background: rgba(22, 25, 32, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: 22px 22px 0 0;
-  padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
-  box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.65);
+  border-radius: 24px 24px 0 0;
+  padding: 12px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+  min-height: clamp(286px, 35vh, 336px);
+  box-shadow: 0 -8px 44px rgba(0, 0, 0, 0.68);
   border: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 .overview-sheet-handle {
-  width: 36px;
+  width: 38px;
   height: 4px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.22);
-  margin: 0 auto 14px;
+  background: rgba(255, 255, 255, 0.26);
+  margin: 0 auto 12px;
+}
+
+.overview-sheet-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.overview-sheet-title {
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.35px;
+}
+
+.overview-sheet-subtitle {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .overview-sheet-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
 }
 
 .overview-sheet-action {
   border: none;
-  border-radius: 14px;
-  min-height: 84px;
-  padding: 14px 14px 12px;
+  border-radius: 16px;
+  min-height: 108px;
+  padding: 16px 16px 14px;
   cursor: pointer;
   color: white;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "SF Pro Display", system-ui;
   text-align: left;
   white-space: pre-line;
-  line-height: 1.28;
+  line-height: 1.3;
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -57,41 +78,41 @@
 }
 
 .overview-sheet-action-critical {
-  background: linear-gradient(145deg, #2e3f66, #223454);
-  border: 1px solid rgba(232, 67, 10, 0.35);
-  box-shadow: 0 4px 20px rgba(232, 67, 10, 0.22);
+  background: linear-gradient(145deg, #4a2f33, #3b252a);
+  border: 1px solid rgba(232, 67, 10, 0.42);
+  box-shadow: 0 6px 24px rgba(232, 67, 10, 0.28);
 }
 
 .overview-sheet-action-neutral {
-  background: linear-gradient(145deg, #1e3a6e, #1a315c);
-  box-shadow: 0 4px 18px rgba(20, 60, 160, 0.28);
+  background: linear-gradient(145deg, #24457d, #1d3969);
+  box-shadow: 0 6px 22px rgba(20, 60, 160, 0.3);
 }
 
 .overview-sheet-action-muted {
-  background: linear-gradient(145deg, #2a384e, #233043);
-  box-shadow: 0 4px 18px rgba(24, 40, 70, 0.32);
+  background: linear-gradient(145deg, #304058, #27364c);
+  box-shadow: 0 6px 22px rgba(24, 40, 70, 0.34);
 }
 
 .overview-sheet-action-blank {
-  background: linear-gradient(145deg, #232a38, #1d2431);
-  box-shadow: 0 4px 18px rgba(10, 16, 28, 0.28);
+  background: linear-gradient(145deg, #283140, #222a37);
+  box-shadow: 0 6px 22px rgba(10, 16, 28, 0.3);
 }
 
 .overview-sheet-action-label {
-  padding-right: 28px;
+  padding-right: 30px;
 }
 
 .overview-sheet-action-badge {
   position: absolute;
-  bottom: 10px;
-  left: 14px;
-  width: 22px;
-  height: 22px;
+  bottom: 12px;
+  left: 16px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: var(--critical-orange-600);
   box-shadow: 0 0 10px var(--critical-glow);
   color: white;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -100,14 +121,25 @@
 
 .overview-sheet-action-placeholder {
   position: absolute;
-  right: 12px;
-  bottom: 8px;
+  right: 14px;
+  bottom: 10px;
   opacity: 0.16;
 }
 
 .overview-sheet-action-arrow {
   position: absolute;
-  top: 14px;
-  right: 12px;
+  top: 16px;
+  right: 14px;
   opacity: 0.88;
+}
+
+@media (max-height: 720px) {
+  .overview-sheet-root {
+    min-height: 0;
+  }
+
+  .overview-sheet-action {
+    min-height: 96px;
+    font-size: 15px;
+  }
 }
