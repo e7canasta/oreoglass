@@ -40,6 +40,10 @@ const buttonVariants = cva(
           "[background:var(--rm-overview-muted-bg)] text-[var(--rm-overview-action-text)] [box-shadow:var(--rm-overview-muted-shadow)]",
         "overview-blank":
           "[background:var(--rm-overview-blank-bg)] text-[var(--rm-overview-action-text)] [box-shadow:var(--rm-overview-blank-shadow)]",
+        "live-primary":
+          "text-[var(--rm-live-action-text)] [background:var(--rm-live-action-primary-bg)] [box-shadow:var(--rm-live-action-primary-shadow)]",
+        "live-secondary":
+          "text-[var(--rm-live-action-text)] [background:var(--rm-live-action-secondary-bg)]",
         unstyled: "",
       },
       size: {

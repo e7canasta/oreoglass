@@ -4,7 +4,8 @@ import {
   SleepBehaviourSection,
   SleepDetailHeader,
   SleepTrendsSection,
-} from "../components/sleep-detail-sections.jsx";
+} from "../components/sleep-detail/index.js";
+import { ScreenStage } from "../components/screen-stage.jsx";
 import { Sleep24hBar } from "../components/sleep-detail-widgets.jsx";
 
 const SleepDetailScreen = ({ onBack }) => {
@@ -12,7 +13,7 @@ const SleepDetailScreen = ({ onBack }) => {
   const [weekNum, setWeekNum] = useState(23);
 
   return (
-    <div className="absolute inset-0 z-[18] flex animate-[slideInRight_0.3s_cubic-bezier(0.32,0.72,0,1)] flex-col [background:var(--rm-sleep-screen-bg)]">
+    <ScreenStage zToken="--rm-z-screen-sleep" className="[background:var(--rm-sleep-screen-bg)]">
       <SleepDetailHeader onBack={onBack} />
 
       <div className="flex flex-1 flex-col gap-5 overflow-y-auto px-[14px] pb-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -26,7 +27,7 @@ const SleepDetailScreen = ({ onBack }) => {
         />
         <SleepBehaviourSection />
       </div>
-    </div>
+    </ScreenStage>
   );
 };
 

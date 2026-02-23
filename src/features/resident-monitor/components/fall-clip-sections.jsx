@@ -10,8 +10,11 @@ import {
 } from "./ui-icons/index.js";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { RM_BADGE_PRESETS, RM_BUTTON_PRESETS } from "../lib/design-system.js";
+
+const FALL_REVIEW_OPTIONS = ["Fall", "Not a fall", "Uncertain", "Safe to ground"];
 
 const FallClipMetaRow = () => (
   <div className="mb-3.5 flex items-center justify-between">
@@ -48,19 +51,21 @@ const FallClipNeedsReview = ({ onClassify }) => (
       Please review the clip. What happened?
     </div>
 
-    <div className="mb-[18px] grid grid-cols-2 gap-[9px]">
-      {["Fall", "Not a fall", "Uncertain", "Safe to ground"].map((opt) => (
-        <Button
-          type="button"
-          key={opt}
-          {...RM_BUTTON_PRESETS.fallReviewOption}
-          onClick={() => onClassify(opt)}
-          className="min-h-[52px] rounded-xl px-2 py-[13px] text-center text-[length:var(--rm-fs-body)] font-semibold leading-[1.24] [background:var(--rm-fall-review-option-bg)] [border-color:var(--rm-fall-review-option-border)] text-[var(--rm-fall-review-option-text)] hover:[background:var(--rm-fall-review-option-bg-hover)] focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-fall-focus-outline)] active:scale-[0.994]"
+    <RadioGroup
+      className="mb-[18px] grid grid-cols-2 gap-[9px]"
+      onValueChange={onClassify}
+      aria-label="Fall classification options"
+    >
+      {FALL_REVIEW_OPTIONS.map((option) => (
+        <RadioGroupItem
+          key={option}
+          value={option}
+          className="flex min-h-[52px] cursor-pointer items-center justify-center rounded-xl border px-2 py-[13px] text-center text-[length:var(--rm-fs-body)] font-semibold leading-[1.24] [background:var(--rm-fall-review-option-bg)] [border-color:var(--rm-fall-review-option-border)] text-[var(--rm-fall-review-option-text)] hover:[background:var(--rm-fall-review-option-bg-hover)] focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-fall-focus-outline)] active:scale-[0.994]"
         >
-          {opt}
-        </Button>
+          {option}
+        </RadioGroupItem>
       ))}
-    </div>
+    </RadioGroup>
   </>
 );
 
@@ -170,7 +175,7 @@ const FallClipTimeline = ({ events }) => (
 );
 
 const FallClipBackButton = ({ onBack }) => (
-  <div className="pointer-events-none absolute inset-x-0 top-0 flex h-[calc(60px+env(safe-area-inset-top,0px))] items-end px-[14px] pb-2 [background:var(--rm-fall-back-overlay)]">
+  <div className="pointer-events-none absolute inset-x-0 top-0 flex [height:var(--rm-fall-back-overlay-height)] items-end px-[14px] pb-2 [background:var(--rm-fall-back-overlay)]">
     <Button
       type="button"
       {...RM_BUTTON_PRESETS.floatingBack}

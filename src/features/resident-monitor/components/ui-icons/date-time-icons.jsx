@@ -1,4 +1,4 @@
-const IconCalendar = ({ color = "rgba(255,255,255,0.5)" }) => (
+const IconCalendar = ({ color = "var(--rm-icon-low)" }) => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
     <rect x="1" y="2" width="12" height="11" rx="2" stroke={color} strokeWidth="1.4" />
     <path d="M1 5H13" stroke={color} strokeWidth="1.4" />
@@ -7,7 +7,7 @@ const IconCalendar = ({ color = "rgba(255,255,255,0.5)" }) => (
   </svg>
 );
 
-const IconClock = ({ color = "rgba(255,255,255,0.5)" }) => (
+const IconClock = ({ color = "var(--rm-icon-low)" }) => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
     <circle cx="7" cy="7" r="6" stroke={color} strokeWidth="1.4" />
     <path d="M7 4V7L9 9" stroke={color} strokeWidth="1.4" strokeLinecap="round" />

@@ -1,4 +1,4 @@
-const IconFalling = ({ size = 26, color = "white" }) => (
+const IconFalling = ({ size = 26, color = "var(--rm-icon-solid)" }) => (
   <svg width={size * 1.4} height={size} viewBox="0 0 40 28" fill="none">
     <circle cx="32" cy="5" r="4" fill={color} />
     <path

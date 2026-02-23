@@ -1,5 +1,5 @@
 const TimelineIcon = ({ children }) => (
-  <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[10px] border border-white/5 bg-[#252830]">
+  <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[10px] border [background:var(--rm-fall-timeline-icon-bg)] [border-color:var(--rm-fall-timeline-icon-border)]">
     {children}
   </div>
 );

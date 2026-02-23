@@ -31,7 +31,7 @@ function ScreenRouter({
       return <LiveViewScreen onBack={onCloseLive} />;
 
     case SCREENS.FALL_REVIEW:
-      return <FallReviewScreen onBack={onBack} />;
+      return <FallReviewScreen />;
 
     case SCREENS.COMPONENT_LAB:
       return <ComponentLabScreen onBack={onBack} />;

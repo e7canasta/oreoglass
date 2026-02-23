@@ -24,7 +24,7 @@ const VideoControls = ({ isPlaying, onToggle }) => (
       <button
         type="button"
         onClick={onToggle}
-        className="flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border [background:rgba(30,32,38,0.72)] [backdrop-filter:blur(8px)] [border-color:rgba(255,255,255,0.12)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.78)]"
+        className="flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border [background:var(--rm-video-control-bg)] [backdrop-filter:blur(8px)] [border-color:var(--rm-video-control-border)] [color:var(--rm-video-control-text)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-video-control-focus)]"
         aria-label={isPlaying ? "Pause video" : "Play video"}
       >
         {isPlaying ? (
@@ -35,7 +35,7 @@ const VideoControls = ({ isPlaying, onToggle }) => (
       </button>
       <button
         type="button"
-        className="flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border [background:rgba(30,32,38,0.72)] [backdrop-filter:blur(8px)] [border-color:rgba(255,255,255,0.12)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.78)]"
+        className="flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border [background:var(--rm-video-control-bg)] [backdrop-filter:blur(8px)] [border-color:var(--rm-video-control-border)] [color:var(--rm-video-control-text)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-video-control-focus)]"
         aria-label="Volume"
       >
         <IconVolume />
@@ -49,10 +49,10 @@ const VideoControls = ({ isPlaying, onToggle }) => (
           type="button"
           className={
             i === 0
-              ? "flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border text-[length:var(--rm-fs-micro)] font-bold text-white [background:rgba(30,32,38,0.72)] [backdrop-filter:blur(8px)] [border-color:rgba(255,255,255,0.12)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.78)]"
+              ? "flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border text-[length:var(--rm-fs-micro)] font-bold [color:var(--rm-video-control-text)] [background:var(--rm-video-control-bg)] [backdrop-filter:blur(8px)] [border-color:var(--rm-video-control-border)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-video-control-focus)]"
               : i === 1
-                ? "flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border text-lg font-bold text-white [background:rgba(30,32,38,0.72)] [backdrop-filter:blur(8px)] [border-color:rgba(255,255,255,0.12)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.78)]"
-                : "flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border text-[length:var(--rm-fs-meta)] font-bold text-white [background:rgba(30,32,38,0.72)] [backdrop-filter:blur(8px)] [border-color:rgba(255,255,255,0.12)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.78)]"
+                ? "flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border text-lg font-bold [color:var(--rm-video-control-text)] [background:var(--rm-video-control-bg)] [backdrop-filter:blur(8px)] [border-color:var(--rm-video-control-border)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-video-control-focus)]"
+                : "flex size-[var(--rm-hit-compact)] items-center justify-center rounded-[10px] border text-[length:var(--rm-fs-meta)] font-bold [color:var(--rm-video-control-text)] [background:var(--rm-video-control-bg)] [backdrop-filter:blur(8px)] [border-color:var(--rm-video-control-border)] transition-transform active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-video-control-focus)]"
           }
           aria-label={i === 0 ? "Captions" : i === 1 ? "More options" : "Share"}
         >

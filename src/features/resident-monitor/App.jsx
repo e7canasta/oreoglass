@@ -120,7 +120,7 @@ export default function App() {
           <button
             type="button"
             onClick={actions.showAlarm}
-            className="absolute left-1/2 z-[4] min-h-[var(--rm-hit-min)] -translate-x-1/2 rounded-[14px] border-0 bg-[var(--critical-orange-600)] px-6 py-3 text-[length:var(--rm-fs-body)] font-bold text-white shadow-[0_10px_26px_rgba(0,0,0,0.36)] bottom-[calc(236px+env(safe-area-inset-bottom,0px))] max-[720px]:bottom-[calc(196px+env(safe-area-inset-bottom,0px))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.85)]"
+            className="absolute left-1/2 [z-index:var(--rm-z-trigger-alarm)] min-h-[var(--rm-hit-min)] -translate-x-1/2 rounded-[14px] border-0 px-6 py-3 text-[length:var(--rm-fs-body)] font-bold [background:var(--rm-trigger-alarm-bg)] [color:var(--rm-trigger-alarm-text)] [box-shadow:var(--rm-trigger-alarm-shadow)] [bottom:var(--rm-trigger-alarm-bottom)] max-[720px]:[bottom:var(--rm-trigger-alarm-bottom-mobile)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-trigger-alarm-focus)]"
           >
             Trigger Alarm
           </button>
@@ -140,7 +140,7 @@ export default function App() {
           <button
             type="button"
             onClick={() => setIsOverviewSheetOpen(true)}
-            className="absolute bottom-[calc(16px+env(safe-area-inset-bottom,0px))] left-1/2 z-[12] min-h-[var(--rm-hit-min)] -translate-x-1/2 rounded-full border px-[18px] py-2.5 text-[length:var(--rm-fs-meta)] font-bold [background:var(--rm-open-actions-bg)] [border-color:var(--rm-open-actions-border)] text-[var(--rm-open-actions-text)] [box-shadow:var(--rm-open-actions-shadow)] backdrop-blur-[12px] transition-transform active:scale-[0.988] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.82)]"
+            className="absolute [bottom:var(--rm-open-actions-bottom)] left-1/2 [z-index:var(--rm-z-open-actions)] min-h-[var(--rm-hit-min)] -translate-x-1/2 rounded-full border px-[18px] py-2.5 text-[length:var(--rm-fs-meta)] font-bold [background:var(--rm-open-actions-bg)] [border-color:var(--rm-open-actions-border)] text-[var(--rm-open-actions-text)] [box-shadow:var(--rm-open-actions-shadow)] backdrop-blur-[12px] transition-transform active:scale-[0.988] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-open-actions-focus)]"
           >
             Quick actions
           </button>
@@ -185,7 +185,7 @@ export default function App() {
           disabled={!isFullscreenSupported}
           title={isFullscreen ? "Salir de pantalla completa" : "Entrar en pantalla completa"}
           aria-label={isFullscreen ? "Salir de pantalla completa" : "Entrar en pantalla completa"}
-          className="absolute right-3 top-[calc(72px+env(safe-area-inset-top,0px))] z-[14] flex size-8 items-center justify-center rounded-full border [background:var(--rm-fullscreen-bg)] [border-color:var(--rm-fullscreen-border)] [box-shadow:var(--rm-fullscreen-shadow)] [backdrop-filter:blur(18px)_saturate(1.15)] opacity-[0.58] transition-all hover:opacity-[0.78] active:scale-95 focus-visible:opacity-[0.85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(255,255,255,0.8)] disabled:cursor-not-allowed disabled:opacity-[0.38]"
+          className="absolute right-3 [top:var(--rm-fullscreen-top)] [z-index:var(--rm-z-floating-controls)] flex size-8 items-center justify-center rounded-full border [background:var(--rm-fullscreen-bg)] [border-color:var(--rm-fullscreen-border)] [box-shadow:var(--rm-fullscreen-shadow)] [backdrop-filter:blur(18px)_saturate(1.15)] opacity-[0.58] transition-all hover:opacity-[0.78] active:scale-95 focus-visible:opacity-[0.85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-fullscreen-focus)] disabled:cursor-not-allowed disabled:opacity-[0.38]"
         >
           {isFullscreen ? (
             <IconFullscreenExit stroke="var(--rm-fullscreen-icon)" />

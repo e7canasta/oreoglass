@@ -1,8 +1,8 @@
 import { AlarmSheet } from "../alarm-sheet.jsx";
-import { FallReviewOption } from "../fall-review-option.jsx";
 import { IconFalling, IconInBed, IconStanding } from "../icons.jsx";
 import { ActivityTile } from "../room-detail-widgets.jsx";
 import { RoomCard } from "../room-overview.jsx";
+import { LegacyFallReviewOption } from "./legacy-fall-review-option.jsx";
 
 const PREVIEW_ROOMS = [
   { number: "513", location: "Bellevue", status: "alert", dots: ["orange"] },
@@ -28,11 +28,11 @@ const LegacyPreview = ({
 }) => {
   if (activeItemId === "bottom-sheet") {
     return (
-      <div className="relative flex h-[250px] items-center justify-center [background:var(--lab-preview-bg)]">
+      <div className="relative flex [height:var(--lab-preview-canvas-height)] items-center justify-center [background:var(--lab-preview-bg)]">
         {!isSheetOpen && (
           <button
             type="button"
-            className="h-auto cursor-pointer rounded-xl border-0 bg-[#e8621a] px-3.5 py-3 text-[13px] font-bold text-white"
+            className="h-auto cursor-pointer rounded-[var(--lab-legacy-open-radius)] border-0 [padding-left:var(--lab-legacy-open-padding-x)] [padding-right:var(--lab-legacy-open-padding-x)] [padding-top:var(--lab-legacy-open-padding-y)] [padding-bottom:var(--lab-legacy-open-padding-y)] text-[length:var(--lab-legacy-open-font-size)] font-bold [background:var(--lab-legacy-open-bg)] [color:var(--lab-legacy-open-text)]"
             onClick={onOpenSheet}
           >
             Open Legacy Alarm Sheet
@@ -53,10 +53,10 @@ const LegacyPreview = ({
 
   if (activeItemId === "fall-review") {
     return (
-      <div className="grid gap-2.5 p-3">
-        <div className="grid gap-2">
+      <div className="grid [row-gap:var(--lab-preview-gap)] [padding:var(--lab-modern-review-padding)]">
+        <div className="grid [row-gap:var(--lab-modern-review-gap)]">
           {FALL_REVIEW_OPTIONS.map((option) => (
-            <FallReviewOption
+            <LegacyFallReviewOption
               key={option}
               label={option}
               isSelected={selectedClassification === option}
@@ -65,9 +65,9 @@ const LegacyPreview = ({
           ))}
         </div>
 
-        <div className="rounded-[11px] border [border-color:var(--lab-legacy-timeline-border)] [background:var(--lab-legacy-timeline-bg)] p-2.5">
-          <span className="mb-2 block text-[11px] font-semibold [color:var(--lab-legacy-timeline-label)]">Timeline sample</span>
-          <div className="flex gap-2">
+        <div className="rounded-[var(--lab-legacy-timeline-radius)] border [border-color:var(--lab-legacy-timeline-border)] [background:var(--lab-legacy-timeline-bg)] [padding:var(--lab-legacy-timeline-padding)]">
+          <span className="mb-2 block text-[length:var(--lab-legacy-timeline-label-size)] font-semibold [color:var(--lab-legacy-timeline-label)]">Timeline sample</span>
+          <div className="flex [column-gap:var(--lab-modern-review-gap)]">
             <ActivityTile time="08:12" icon={<IconInBed size={32} />} />
             <ActivityTile time="09:04" icon={<IconStanding size={24} />} />
             <ActivityTile time="10:52" icon={<IconFalling size={24} />} isAlarm />
@@ -78,13 +78,13 @@ const LegacyPreview = ({
   }
 
   return (
-    <div className="grid gap-2.5 p-3">
-      <div className="flex gap-2">
+    <div className="grid [row-gap:var(--lab-preview-gap)] [padding:var(--lab-modern-review-padding)]">
+      <div className="flex [column-gap:var(--lab-modern-review-gap)]">
         {PREVIEW_ROOMS.map((room) => (
           <RoomCard key={room.number} room={room} onSelect={noop} />
         ))}
       </div>
-      <span className="text-[11px] leading-[1.35] [color:var(--lab-preview-note)]">
+      <span className="text-[length:var(--lab-preview-note-size)] [line-height:var(--lab-preview-note-line-height)] [color:var(--lab-preview-note)]">
         Legacy card usa gradientes y estilos inline por variante.
       </span>
     </div>

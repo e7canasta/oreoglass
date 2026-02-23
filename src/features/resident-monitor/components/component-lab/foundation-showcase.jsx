@@ -97,16 +97,16 @@ const FoundationShowcase = () => {
       </LabSection>
 
       <LabSection title="Thermal Primitives">
-        <div className="grid gap-2.5">
-          <div className="h-[150px] overflow-hidden rounded-xl [background:var(--lab-thermal-bg)]">
+        <div className="grid [row-gap:var(--lab-preview-gap)]">
+          <div className="[height:var(--lab-foundation-thermal-height)] overflow-hidden rounded-[var(--lab-surface-radius)] [background:var(--lab-thermal-bg)]">
             <ThermalView />
           </div>
-          <div className="h-[150px] overflow-hidden rounded-xl [background:var(--lab-thermal-bg)]">
+          <div className="[height:var(--lab-foundation-thermal-height)] overflow-hidden rounded-[var(--lab-surface-radius)] [background:var(--lab-thermal-bg)]">
             <ThermalViewLive />
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 [gap:var(--lab-modern-review-gap)]">
             {[0, 1, 2].map((variant) => (
-              <div key={variant} className="h-[72px] overflow-hidden rounded-[10px] [background:var(--lab-thermal-bg)]">
+              <div key={variant} className="[height:var(--lab-foundation-thumb-height)] overflow-hidden rounded-[var(--lab-foundation-thumb-radius)] [background:var(--lab-thermal-bg)]">
                 <ThermalThumb variant={variant} />
               </div>
             ))}
@@ -115,21 +115,21 @@ const FoundationShowcase = () => {
       </LabSection>
 
       <LabSection title="Legacy Widgets">
-        <div className="grid gap-2.5">
-          <div className="relative h-[180px] overflow-hidden rounded-xl [background:var(--lab-thermal-bg)]">
+        <div className="grid [row-gap:var(--lab-preview-gap)]">
+          <div className="relative [height:var(--lab-foundation-video-height)] overflow-hidden rounded-[var(--lab-surface-radius)] [background:var(--lab-thermal-bg)]">
             <ThermalView />
             <VideoControls isPlaying={isPlaying} onToggle={() => setIsPlaying((prev) => !prev)} />
           </div>
-          <div className="rounded-xl border px-3 py-2.5 [border-color:var(--lab-surface-border)] [background:var(--lab-surface-bg)]">
+          <div className="rounded-[var(--lab-surface-radius)] border px-3 py-2.5 [border-color:var(--lab-surface-border)] [background:var(--lab-surface-bg)]">
             <VideoScrubber />
           </div>
-          <div className="flex gap-2">
+          <div className="flex [column-gap:var(--lab-modern-review-gap)]">
             {LAB_ROOMS.map((room) => (
               <RoomCard key={room.number} room={room} onSelect={noop} />
             ))}
           </div>
-          <div className="overflow-x-auto rounded-xl border p-2 [border-color:var(--lab-surface-border)] [background:var(--lab-surface-bg)]">
-            <div className="flex min-w-max gap-2">
+          <div className="overflow-x-auto rounded-[var(--lab-surface-radius)] border p-2 [border-color:var(--lab-surface-border)] [background:var(--lab-surface-bg)]">
+            <div className="flex min-w-max [column-gap:var(--lab-modern-review-gap)]">
               <ActivityTile time="08:12" icon={<IconInBed size={32} />} />
               <ActivityTile time="09:04" icon={<IconStanding size={24} />} />
               <ActivityTile time="10:52" icon={<IconFalling size={24} />} isAlarm />
@@ -141,7 +141,7 @@ const FoundationShowcase = () => {
       </LabSection>
 
       <LabSection title="Overlay Example">
-        <div className="relative h-[140px] overflow-hidden rounded-xl border [border-color:var(--lab-surface-border)] [background:var(--lab-surface-bg)]">
+        <div className="relative [height:var(--lab-foundation-overlay-height)] overflow-hidden rounded-[var(--lab-surface-radius)] border [border-color:var(--lab-surface-border)] [background:var(--lab-surface-bg)]">
           <CountdownBar seconds={5} total={8} />
         </div>
       </LabSection>
