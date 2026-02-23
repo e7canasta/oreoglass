@@ -12,24 +12,25 @@
   --alarm-forward-bg: rgba(40, 14, 9, 0.28);
   --alarm-forward-border: rgba(255, 255, 255, 0.28);
 
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 20;
 }
 
 .alarm-sheet-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  z-index: 49;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(14px) saturate(0.72);
   -webkit-backdrop-filter: blur(14px) saturate(0.72);
 }
 
 .alarm-sheet-panel {
-  position: absolute;
+  position: fixed;
   right: 0;
   left: 0;
   bottom: 0;
+  z-index: 50;
   border-radius: 24px 24px 0 0;
   background: var(--alarm-bg);
   color: var(--alarm-text);

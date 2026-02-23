@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { RadioGroup } from "@/components/ui/radio-group";
 import { FallReviewOption } from "../components/fall-review-option.jsx";
 import { ThermalView } from "../components/thermal.jsx";
 import { VideoScrubber } from "../components/video.jsx";
@@ -37,16 +38,20 @@ const FallReviewScreen = ({ onBack }) => {
         </div>
       </div>
 
-      <div className="fall-review-screen-options">
+      <RadioGroup
+        value={selected}
+        onValueChange={setSelected}
+        className="fall-review-screen-options"
+        aria-label="Fall classification"
+      >
         {options.map((opt) => (
           <FallReviewOption
             key={opt}
             label={opt}
-            isSelected={selected === opt}
-            onSelect={() => setSelected(opt)}
+            value={opt}
           />
         ))}
-      </div>
+      </RadioGroup>
     </div>
   );
 };

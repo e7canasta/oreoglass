@@ -1,9 +1,9 @@
 .overview-sheet-root {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 5;
+  z-index: 50;
   background: rgba(22, 25, 32, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -12,6 +12,10 @@
   min-height: clamp(286px, 35vh, 336px);
   box-shadow: 0 -8px 44px rgba(0, 0, 0, 0.68);
   border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.overview-sheet-overlay {
+  background: rgba(0, 0, 0, 0.14);
 }
 
 .overview-sheet-handle {

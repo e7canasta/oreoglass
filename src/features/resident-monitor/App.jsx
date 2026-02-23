@@ -17,6 +17,7 @@ import { useResidentMonitorState } from "./state/use-resident-monitor-state.js";
 export default function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFullscreenSupported, setIsFullscreenSupported] = useState(true);
+  const [isOverviewSheetOpen, setIsOverviewSheetOpen] = useState(true);
   const { state, actions } = useResidentMonitorState();
   const {
     selectedRoom,
@@ -53,6 +54,12 @@ export default function App() {
 
     void tryEnterFullscreenOnLoad();
   }, []);
+
+  useEffect(() => {
+    if (!selectedRoom && !screen && !showAlarm) {
+      setIsOverviewSheetOpen(true);
+    }
+  }, [selectedRoom, screen, showAlarm]);
 
   const toggleFullscreen = async () => {
     if (!document.fullscreenEnabled) {
@@ -91,10 +98,22 @@ export default function App() {
 
         {!selectedRoom && !screen && !showAlarm && (
           <OverviewActionSheet
+            open={isOverviewSheetOpen}
+            onOpenChange={setIsOverviewSheetOpen}
             onOpenCriticalEvents={actions.openCriticalEvents}
             onOpenLatestActivity={() => actions.selectRoom(ROOMS["Bellevue"][1])}
             onOpenComponentLab={actions.openComponentLab}
           />
+        )}
+
+        {!selectedRoom && !screen && !showAlarm && !isOverviewSheetOpen && (
+          <button
+            type="button"
+            onClick={() => setIsOverviewSheetOpen(true)}
+            className="monitor-app-open-actions-btn"
+          >
+            Quick actions
+          </button>
         )}
 
         {selectedRoom && !screen && !showAlarm && (
