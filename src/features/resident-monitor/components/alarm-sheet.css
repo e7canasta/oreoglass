@@ -69,8 +69,8 @@
 }
 
 .alarm-sheet-close {
-  width: 40px;
-  height: 40px;
+  width: var(--rm-hit-min);
+  height: var(--rm-hit-min);
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.24);
   background: rgba(34, 18, 14, 0.28);
@@ -157,7 +157,8 @@
 
 .alarm-sheet-action {
   border-radius: 18px;
-  padding: 16px 10px;
+  min-height: 56px;
+  padding: 14px 10px;
   cursor: pointer;
   color: var(--alarm-text);
   font-size: var(--rm-fs-body-strong);
@@ -189,7 +190,8 @@
 .alarm-sheet-forward {
   width: 100%;
   border-radius: 18px;
-  padding: 15px 18px;
+  min-height: 56px;
+  padding: 13px 18px;
   cursor: pointer;
   color: var(--alarm-text);
   font-size: var(--rm-fs-body-strong);

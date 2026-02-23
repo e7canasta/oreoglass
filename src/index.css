@@ -18,6 +18,9 @@
   --rm-fs-title-strong: clamp(22px, 5.8vw, 24px);
   --rm-fs-display: clamp(28px, 7.8vw, 34px);
   --rm-fs-hero: clamp(30px, 8.6vw, 36px);
+  --rm-hit-min: 44px;
+  --rm-hit-compact: 40px;
+  --rm-hit-chip: 36px;
 }
 
 * {

@@ -11,6 +11,12 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  width: var(--rm-hit-min);
+  height: var(--rm-hit-min);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sleep-detail-back-btn:focus-visible {
@@ -84,6 +90,7 @@
   border: none;
   border-radius: 17px;
   padding: 5px 12px;
+  min-height: var(--rm-hit-chip);
   cursor: pointer;
   color: rgba(255, 255, 255, 0.45);
   font-size: var(--rm-fs-meta);
@@ -102,8 +109,8 @@
 }
 
 .sleep-detail-week-nav-btn {
-  width: 30px;
-  height: 30px;
+  width: var(--rm-hit-compact);
+  height: var(--rm-hit-compact);
   border-radius: 50%;
   background: #1c1f27;
   border: 1px solid rgba(255, 255, 255, 0.1);
