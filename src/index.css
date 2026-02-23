@@ -1,6 +1,14 @@
 :root {
   font-family: "SF Pro Display", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   color-scheme: dark;
+  --critical-orange-100: #ffe3d6;
+  --critical-orange-300: #ff9b73;
+  --critical-orange-500: #ff6b2e;
+  --critical-orange-600: #e8430a;
+  --critical-orange-700: #cf3605;
+  --critical-orange-900: #2a120c;
+  --critical-glow: rgba(232, 67, 10, 0.55);
+  --critical-card-glow: rgba(232, 67, 10, 0.3);
 }
 
 * {
