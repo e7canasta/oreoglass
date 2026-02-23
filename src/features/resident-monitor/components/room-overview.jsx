@@ -1,5 +1,5 @@
 import { IconInBed, IconSittingOnBedLarge } from "./icons.jsx";
-import { IconPersonGlyph } from "./ui-icons";
+import { IconPersonGlyph } from "./ui-icons/index.js";
 
 const RoomCard = ({ room, onSelect }) => {
   const isOut=room.status==="out";

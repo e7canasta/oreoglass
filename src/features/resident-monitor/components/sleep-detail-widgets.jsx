@@ -1,4 +1,4 @@
-import { IconTrendDown, IconTrendUp } from "./ui-icons";
+import { IconTrendDown, IconTrendUp } from "./ui-icons/index.js";
 
 const Sleep24hBar = () => {
   const blocks = [

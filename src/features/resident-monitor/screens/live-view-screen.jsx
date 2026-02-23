@@ -1,5 +1,5 @@
 import { ThermalViewLive } from "../components/thermal.jsx";
-import { IconArrowLeft } from "../components/ui-icons";
+import { IconArrowLeft } from "../components/ui-icons/index.js";
 
 const LiveViewScreen = ({ onBack }) => (
   <div style={{position:"absolute",inset:0,zIndex:25,background:"#08090b",display:"flex",flexDirection:"column",animation:"slideInRight 0.3s cubic-bezier(0.32,0.72,0,1)",fontFamily:"'SF Pro Display',system-ui,-apple-system"}}>

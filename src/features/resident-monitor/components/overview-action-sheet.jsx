@@ -4,7 +4,7 @@ import {
   IconOverviewTab,
   IconSettingsTab,
   IconSupportTab,
-} from "./ui-icons";
+} from "./ui-icons/index.js";
 
 const OverviewActionSheet = ({ onOpenCriticalEvents, onOpenLatestActivity }) => {
   const quickActions = [

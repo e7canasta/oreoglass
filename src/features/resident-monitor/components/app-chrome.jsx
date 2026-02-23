@@ -3,7 +3,7 @@ import {
   IconChevronDown,
   IconStatusSignal,
   IconStatusWifi,
-} from "./ui-icons";
+} from "./ui-icons/index.js";
 
 const PhoneStatusBar = ({ time = "15.25" }) => (
   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 28px 0",flexShrink:0,zIndex:2}}>

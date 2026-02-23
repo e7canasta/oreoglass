@@ -1,5 +1,5 @@
 import { IconSittingOnBedLarge } from "./icons.jsx";
-import { IconAlertMark, IconArrowRight, IconClose } from "./ui-icons";
+import { IconAlertMark, IconArrowRight, IconClose } from "./ui-icons/index.js";
 
 const AlarmSheet = ({ onClose, onViewLive, onFallReview, secondsAgo }) => (
   <div style={{ position: "absolute", inset: 0, zIndex: 20 }}>

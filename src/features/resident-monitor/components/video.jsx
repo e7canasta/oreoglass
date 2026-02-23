@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IconPause, IconPlay, IconVolume } from "./ui-icons";
+import { IconPause, IconPlay, IconVolume } from "./ui-icons/index.js";
 
 const VideoScrubber = () => {
   const [pos, setPos] = useState(34); // % played

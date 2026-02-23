@@ -1,4 +1,4 @@
-import { IconCheck } from "./ui-icons";
+import { IconCheck } from "./ui-icons/index.js";
 
 const FallReviewOption = ({ label, isSelected, onSelect }) => (
   <button
