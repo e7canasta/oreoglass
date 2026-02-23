@@ -1,6 +1,9 @@
 @import "./app/animations.css";
 @import "./app/base.css";
 @import "./app/presets/light-shared.css";
-@import "./app/presets/claude.css";
-@import "./app/presets/claude-original.css";
-@import "./app/presets/claude-plus.css";
+@import "./app/presets/claude-dark.css";
+@import "./app/presets/claude-light.css";
+@import "./app/presets/claude-original-dark.css";
+@import "./app/presets/claude-original-light.css";
+@import "./app/presets/claude-plus-dark.css";
+@import "./app/presets/claude-plus-light.css";
