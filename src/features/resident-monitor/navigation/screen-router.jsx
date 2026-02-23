@@ -1,3 +1,4 @@
+import { BedActivityScreen } from "../screens/bed-activity-screen.jsx";
 import { ComponentLabScreen } from "../screens/component-lab-screen.jsx";
 import { CriticalEventsScreen } from "../screens/critical-events-screen.jsx";
 import { FallClipScreen } from "../screens/fall-clip-screen.jsx";
@@ -8,13 +9,26 @@ import { SCREENS } from "../state/screens.js";
 
 function ScreenRouter({
   screen,
+  room,
   onBack,
   onCloseLive,
+  onOpenClipFromBedActivity,
+  onOpenReviewFromBedActivity,
   onOpenClipFromCriticalEvents,
 }) {
   switch (screen) {
     case SCREENS.SLEEP_DETAIL:
       return <SleepDetailScreen onBack={onBack} />;
+
+    case SCREENS.BED_ACTIVITY:
+      return (
+        <BedActivityScreen
+          room={room}
+          onBack={onBack}
+          onOpenFallClip={onOpenClipFromBedActivity}
+          onOpenFallReview={onOpenReviewFromBedActivity}
+        />
+      );
 
     case SCREENS.CRITICAL_EVENTS:
       return (

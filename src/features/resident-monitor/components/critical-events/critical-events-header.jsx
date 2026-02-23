@@ -1,20 +1,18 @@
-import { Button } from "@/components/ui/button";
+import { AppHeaderActionButton, AppHeaderLeading, AppHeaderRow } from "../chrome/header-layout.jsx";
 import { IconArrowLeft } from "../ui-icons/index.js";
-import { RM_BUTTON_PRESETS } from "../../lib/design-system.js";
 
 const CriticalEventsHeader = ({ onBack }) => (
-  <div className="flex shrink-0 items-center justify-between px-[18px] pb-4">
-    <div className="flex items-center gap-2.5">
-      <div className="size-3 rounded-full [background:var(--rm-critical-header-dot-bg)] [box-shadow:var(--rm-critical-header-dot-shadow)]" />
+  <AppHeaderRow className="[padding-top:var(--rm-critical-header-padding-top)] [padding-bottom:var(--rm-critical-header-padding-bottom)]">
+    <AppHeaderLeading className="[column-gap:var(--rm-critical-header-leading-gap)]">
+      <div className="size-[var(--rm-critical-header-dot-size)] rounded-full [background:var(--rm-critical-header-dot-bg)] [box-shadow:var(--rm-critical-header-dot-shadow)]" />
       <span className="text-[length:var(--rm-fs-title)] font-bold tracking-[-0.3px] text-[var(--rm-critical-header-title)]">
         Critical events
       </span>
-    </div>
-    <Button
-      type="button"
-      {...RM_BUTTON_PRESETS.criticalHeaderBack}
+    </AppHeaderLeading>
+    <AppHeaderActionButton
       onClick={onBack}
-      className="size-[var(--rm-hit-min)] shrink-0 p-0 !border-transparent !bg-transparent !shadow-none focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--rm-critical-focus-outline)]"
+      className="[background:var(--rm-critical-back-bg)] [border-color:var(--rm-critical-back-border)] [backdrop-filter:blur(10px)_saturate(1.08)] focus-visible:[outline-color:var(--rm-critical-focus-outline)]"
+      aria-label="Back to overview"
     >
       <IconArrowLeft
         width={22}
@@ -24,8 +22,8 @@ const CriticalEventsHeader = ({ onBack }) => (
         strokeWidth={2.4}
         path="M20 9H2M9 2L2 9L9 16"
       />
-    </Button>
-  </div>
+    </AppHeaderActionButton>
+  </AppHeaderRow>
 );
 
 export { CriticalEventsHeader };

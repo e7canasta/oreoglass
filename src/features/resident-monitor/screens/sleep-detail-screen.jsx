@@ -5,7 +5,7 @@ import {
   SleepDetailHeader,
   SleepTrendsSection,
 } from "../components/sleep-detail/index.js";
-import { ScreenStage } from "../components/screen-stage.jsx";
+import { ScreenStage, ScreenTopSpacer } from "../components/screen-stage.jsx";
 import { Sleep24hBar } from "../components/sleep-detail/widgets/index.js";
 
 const SleepDetailScreen = ({ onBack }) => {
@@ -14,9 +14,10 @@ const SleepDetailScreen = ({ onBack }) => {
 
   return (
     <ScreenStage zToken="--rm-z-screen-sleep" className="[background:var(--rm-sleep-screen-bg)]">
+      <ScreenTopSpacer className="h-[calc(var(--rm-screen-top-spacer-compact)+var(--rm-safe-top))]" />
       <SleepDetailHeader onBack={onBack} />
 
-      <div className="flex flex-1 flex-col gap-5 overflow-y-auto px-[14px] pb-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex flex-1 flex-col gap-5 overflow-y-auto px-[14px] [padding-bottom:var(--rm-screen-content-padding-bottom)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <Sleep24hBar />
 
         <SleepTrendsSection

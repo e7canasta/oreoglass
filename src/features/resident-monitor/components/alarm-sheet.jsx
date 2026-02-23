@@ -1,10 +1,12 @@
 import { AlarmSheetContent, BottomSheetHandle, BottomSheetShell } from "./sheets/index.js";
+import { ALERT_SHEET_BEHAVIOR } from "../lib/sheet-behaviors.js";
 
 const AlarmSheet = ({ onClose, onViewLive, onFallReview, secondsAgo }) => (
   <div className="relative z-20">
     <BottomSheetShell
       open
       onClose={onClose}
+      sheetBehavior={ALERT_SHEET_BEHAVIOR}
       overlayClassName="rm-sheet-overlay rm-alarm-overlay"
       className="rm-sheet-surface fixed inset-x-0 bottom-0 rounded-t-[var(--rm-alarm-sheet-radius)] border [padding-bottom:var(--rm-alarm-sheet-padding-bottom)] text-[var(--alarm-text)] [background:var(--alarm-bg)] [box-shadow:var(--alarm-panel-shadow)] [border-color:var(--alarm-border)]"
       ariaLabel="Alarm details"

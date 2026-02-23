@@ -11,7 +11,7 @@ const CriticalEventsScreen = ({ onBack, onOpenClip }) => {
 
   return (
     <ScreenStage zToken="--rm-z-screen-base" className="[background:var(--rm-critical-screen-bg)]">
-      <ScreenTopSpacer />
+      <ScreenTopSpacer className="h-[calc(var(--rm-screen-top-spacer-compact)+var(--rm-safe-top))]" />
       <CriticalEventsHeader onBack={onBack} />
 
       <div className="flex-1 overflow-y-auto px-[14px] [padding-bottom:var(--rm-screen-content-padding-bottom)]">

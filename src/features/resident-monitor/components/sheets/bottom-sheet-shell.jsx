@@ -8,6 +8,7 @@ const BottomSheetShell = ({
   overlayClassName,
   className,
   ariaLabel,
+  sheetBehavior,
   children,
 }) => {
   const handleOpenChange = (nextOpen) => {
@@ -19,7 +20,12 @@ const BottomSheetShell = ({
   };
 
   return (
-    <Drawer open={open} onOpenChange={handleOpenChange} direction="bottom">
+    <Drawer
+      open={open}
+      onOpenChange={handleOpenChange}
+      direction="bottom"
+      {...sheetBehavior}
+    >
       <DrawerContent
         showHandle={false}
         overlayClassName={cn("[z-index:var(--rm-z-sheet-overlay)]", overlayClassName)}

@@ -1,6 +1,6 @@
 import { BottomSheetHandle, BottomSheetShell, RoomDetailSheetContent } from "./sheets/index.js";
 
-const RoomDetailSheet = ({ room, onClose, onOpenFallClip, onOpenSleep }) => (
+const RoomDetailSheet = ({ room, onClose, onOpenFallClip, onOpenSleep, onOpenBedActivity }) => (
   <div className="relative z-10">
     <BottomSheetShell
       open
@@ -18,6 +18,7 @@ const RoomDetailSheet = ({ room, onClose, onOpenFallClip, onOpenSleep }) => (
         onClose={onClose}
         onOpenFallClip={onOpenFallClip}
         onOpenSleep={onOpenSleep}
+        onOpenBedActivity={onOpenBedActivity}
       />
     </BottomSheetShell>
   </div>

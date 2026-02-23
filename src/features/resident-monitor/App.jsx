@@ -280,13 +280,17 @@ export default function App() {
             onClose={actions.closeRoom}
             onOpenFallClip={actions.openFallClip}
             onOpenSleep={actions.openSleepDetail}
+            onOpenBedActivity={actions.openBedActivity}
           />
         )}
 
         <ScreenRouter
           screen={screen}
+          room={selectedRoom}
           onBack={actions.closeScreen}
           onCloseLive={actions.closeLiveView}
+          onOpenClipFromBedActivity={actions.openFallClip}
+          onOpenReviewFromBedActivity={actions.openFallReview}
           onOpenClipFromCriticalEvents={actions.openFallReview}
         />
 

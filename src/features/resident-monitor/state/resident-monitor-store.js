@@ -19,6 +19,7 @@ export const useResidentMonitorStore = create((set) => ({
   closeScreen: () => set({ screen: null }),
 
   openSleepDetail: () => set({ screen: SCREENS.SLEEP_DETAIL }),
+  openBedActivity: () => set({ screen: SCREENS.BED_ACTIVITY }),
   openCriticalEvents: () => set({ screen: SCREENS.CRITICAL_EVENTS }),
   openFallClip: () => set({ screen: SCREENS.FALL_CLIP }),
   openFallReview: () => set({ screen: SCREENS.FALL_REVIEW }),
