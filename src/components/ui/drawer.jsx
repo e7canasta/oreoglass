@@ -49,8 +49,14 @@ function DrawerContent({
   children,
   ...props
 }) {
+  const [portalContainer, setPortalContainer] = React.useState(null)
+
+  React.useEffect(() => {
+    setPortalContainer(document.querySelector(".monitor-app-root"))
+  }, [])
+
   return (
-    <DrawerPortal data-slot="drawer-portal">
+    <DrawerPortal data-slot="drawer-portal" container={portalContainer}>
       <DrawerOverlay className={overlayClassName} />
       <DrawerPrimitive.Content
         data-slot="drawer-content"

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./themes/app-themes.css";
 
 import { AlarmSheet } from "./components/alarm-sheet.jsx";
@@ -12,6 +12,7 @@ import {
   IconFullscreenExit,
 } from "./components/ui-icons/index.js";
 import { ROOMS } from "./data/constants.js";
+import { createAlarmAudioController, getAlarmFeedbackProfile } from "./lib/alarm-feedback.js";
 import { loadThemeDraft, normalizeThemeDraft, saveThemeDraft } from "./lib/theme-draft.js";
 import { ScreenRouter } from "./navigation/screen-router.jsx";
 import { useResidentMonitorState } from "./state/use-resident-monitor-state.js";
@@ -21,6 +22,10 @@ export default function App() {
   const [isFullscreenSupported, setIsFullscreenSupported] = useState(true);
   const [isOverviewSheetOpen, setIsOverviewSheetOpen] = useState(true);
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
+  const [isAlarmMuted, setIsAlarmMuted] = useState(false);
+  const muteTimeoutRef = useRef(null);
+  const secondsAgoRef = useRef(0);
+  const alarmAudioRef = useRef(null);
   const [themeDraft, setThemeDraft] = useState(() => loadThemeDraft());
   const { state, actions } = useResidentMonitorState();
   const {
@@ -75,6 +80,105 @@ export default function App() {
     }
   }, [selectedRoom, screen, showAlarm]);
 
+  useEffect(() => {
+    secondsAgoRef.current = secondsAgo;
+  }, [secondsAgo]);
+
+  useEffect(
+    () => () => {
+      if (muteTimeoutRef.current) {
+        window.clearTimeout(muteTimeoutRef.current);
+      }
+    },
+    []
+  );
+
+  useEffect(() => {
+    const alarmAudio = createAlarmAudioController();
+    alarmAudioRef.current = alarmAudio;
+
+    if (!alarmAudio) {
+      return undefined;
+    }
+
+    const unlockAudio = () => {
+      void alarmAudio.resume();
+    };
+
+    window.addEventListener("pointerdown", unlockAudio, { passive: true });
+    window.addEventListener("keydown", unlockAudio);
+
+    return () => {
+      window.removeEventListener("pointerdown", unlockAudio);
+      window.removeEventListener("keydown", unlockAudio);
+      alarmAudioRef.current = null;
+      void alarmAudio.dispose();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (
+      !showAlarm ||
+      isAlarmMuted ||
+      typeof navigator === "undefined" ||
+      typeof navigator.vibrate !== "function"
+    ) {
+      return undefined;
+    }
+
+    let isStopped = false;
+    let vibrationTimer;
+    const emitPulse = () => {
+      if (isStopped) {
+        return;
+      }
+
+      const profile = getAlarmFeedbackProfile(secondsAgoRef.current);
+      navigator.vibrate(profile.vibrationPattern);
+      vibrationTimer = window.setTimeout(emitPulse, profile.intervalMs);
+    };
+
+    emitPulse();
+
+    return () => {
+      isStopped = true;
+      window.clearTimeout(vibrationTimer);
+      navigator.vibrate(0);
+    };
+  }, [showAlarm, isAlarmMuted]);
+
+  useEffect(() => {
+    if (!showAlarm || isAlarmMuted) {
+      return undefined;
+    }
+
+    const alarmAudio = alarmAudioRef.current;
+    if (!alarmAudio) {
+      return undefined;
+    }
+
+    let isStopped = false;
+    let audioTimer;
+    const emitAudioPulse = async () => {
+      if (isStopped) {
+        return;
+      }
+
+      const profile = getAlarmFeedbackProfile(secondsAgoRef.current);
+      await alarmAudio.playBurst(profile);
+      audioTimer = window.setTimeout(() => {
+        void emitAudioPulse();
+      }, profile.intervalMs);
+    };
+
+    void emitAudioPulse();
+
+    return () => {
+      isStopped = true;
+      window.clearTimeout(audioTimer);
+    };
+  }, [showAlarm, isAlarmMuted]);
+
   const toggleFullscreen = async () => {
     if (!document.fullscreenEnabled) {
       return;
@@ -96,11 +200,32 @@ export default function App() {
     setThemeDraft((prev) => normalizeThemeDraft({ ...prev, mode: nextMode }));
   };
 
+  const handleMuteForTenMinutes = () => {
+    setIsAlarmMuted(true);
+    if (muteTimeoutRef.current) {
+      window.clearTimeout(muteTimeoutRef.current);
+    }
+    muteTimeoutRef.current = window.setTimeout(() => {
+      setIsAlarmMuted(false);
+      muteTimeoutRef.current = null;
+    }, 10 * 60 * 1000);
+  };
+
+  const alarmEscalation =
+    !showAlarm || isAlarmMuted
+      ? "idle"
+      : secondsAgo < 15
+        ? "low"
+        : secondsAgo < 45
+          ? "medium"
+          : "high";
+
   return (
     <div
       className="monitor-app-root h-screen w-screen overflow-hidden [background:var(--rm-root-bg)] [font-family:'SF_Pro_Display',system-ui,-apple-system,sans-serif]"
       data-theme-preset={activeThemeDraft.preset}
       data-theme-mode={activeThemeDraft.mode}
+      data-alarm-escalation={alarmEscalation}
     >
       <div className="relative flex h-full w-full flex-col overflow-hidden [background:var(--rm-shell-bg)] [background-image:var(--rm-content-bg)]">
         {/* <PhoneStatusBar /> */}
@@ -132,7 +257,10 @@ export default function App() {
             onOpenChange={setIsOverviewSheetOpen}
             onOpenCriticalEvents={actions.openCriticalEvents}
             onOpenLatestActivity={() => actions.selectRoom(ROOMS["Bellevue"][1])}
-            onOpenComponentLab={actions.openComponentLab}
+            onOpenForward={actions.openFallReview}
+            onMuteForTenMinutes={handleMuteForTenMinutes}
+            hasIncidentContext={alarmTriggered}
+            isAlarmMuted={isAlarmMuted}
           />
         )}
 

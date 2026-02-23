@@ -29,3 +29,284 @@
     opacity: 0.4;
   }
 }
+
+@keyframes rmAlarmSirenPulse {
+  0%,
+  100% {
+    opacity: 0.22;
+  }
+  50% {
+    opacity: 0.62;
+  }
+}
+
+@keyframes rmAlarmSirenSweep {
+  0% {
+    opacity: 0.16;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.16;
+  }
+}
+
+.rm-sheet-overlay {
+  background: var(--rm-overview-sheet-overlay) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1);
+  backdrop-filter: blur(14px) saturate(1);
+}
+
+.rm-overview-overlay {
+  background: var(--rm-overview-sheet-overlay) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1);
+  backdrop-filter: blur(14px) saturate(1);
+}
+
+.rm-sheet-surface {
+  border-width: 1.5px;
+  -webkit-backdrop-filter: blur(24px) saturate(1.1);
+  backdrop-filter: blur(24px) saturate(1.1);
+}
+
+.rm-alarm-overlay {
+  background: var(--alarm-overlay) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(0.94);
+  backdrop-filter: blur(18px) saturate(0.94);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.rm-alarm-overlay::before,
+.rm-alarm-overlay::after {
+  content: "";
+  position: absolute;
+  inset: -30% -16%;
+  pointer-events: none;
+}
+
+.rm-alarm-overlay::before {
+  background:
+    radial-gradient(circle at 50% 78%, rgb(var(--alarm-siren-rgb) / 0.46), rgb(var(--alarm-siren-rgb-soft) / 0.24) 34%, transparent 62%);
+  filter: blur(20px);
+  mix-blend-mode: screen;
+  animation: rmAlarmSirenPulse var(--alarm-overlay-duration) ease-in-out infinite;
+}
+
+.rm-alarm-overlay::after {
+  background:
+    radial-gradient(circle at 50% 72%, rgb(var(--alarm-siren-rgb-soft) / 0.26), transparent 56%),
+    radial-gradient(circle at 50% 90%, rgb(var(--alarm-siren-rgb) / 0.22), transparent 70%);
+  filter: blur(40px);
+  mix-blend-mode: screen;
+  animation: rmAlarmSirenSweep calc(var(--alarm-overlay-duration) * 1.3) ease-in-out infinite;
+}
+
+@keyframes rmAlarmCardPulse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    box-shadow: var(--alarm-card-shadow);
+    filter: saturate(1) brightness(1);
+  }
+  50% {
+    transform: translate3d(0, 0, 0);
+    box-shadow:
+      var(--alarm-card-shadow),
+      0 0 0 1px rgb(var(--alarm-siren-rgb) / 0.3),
+      0 10px 26px rgb(var(--alarm-siren-rgb) / 0.2);
+    filter: saturate(1.16) brightness(1.05);
+  }
+}
+
+@keyframes rmAlarmPictogramZoom {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40% {
+    transform: translate3d(0, 0, 0);
+  }
+  62% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes rmAlarmTitleBreathe {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes rmAlarmTintPulse {
+  0%,
+  100% {
+    opacity: var(--alarm-card-tint-min);
+  }
+  50% {
+    opacity: var(--alarm-card-tint-max);
+  }
+}
+
+@keyframes rmAlarmHaloPulse {
+  0%,
+  100% {
+    opacity: var(--alarm-card-halo-min);
+  }
+  50% {
+    opacity: var(--alarm-card-halo-max);
+  }
+}
+
+@keyframes rmAlarmPictogramBreathe {
+  0%,
+  100% {
+    transform: scale(var(--alarm-pictogram-scale-min));
+    filter: saturate(var(--alarm-pictogram-sat-min));
+  }
+  50% {
+    transform: scale(var(--alarm-pictogram-scale-max));
+    filter: saturate(var(--alarm-pictogram-sat-max));
+  }
+}
+
+@keyframes rmAlarmSecondsPulse {
+  0%,
+  100% {
+    opacity: var(--alarm-seconds-pulse-min);
+    color: var(--alarm-muted);
+  }
+  50% {
+    opacity: var(--alarm-seconds-pulse-max);
+    color: var(--alarm-seconds-accent);
+  }
+}
+
+@keyframes rmAlarmSecondsValuePulse {
+  0%,
+  100% {
+    transform: scale(var(--alarm-seconds-scale-min));
+    color: var(--alarm-seconds-value-base);
+    text-shadow: 0 0 0 rgb(var(--alarm-siren-rgb) / 0);
+  }
+  50% {
+    transform: scale(var(--alarm-seconds-scale-max));
+    color: var(--alarm-seconds-value-accent);
+    text-shadow: 0 0 12px rgb(var(--alarm-siren-rgb) / 0.34);
+  }
+}
+
+@keyframes rmAlarmBeaconPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(var(--alarm-siren-rgb) / 0);
+  }
+  38% {
+    box-shadow:
+      0 0 0 5px rgb(var(--alarm-siren-rgb) / 0.2),
+      0 0 14px rgb(var(--alarm-siren-rgb) / 0.32);
+  }
+}
+
+.rm-alarm-event-card {
+  position: relative;
+  isolation: isolate;
+  transform-origin: center center;
+  animation: rmAlarmCardPulse 2.35s ease-in-out infinite;
+  will-change: box-shadow, filter;
+}
+
+.rm-alarm-event-card::before,
+.rm-alarm-event-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.rm-alarm-event-card::before {
+  inset: -14px -10px -8px 42%;
+  border-radius: 999px;
+  background: radial-gradient(circle at 70% 50%, rgb(var(--alarm-siren-rgb) / 0.34), transparent 64%);
+  filter: blur(16px);
+  z-index: -1;
+  animation: rmAlarmHaloPulse var(--alarm-feedback-duration) ease-in-out infinite;
+}
+
+.rm-alarm-event-card::after {
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(112deg, rgb(var(--alarm-siren-rgb) / 0.06) 30%, rgb(var(--alarm-siren-rgb) / 0.34) 100%);
+  mix-blend-mode: screen;
+  opacity: 0.52;
+  z-index: 0;
+  animation: rmAlarmTintPulse var(--alarm-feedback-duration) ease-in-out infinite;
+}
+
+.rm-alarm-event-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.rm-alarm-event-title {
+  transform-origin: left top;
+  animation: none;
+  will-change: auto;
+}
+
+.rm-alarm-event-pictogram {
+  transform-origin: center bottom;
+  animation: rmAlarmPictogramBreathe var(--alarm-feedback-duration) ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+.rm-alarm-seconds-ago {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  animation: rmAlarmSecondsPulse var(--alarm-feedback-duration) ease-in-out infinite;
+  will-change: opacity, color;
+}
+
+.rm-alarm-seconds-value {
+  display: inline-block;
+  transform-origin: left center;
+  font-size: calc(var(--rm-fs-meta) + 2px);
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  line-height: 1;
+  animation: rmAlarmSecondsValuePulse var(--alarm-feedback-duration) ease-in-out infinite;
+  will-change: transform, color;
+}
+
+.rm-alarm-seconds-unit {
+  font-size: var(--rm-fs-meta);
+  font-weight: 600;
+  line-height: 1.05;
+  opacity: 0.92;
+}
+
+.rm-alarm-beacon {
+  animation: rmAlarmBeaconPulse calc(var(--alarm-feedback-duration) * 0.94) ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rm-alarm-overlay::before,
+  .rm-alarm-overlay::after,
+  .rm-alarm-event-card,
+  .rm-alarm-event-title,
+  .rm-alarm-event-pictogram,
+  .rm-alarm-seconds-ago,
+  .rm-alarm-beacon {
+    animation: none;
+  }
+
+  .rm-alarm-overlay::before,
+  .rm-alarm-overlay::after {
+    opacity: 0.26;
+  }
+}
