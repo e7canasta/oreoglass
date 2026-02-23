@@ -9,6 +9,7 @@ import {
   IconStaffEnter,
   IconStanding,
 } from "./icons.jsx";
+import { RoomSeal } from "./chrome/room-seal.jsx";
 import { ThermalView } from "./thermal.jsx";
 import { IconArrowLeft, IconArrowRight } from "./ui-icons/index.js";
 
@@ -107,8 +108,8 @@ const BedActivityLiveCard = ({
           <IconArrowLeft stroke="var(--rm-bed-activity-back-icon)" />
         </button>
 
-        <div className="pointer-events-none absolute left-1/2 top-3 z-[1] inline-flex -translate-x-1/2 items-center gap-1 rounded-[9px] border px-2.5 py-1 text-[length:var(--rm-fs-meta)] font-semibold [background:var(--rm-bed-activity-preview-badge-bg)] [border-color:var(--rm-bed-activity-preview-badge-border)] text-[var(--rm-bed-activity-preview-badge-text)]">
-          <span>{`Room ${room?.number ?? "101"}`}</span>
+        <div className="pointer-events-none absolute left-1/2 top-3 z-[1] -translate-x-1/2">
+          <RoomSeal roomNumber={room?.number ?? "101"} className="[backdrop-filter:blur(10px)_saturate(1.08)]" />
         </div>
 
         {!isAtLive && (
@@ -140,8 +141,11 @@ const BedActivityLiveCard = ({
 
       <div className="mt-3 flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <div className="truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-bed-activity-meta)]">
-            {room?.location ?? "Alma Way"} - Room {room?.number ?? "101"}
+          <div className="flex min-w-0 items-center gap-2">
+            <RoomSeal roomNumber={room?.number ?? "101"} />
+            <span className="truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-bed-activity-meta)]">
+              {room?.location ?? "Alma Way"}
+            </span>
           </div>
           <h2 className="truncate text-[length:var(--rm-fs-title)] font-bold tracking-[-0.24px] text-[var(--rm-bed-activity-title)]">
             Activity feed

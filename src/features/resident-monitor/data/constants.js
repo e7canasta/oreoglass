@@ -5,7 +5,9 @@ const CLIPS = [
     room: "513",
     location: "Bellevue",
     resident: "Gertrude",
-    event: "Sitting on bed edge",
+    event: "Falling beside bed",
+    alertState: "falling_transition",
+    artState: "falling_transition",
     label: "Fall with injury",
     labelColor: "#e8430a",
     time: "05:29 – 05:35",
@@ -18,7 +20,9 @@ const CLIPS = [
     room: "406",
     location: "Alma Way",
     resident: "Luca",
-    event: "Laying on floor",
+    event: "On floor beside bed",
+    alertState: "on_floor",
+    artState: "on_floor",
     label: "Fall without injury",
     labelColor: "#c84000",
     time: "03:12 – 03:18",
@@ -70,14 +74,14 @@ const CLIPS = [
 
 const ROOMS = {
   "Alma Way":[
-    {number:"206",location:"Alma Way",status:"out",dotColor:"#4a90e2",dots:["blue"]},
-    {number:"210",location:"Alma Way",status:"sleep",dotColor:"#f5c842",dots:["yellow","person"]},
-    {number:"405",location:"Alma Way",status:"sleep",dotColor:"#f5c842",dots:["yellow"]},
-    {number:"406",location:"Alma Way",status:"sleep",dotColor:"#f5c842",dots:["yellow"]},
+    {number:"206",location:"Alma Way",status:"out",artState:"out_empty_bed",dotColor:"#4a90e2",dots:["blue"]},
+    {number:"210",location:"Alma Way",status:"sleep",artState:"with_care",dotColor:"#f5c842",dots:["yellow","person"]},
+    {number:"405",location:"Alma Way",status:"sleep",artState:"in_bed",dotColor:"#f5c842",dots:["yellow"]},
+    {number:"406",location:"Alma Way",status:"sleep",artState:"in_bed",dotColor:"#f5c842",dots:["yellow"]},
   ],
   "Bellevue":[
-    {number:"223",location:"Bellevue",status:"out",dotColor:"#4a90e2",dots:["blue"]},
-    {number:"513",location:"Bellevue",status:"alert",dotColor:"#e8621a",dots:["orange"]},
+    {number:"223",location:"Bellevue",status:"out",artState:"out_empty_bed",dotColor:"#4a90e2",dots:["blue"]},
+    {number:"513",location:"Bellevue",status:"alert",artState:"falling_transition",dotColor:"#e8621a",dots:["orange"]},
   ],
 };
 

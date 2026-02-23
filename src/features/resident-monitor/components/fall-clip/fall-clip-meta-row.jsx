@@ -1,4 +1,5 @@
 import { IconCalendar, IconClock } from "../ui-icons/index.js";
+import { RoomSeal } from "../chrome/room-seal.jsx";
 
 const FallClipMetaRow = ({ clip, room }) => {
   const roomNumber = room?.number ?? clip?.room;
@@ -9,10 +10,12 @@ const FallClipMetaRow = ({ clip, room }) => {
 
   return (
     <div className="mb-3.5">
-      <div className="mb-1 truncate text-[length:var(--rm-fs-meta)] font-medium text-[var(--rm-fall-meta-context)]">
-        {resident}
-        {roomNumber ? ` · Room ${roomNumber}` : ""}
-        {location ? ` · ${location}` : ""}
+      <div className="mb-1 flex min-w-0 items-center gap-2">
+        {roomNumber ? <RoomSeal roomNumber={roomNumber} /> : null}
+        <div className="truncate text-[length:var(--rm-fs-meta)] font-medium text-[var(--rm-fall-meta-context)]">
+          {resident}
+          {location ? ` · ${location}` : ""}
+        </div>
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">

@@ -1,10 +1,34 @@
-import { IconInBed, IconOutOfRoomBed, IconSittingOnBedLarge, IconStanding } from "../icons.jsx";
+import {
+  IconInBed,
+  IconOutOfRoomBed,
+  IconSittingOnBedLarge,
+  IconStanding,
+  OverviewRoomCareRasterArt,
+  OverviewRoomFallingRasterArt,
+  OverviewRoomOnFloorRasterArt,
+  OverviewRoomOutRasterArt,
+  OverviewRoomSleepRasterArt,
+} from "../icons.jsx";
 import { cn } from "@/lib/utils";
+import {
+  ROOM_ART_STATE,
+  RM_USE_RASTER_PICTOGRAMS,
+  resolveArtImage,
+  resolveRoomArtState,
+} from "../../lib/artwork-images.js";
 
 const ROOM_STATUS_A11Y_LABEL = Object.freeze({
   alert: "possible fall detected",
   out: "out of room",
   sleep: "sleeping",
+});
+
+const ROOM_ART_A11Y_LABEL = Object.freeze({
+  [ROOM_ART_STATE.IN_BED]: "resident in bed",
+  [ROOM_ART_STATE.WITH_CARE]: "staff assisting resident",
+  [ROOM_ART_STATE.OUT_EMPTY_BED]: "resident out of room",
+  [ROOM_ART_STATE.FALLING_TRANSITION]: "fall risk in progress",
+  [ROOM_ART_STATE.ON_FLOOR]: "resident on floor",
 });
 
 const overviewDotClassFor = (dot) => {
@@ -28,8 +52,13 @@ const overviewDotClassFor = (dot) => {
 
 const RoomCard = ({ room, onSelect }) => {
   const isOut = room.status === "out";
-  const isAlert = room.status === "alert";
-  const statusLabel = ROOM_STATUS_A11Y_LABEL[room.status] ?? "status unavailable";
+  const roomArtState = resolveRoomArtState(room);
+  const roomArtImage = resolveArtImage(roomArtState);
+  const isAlert =
+    room.status === "alert" ||
+    roomArtState === ROOM_ART_STATE.FALLING_TRANSITION || roomArtState === ROOM_ART_STATE.ON_FLOOR;
+  const statusLabel =
+    ROOM_ART_A11Y_LABEL[roomArtState] ?? ROOM_STATUS_A11Y_LABEL[room.status] ?? "status unavailable";
   const outLabel = room.outLabel ?? "out";
 
   return (
@@ -52,38 +81,73 @@ const RoomCard = ({ room, onSelect }) => {
       </span>
 
       <div className="mt-auto flex [height:var(--rm-overview-room-art-height)] [margin-bottom:var(--rm-overview-room-art-margin-bottom)] w-full items-end justify-center">
-        {isAlert ? (
-          <IconSittingOnBedLarge
-            size={72}
-            className="[width:var(--rm-overview-room-alert-icon-width)] [height:var(--rm-overview-room-alert-icon-height)]"
-            color="var(--rm-overview-room-alert-icon-color)"
-            surface="var(--rm-overview-room-alert-icon-surface)"
-            surfaceMuted="var(--rm-overview-room-alert-icon-surface-muted)"
-            surfaceSoft="var(--rm-overview-room-alert-icon-surface-soft)"
-          />
-        ) : isOut ? (
+        {isOut ? (
           <div className="relative flex [height:var(--rm-overview-room-out-art-height)] w-full items-end justify-center">
             <div className="rm-overview-room-out-pill pointer-events-none absolute left-1/2 [top:var(--rm-overview-room-out-pill-top)] z-[1] -translate-x-1/2 [width:var(--rm-overview-room-out-pill-width)] rounded-[var(--rm-overview-room-out-pill-radius)] border [border-width:var(--rm-overview-room-out-pill-border-width)] [border-color:var(--rm-overview-room-out-pill-border)] [padding-left:var(--rm-overview-room-out-pill-padding-x)] [padding-right:var(--rm-overview-room-out-pill-padding-x)] [padding-top:var(--rm-overview-room-out-pill-padding-y)] [padding-bottom:var(--rm-overview-room-out-pill-padding-y)] text-center [background:var(--rm-overview-room-out-pill-bg)] [box-shadow:var(--rm-overview-room-out-pill-shadow)] [backdrop-filter:var(--rm-overview-room-out-pill-backdrop)]">
               <span className="text-[length:var(--rm-overview-room-out-pill-text-size)] font-semibold text-[var(--rm-overview-room-out-pill-text)]">
                 {`→ ${outLabel}`}
               </span>
             </div>
-            <IconOutOfRoomBed
-              size={72}
-              className="[width:var(--rm-overview-room-out-icon-width)] [height:var(--rm-overview-room-out-icon-height)]"
-              bed="var(--rm-overview-room-out-icon)"
-              frame="var(--rm-overview-room-out-accent)"
-              chair="var(--rm-overview-room-out-chair)"
-              chairSeat="var(--rm-overview-room-out-chair-seat)"
-            />
+            {RM_USE_RASTER_PICTOGRAMS ? (
+              <OverviewRoomOutRasterArt
+                src={roomArtImage}
+                className="h-full [width:var(--rm-overview-room-out-raster-width)]"
+              />
+            ) : (
+              <IconOutOfRoomBed
+                size={72}
+                className="[width:var(--rm-overview-room-out-icon-width)] [height:var(--rm-overview-room-out-icon-height)]"
+                bed="var(--rm-overview-room-out-icon)"
+                frame="var(--rm-overview-room-out-accent)"
+                chair="var(--rm-overview-room-out-chair)"
+                chairSeat="var(--rm-overview-room-out-chair-seat)"
+              />
+            )}
           </div>
+        ) : isAlert ? (
+          RM_USE_RASTER_PICTOGRAMS ? (
+            roomArtState === ROOM_ART_STATE.ON_FLOOR ? (
+              <OverviewRoomOnFloorRasterArt
+                src={roomArtImage}
+                className="h-full [width:var(--rm-overview-room-on-floor-raster-width)]"
+              />
+            ) : (
+              <OverviewRoomFallingRasterArt
+                src={roomArtImage}
+                className="h-full [width:var(--rm-overview-room-falling-raster-width)]"
+              />
+            )
+          ) : (
+            <IconSittingOnBedLarge
+              size={72}
+              className="[width:var(--rm-overview-room-alert-icon-width)] [height:var(--rm-overview-room-alert-icon-height)]"
+              color="var(--rm-overview-room-alert-icon-color)"
+              surface="var(--rm-overview-room-alert-icon-surface)"
+              surfaceMuted="var(--rm-overview-room-alert-icon-surface-muted)"
+              surfaceSoft="var(--rm-overview-room-alert-icon-surface-soft)"
+            />
+          )
         ) : (
-          <IconInBed
-            size={72}
-            className="[width:var(--rm-overview-room-icon-width)] [height:var(--rm-overview-room-icon-height)]"
-            color="var(--rm-overview-room-icon-color)"
-            accent="var(--rm-overview-room-icon-accent)"
-          />
+          RM_USE_RASTER_PICTOGRAMS ? (
+            roomArtState === ROOM_ART_STATE.WITH_CARE ? (
+              <OverviewRoomCareRasterArt
+                src={roomArtImage}
+                className="h-full [width:var(--rm-overview-room-care-raster-width)]"
+              />
+            ) : (
+              <OverviewRoomSleepRasterArt
+                src={roomArtImage}
+                className="h-full [width:var(--rm-overview-room-sleep-raster-width)]"
+              />
+            )
+          ) : (
+            <IconInBed
+              size={72}
+              className="[width:var(--rm-overview-room-icon-width)] [height:var(--rm-overview-room-icon-height)]"
+              color="var(--rm-overview-room-icon-color)"
+              accent="var(--rm-overview-room-icon-accent)"
+            />
+          )
         )}
       </div>
 

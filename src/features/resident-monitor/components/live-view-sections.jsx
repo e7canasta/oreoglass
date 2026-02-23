@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { RM_BUTTON_PRESETS } from "../lib/design-system.js";
 import { AppHeaderActionButton, AppHeaderLeading, AppHeaderRow } from "./chrome/header-layout.jsx";
+import { RoomSeal } from "./chrome/room-seal.jsx";
 import { ThermalViewLive } from "./thermal.jsx";
 import { IconArrowLeft } from "./ui-icons/index.js";
 
@@ -21,8 +22,11 @@ const LiveViewHeader = ({ room, clip, onBack }) => {
         </AppHeaderActionButton>
 
         <div className="min-w-0">
-          <div className="truncate text-[length:var(--rm-fs-title)] font-bold tracking-[-0.3px] text-[var(--rm-live-back-label)]">
-            Room {roomNumber} live
+          <div className="flex min-w-0 items-center gap-2">
+            <RoomSeal roomNumber={roomNumber} />
+            <div className="truncate text-[length:var(--rm-fs-title)] font-bold tracking-[-0.3px] text-[var(--rm-live-back-label)]">
+              Live view
+            </div>
           </div>
           <div className="truncate text-[length:var(--rm-fs-meta)] text-[var(--rm-live-header-subtitle)]">
             {resident ? `${resident} · ${locationLabel}` : locationLabel}
@@ -50,7 +54,7 @@ const LiveViewEventCard = ({ room, clip }) => {
   const roomNumber = room?.number ?? "122.2";
   const locationLabel = room?.location ?? clip?.location ?? "Alarm feed";
   const resident = clip?.resident ?? "Resident";
-  const eventLabel = clip?.event ?? "Sitting on bed edge";
+  const eventLabel = clip?.event ?? "Falling beside bed";
   const clipTime = clip?.time?.split("–")?.[0]?.trim() ?? "01:24";
 
   return (
@@ -68,7 +72,10 @@ const LiveViewEventCard = ({ room, clip }) => {
         </span>
       </div>
       <div className="mt-1.5 text-[length:var(--rm-fs-meta)] text-[var(--rm-live-event-meta)]">
-        {resident} · Room {roomNumber} · {locationLabel}
+        {resident} · {locationLabel}
+      </div>
+      <div className="mt-2">
+        <RoomSeal roomNumber={roomNumber} />
       </div>
     </section>
   );

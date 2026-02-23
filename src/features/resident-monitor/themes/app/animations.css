@@ -404,34 +404,13 @@
   position: relative;
   isolation: isolate;
   transform-origin: center center;
-  animation: rmAlarmCardPulse 2.35s ease-in-out infinite;
-  will-change: box-shadow, filter;
+  animation: none;
+  will-change: auto;
 }
 
 .rm-alarm-event-card::before,
 .rm-alarm-event-card::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.rm-alarm-event-card::before {
-  inset: -14px -10px -8px 42%;
-  border-radius: 999px;
-  background: radial-gradient(circle at 70% 50%, rgb(var(--alarm-siren-rgb) / 0.34), transparent 64%);
-  filter: blur(16px);
-  z-index: -1;
-  animation: rmAlarmHaloPulse var(--alarm-feedback-duration) ease-in-out infinite;
-}
-
-.rm-alarm-event-card::after {
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(112deg, rgb(var(--alarm-siren-rgb) / 0.06) 30%, rgb(var(--alarm-siren-rgb) / 0.34) 100%);
-  mix-blend-mode: screen;
-  opacity: 0.52;
-  z-index: 0;
-  animation: rmAlarmTintPulse var(--alarm-feedback-duration) ease-in-out infinite;
+  content: none;
 }
 
 .rm-alarm-event-card > * {

@@ -1,3 +1,4 @@
+import { ActivityFeedScreen } from "../screens/activity-feed-screen.jsx";
 import { BedActivityScreen } from "../screens/bed-activity-screen.jsx";
 import { ComponentLabScreen } from "../screens/component-lab-screen.jsx";
 import { CriticalEventsScreen } from "../screens/critical-events-screen.jsx";
@@ -14,12 +15,21 @@ function ScreenRouter({
   bedActivityInitialEventId,
   onBack,
   onCloseLive,
+  onOpenEventFromActivityFeed,
   onOpenClipFromBedActivity,
   onOpenReviewFromBedActivity,
   onOpenClipFromCriticalEvents,
   onOpenReviewFromLive,
 }) {
   switch (screen) {
+    case SCREENS.ACTIVITY_FEED:
+      return (
+        <ActivityFeedScreen
+          onBack={onBack}
+          onOpenEvent={onOpenEventFromActivityFeed}
+        />
+      );
+
     case SCREENS.SLEEP_DETAIL:
       return <SleepDetailScreen room={room} onBack={onBack} />;
 

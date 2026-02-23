@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { RoomSeal } from "../chrome/room-seal.jsx";
 import { ThermalView } from "../thermal.jsx";
 import { RM_BUTTON_PRESETS } from "../../lib/design-system.js";
 
@@ -14,8 +15,8 @@ const FeaturedClipCard = ({ clip, onOpen }) => (
     </div>
     <div className="absolute inset-0 [background:var(--rm-critical-featured-gradient)]" />
     {clip.room && (
-      <div className="absolute left-3 top-3 rounded-md border px-2 py-[3px] text-[10px] font-semibold tracking-[0.2px] text-white [background:rgba(18,22,31,0.56)] [border-color:rgba(255,255,255,0.28)]">
-        Room {clip.room}
+      <div className="absolute left-3 top-3">
+        <RoomSeal roomNumber={clip.room} size="sm" />
       </div>
     )}
     <div className="absolute bottom-3 left-3.5 right-3.5">

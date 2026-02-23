@@ -13,10 +13,10 @@ const AlarmSheet = ({ room, clip, onClose, onViewLive, onFallReview, secondsAgo 
     >
       <div
         aria-hidden
-        className="pointer-events-none mx-auto mb-2 h-[2px] w-[calc(100%-34px)] rounded-full [background:var(--alarm-top-line)] [box-shadow:var(--alarm-top-line-shadow)]"
+        className="pointer-events-none mx-auto mb-1 h-[2px] w-[calc(100%-36px)] rounded-full [background:var(--alarm-top-line)] [box-shadow:var(--alarm-top-line-shadow)]"
       />
       <BottomSheetHandle
-        wrapperClassName="mb-2.5"
+        wrapperClassName="mb-1.5"
         className="[background:var(--alarm-handle-bg)]"
       />
       <AlarmSheetContent

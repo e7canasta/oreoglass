@@ -255,13 +255,7 @@ export default function App() {
     selectedClip ?? resolveClipForRoom(selectedRoom) ?? defaultAlertClip;
 
   const handleOpenLatestActivity = () => {
-    if (defaultAlertRoom) {
-      actions.selectRoom(defaultAlertRoom);
-    }
-    if (defaultAlertClip) {
-      actions.setSelectedClip(defaultAlertClip);
-    }
-    handleOpenBedActivity();
+    actions.openActivityFeed();
   };
 
   const handleOpenBedActivity = (anchorEventId = null) => {
@@ -311,6 +305,48 @@ export default function App() {
       actions.selectRoom(clipRoom);
     }
     actions.openFallClip(clip ?? getCurrentJourneyClip());
+  };
+
+  const handleOpenEventFromActivityFeed = (activityEvent) => {
+    if (!activityEvent) {
+      return;
+    }
+
+    const clipFromEvent =
+      Number.isInteger(activityEvent.clipId)
+        ? CLIPS.find((clip) => clip.id === activityEvent.clipId) ?? null
+        : null;
+    const roomFromEvent =
+      allRooms.find(
+        (room) =>
+          room.number === activityEvent.room &&
+          room.location === activityEvent.location,
+      ) ??
+      allRooms.find((room) => room.number === activityEvent.room) ??
+      (clipFromEvent ? resolveRoomForClip(clipFromEvent) : null);
+    const clipForRoom = clipFromEvent ?? resolveClipForRoom(roomFromEvent);
+
+    if (roomFromEvent) {
+      actions.selectRoom(roomFromEvent);
+    }
+
+    if (activityEvent.route === "fall-review") {
+      if (clipForRoom) {
+        actions.setSelectedClip(clipForRoom);
+      }
+      actions.openFallReview(clipForRoom);
+      return;
+    }
+
+    if (activityEvent.route === "fall-clip") {
+      if (clipForRoom) {
+        actions.setSelectedClip(clipForRoom);
+      }
+      actions.openFallClip(clipForRoom);
+      return;
+    }
+
+    actions.openBedActivity(activityEvent.anchorEventId ?? null);
   };
 
   const handleOpenReviewFromLive = () => {
@@ -388,6 +424,7 @@ export default function App() {
           bedActivityInitialEventId={bedActivityAnchorEventId}
           onBack={actions.closeScreen}
           onCloseLive={actions.closeLiveView}
+          onOpenEventFromActivityFeed={handleOpenEventFromActivityFeed}
           onOpenClipFromBedActivity={handleOpenFallClipFromBedActivity}
           onOpenReviewFromBedActivity={handleOpenFallReviewFromBedActivity}
           onOpenClipFromCriticalEvents={handleOpenClipFromCriticalEvents}

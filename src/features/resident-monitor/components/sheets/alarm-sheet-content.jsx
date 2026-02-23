@@ -1,48 +1,54 @@
-import { IconSittingOnBedLarge } from "../icons.jsx";
+import { AlarmEventRasterArt, IconSittingOnBedLarge } from "../icons.jsx";
+import { RoomSeal } from "../chrome/room-seal.jsx";
 import { IconAlertMark, IconArrowRight, IconClose } from "../ui-icons/index.js";
 import { Button } from "@/components/ui/button";
 import { RM_BUTTON_PRESETS } from "../../lib/design-system.js";
+import {
+  ROOM_ART_STATE,
+  RM_USE_RASTER_PICTOGRAMS,
+  resolveAlarmArtState,
+  resolveArtImage,
+} from "../../lib/artwork-images.js";
 
-const AlarmSheetHeader = ({ roomLabel, onClose }) => (
-  <header className="flex items-center justify-between gap-3 px-5 pb-1.5 pt-2.5">
-    <span className="text-[length:var(--rm-fs-display)] font-extrabold leading-none tracking-[-0.8px] text-[var(--alarm-text)]">
-      {roomLabel}
-    </span>
-    <Button
-      type="button"
-      {...RM_BUTTON_PRESETS.alarmClose}
-      onClick={onClose}
-      className="shrink-0 focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--alarm-focus-outline)]"
-    >
-      <IconClose />
-    </Button>
+const AlarmSheetHeader = ({ roomLabel, resident, location, onClose }) => (
+  <header className="px-5 pb-2.5 pt-0.5">
+    <div className="flex items-start justify-between gap-3">
+      <div className="min-w-0">
+        <div className="flex min-w-0 items-center gap-2">
+          <RoomSeal roomNumber={roomLabel} size="lg" />
+          <span className="truncate text-[length:var(--rm-fs-body-strong)] font-bold leading-[1.05] text-[var(--alarm-text)]">
+            Alarm
+          </span>
+        </div>
+        <div className="mt-2 flex min-w-0 items-center gap-[9px]">
+          <div className="rm-alarm-beacon mt-0.5 flex size-[26px] shrink-0 items-center justify-center rounded-full [background:var(--alarm-alert-icon-bg)]">
+            <IconAlertMark color="var(--alarm-accent)" />
+          </div>
+          <div className="min-w-0 truncate text-[length:var(--rm-fs-meta)] leading-[1.1] text-[var(--alarm-muted)]">
+            {resident}
+            {location ? ` · ${location}` : ""}
+          </div>
+        </div>
+      </div>
+      <Button
+        type="button"
+        {...RM_BUTTON_PRESETS.alarmClose}
+        onClick={onClose}
+        className="shrink-0 [width:var(--alarm-close-size)] [height:var(--alarm-close-size)] focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[outline-color:var(--alarm-focus-outline)]"
+      >
+        <IconClose />
+      </Button>
+    </div>
   </header>
 );
 
-const AlarmStatusRow = ({ resident, location }) => (
-  <div className="px-5 pb-3.5 pt-1">
-    <div className="flex items-center gap-[9px]">
-      <div className="rm-alarm-beacon flex size-[26px] shrink-0 items-center justify-center rounded-full [background:var(--alarm-alert-icon-bg)]">
-        <IconAlertMark color="var(--alarm-accent)" />
-      </div>
-      <span className="text-[length:var(--rm-fs-body-strong)] font-bold text-[var(--alarm-text)]">
-        Alarm
-      </span>
-    </div>
-    <div className="mt-1.5 truncate text-[length:var(--rm-fs-meta)] text-[var(--alarm-muted)]">
-      {resident}
-      {location ? ` · ${location}` : ""}
-    </div>
-  </div>
-);
-
-const AlarmEventCard = ({ eventLabel, secondsAgo }) => (
+const AlarmEventCard = ({ eventLabel, secondsAgo, artImage, artVariant }) => (
   <div className="rm-alarm-event-card mx-[12px] mb-3.5 flex items-start justify-between overflow-visible rounded-[22px] border-[1.5px] pb-4 pl-4 pr-2 pt-4 [background:var(--alarm-card-bg)] [border-color:var(--alarm-card-border)] [box-shadow:var(--alarm-card-shadow)]">
-    <div className="flex-1">
+    <div className="rm-alarm-event-content">
       <div className="inline-flex items-center rounded-full border px-2 py-[3px] text-[length:var(--rm-fs-micro)] font-semibold tracking-[0.15px] [background:var(--alarm-event-chip-bg)] [border-color:var(--alarm-event-chip-border)] text-[var(--alarm-event-chip-text)]">
         Possible fall
       </div>
-      <div className="rm-alarm-event-title mt-2 max-w-[190px] text-[length:var(--rm-fs-hero)] font-extrabold leading-[1.18] tracking-[-0.5px] text-[var(--alarm-text)]">
+      <div className="rm-alarm-event-title mt-2 text-[length:var(--rm-fs-hero)] font-extrabold leading-[1.18] tracking-[-0.5px] text-[var(--alarm-text)]">
         {eventLabel}
       </div>
       <div className="mt-1 text-[length:var(--rm-fs-meta)] font-medium text-[var(--alarm-muted)]">Urgent event detected</div>
@@ -51,15 +57,23 @@ const AlarmEventCard = ({ eventLabel, secondsAgo }) => (
         <span className="rm-alarm-seconds-unit"> seconds ago</span>
       </div>
     </div>
-    <div className="rm-alarm-event-pictogram -mr-1 ml-1 mt-[-2px] shrink-0">
-      <IconSittingOnBedLarge
-        size={96}
-        className="drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
-        color="var(--alarm-pictogram-color)"
-        surface="var(--alarm-pictogram-surface)"
-        surfaceMuted="var(--alarm-pictogram-surface-muted)"
-        surfaceSoft="var(--alarm-pictogram-surface-soft)"
-      />
+    <div className="rm-alarm-event-pictogram">
+      {RM_USE_RASTER_PICTOGRAMS ? (
+        <AlarmEventRasterArt
+          src={artImage}
+          variant={artVariant}
+          className="rm-alarm-event-raster"
+        />
+      ) : (
+        <IconSittingOnBedLarge
+          size={100}
+          className="rm-alarm-event-icon"
+          color="var(--alarm-pictogram-color)"
+          surface="var(--alarm-pictogram-surface)"
+          surfaceMuted="var(--alarm-pictogram-surface-muted)"
+          surfaceSoft="var(--alarm-pictogram-surface-soft)"
+        />
+      )}
     </div>
   </div>
 );
@@ -112,13 +126,25 @@ const AlarmSheetContent = ({ room, clip, onClose, onViewLive, onFallReview, seco
   const roomLabel = room?.number ?? clip?.room ?? "122.2";
   const resident = clip?.resident ?? "Resident";
   const location = room?.location ?? clip?.location ?? "Alarm feed";
-  const eventLabel = clip?.event ?? "Sitting on bed edge";
+  const eventLabel = clip?.event ?? "Falling beside bed";
+  const alarmArtState = resolveAlarmArtState({ clip, room });
+  const alarmArtImage = resolveArtImage(alarmArtState);
+  const alarmArtVariant = alarmArtState === ROOM_ART_STATE.ON_FLOOR ? "on-floor" : "falling";
 
   return (
     <>
-      <AlarmSheetHeader roomLabel={roomLabel} onClose={onClose} />
-      <AlarmStatusRow resident={resident} location={location} />
-      <AlarmEventCard eventLabel={eventLabel} secondsAgo={secondsAgo} />
+      <AlarmSheetHeader
+        roomLabel={roomLabel}
+        resident={resident}
+        location={location}
+        onClose={onClose}
+      />
+      <AlarmEventCard
+        eventLabel={eventLabel}
+        secondsAgo={secondsAgo}
+        artImage={alarmArtImage}
+        artVariant={alarmArtVariant}
+      />
       <AlarmPrimaryActions onClose={onClose} onViewLive={onViewLive} />
       <AlarmForwardAction onFallReview={onFallReview} />
     </>

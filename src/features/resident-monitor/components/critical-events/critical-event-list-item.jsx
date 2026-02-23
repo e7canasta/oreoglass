@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { RoomSeal } from "../chrome/room-seal.jsx";
 import { ThermalThumb } from "../thermal.jsx";
 import { IconChevronRight, IconPlay } from "../ui-icons/index.js";
 import { RM_BADGE_PRESETS, RM_BUTTON_PRESETS } from "../../lib/design-system.js";
@@ -56,11 +57,7 @@ const CriticalEventListItem = ({ clip, idx, onOpen }) => {
           >
             {priorityLabel}
           </span>
-          {clip.room && (
-            <span className="truncate rounded-md border px-1.5 py-[3px] text-[length:var(--rm-critical-item-room-size)] font-semibold text-[var(--rm-critical-item-room-text)] [border-color:var(--rm-critical-item-room-border)] [background:var(--rm-critical-item-room-bg)]">
-              Room {clip.room}
-            </span>
-          )}
+          {clip.room && <RoomSeal roomNumber={clip.room} size="sm" />}
         </div>
         <span className="truncate text-[length:var(--rm-critical-item-title-size)] font-semibold tracking-[-0.1px] text-[var(--rm-critical-item-title)]">
           {eventLabel}

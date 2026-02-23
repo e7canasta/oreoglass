@@ -160,6 +160,7 @@
   --alarm-close-bg-hover: rgba(20, 25, 34, 0.78);
   --alarm-close-border: rgba(255, 255, 255, 0.24);
   --alarm-close-icon: var(--alarm-text);
+  --alarm-close-size: 42px;
   --alarm-btn-primary-bg: linear-gradient(160deg, var(--critical-orange-500), var(--critical-orange-600));
   --alarm-btn-primary-border: rgba(255, 224, 208, 0.74);
   --alarm-btn-primary-text: #ffffff;
@@ -178,10 +179,47 @@
   --alarm-btn-forward-text: var(--alarm-text);
   --alarm-forward-meta: rgba(255, 244, 235, 0.72);
   --alarm-forward-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+  --alarm-event-copy-gap: 12px;
+  --alarm-event-art-width: clamp(130px, 36vw, 158px);
+  --alarm-event-art-height: clamp(114px, 32vw, 140px);
+  --alarm-event-art-padding: 3px;
+  --alarm-event-art-radius: 22px;
+  --alarm-event-art-shell-bg: linear-gradient(165deg, rgba(255, 198, 166, 0.28), rgba(255, 138, 90, 0.12));
+  --alarm-event-art-shell-border: rgba(255, 206, 178, 0.44);
+  --alarm-event-art-shell-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 8px 16px rgba(0, 0, 0, 0.28);
+  --alarm-event-art-glow: transparent;
+  --alarm-event-art-offset-y: -2px;
+  --alarm-event-art-offset-x: -3px;
+  --alarm-event-art-drop-shadow: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.24));
   --alarm-pictogram-color: rgba(255, 248, 241, 0.96);
   --alarm-pictogram-surface: rgba(255, 182, 149, 0.34);
   --alarm-pictogram-surface-muted: rgba(255, 167, 129, 0.28);
   --alarm-pictogram-surface-soft: rgba(255, 209, 186, 0.24);
+  --alarm-raster-pictogram-blend: normal;
+  --alarm-raster-pictogram-fit: contain;
+  --alarm-raster-pictogram-position: 58% 60%;
+  --alarm-raster-pictogram-scale: 1.04;
+  --alarm-raster-pictogram-opacity: 1;
+  --alarm-raster-pictogram-filter: saturate(1.03) contrast(1.06);
+  --alarm-raster-pictogram-tone: linear-gradient(170deg, rgba(255, 176, 136, 0.3), rgba(232, 67, 10, 0.14));
+  --alarm-raster-pictogram-tint: radial-gradient(circle at 60% 60%, rgba(255, 158, 111, 0.28), rgba(232, 67, 10, 0.16) 72%, rgba(39, 24, 20, 0.08) 100%);
+  --alarm-raster-pictogram-tint-opacity: 0.28;
+  --alarm-raster-pictogram-tint-blend: soft-light;
+  --alarm-raster-pictogram-overlay: radial-gradient(circle at 62% 60%, rgb(var(--alarm-siren-rgb-soft) / 0.2), rgb(var(--alarm-siren-rgb) / 0.08) 72%, transparent 100%);
+  --alarm-raster-pictogram-overlay-opacity: 0.16;
+  --alarm-raster-pictogram-radius: 16px;
+  --alarm-raster-pictogram-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 4px 10px rgba(0, 0, 0, 0.18);
+  --alarm-raster-on-floor-fit: contain;
+  --alarm-raster-on-floor-position: 56% 62%;
+  --alarm-raster-on-floor-scale: 1;
+  --alarm-raster-on-floor-opacity: 1;
+  --alarm-raster-on-floor-filter: saturate(1) contrast(1.04);
+  --alarm-raster-on-floor-tone: linear-gradient(170deg, rgba(255, 176, 140, 0.24), rgba(209, 82, 36, 0.12));
+  --alarm-raster-on-floor-tint: radial-gradient(circle at 58% 60%, rgba(255, 172, 132, 0.24), rgba(209, 82, 36, 0.12) 72%, rgba(46, 26, 20, 0.07) 100%);
+  --alarm-raster-on-floor-tint-opacity: 0.22;
+  --alarm-raster-on-floor-tint-blend: soft-light;
+  --alarm-raster-on-floor-overlay: radial-gradient(circle at 58% 58%, rgb(var(--alarm-siren-rgb-soft) / 0.16), rgb(var(--alarm-siren-rgb) / 0.07) 72%, transparent 100%);
+  --alarm-raster-on-floor-overlay-opacity: 0.12;
   --alarm-siren-rgb: 232 67 10;
   --alarm-siren-rgb-soft: 255 155 115;
   --alarm-card-tint-min: 0.5;
@@ -190,10 +228,10 @@
   --alarm-card-halo-max: 0.58;
   --alarm-feedback-duration: 2.1s;
   --alarm-overlay-duration: 2.4s;
-  --alarm-pictogram-scale-min: 1.02;
-  --alarm-pictogram-scale-max: 1.12;
-  --alarm-pictogram-sat-min: 1.02;
-  --alarm-pictogram-sat-max: 1.22;
+  --alarm-pictogram-scale-min: 1;
+  --alarm-pictogram-scale-max: 1.05;
+  --alarm-pictogram-sat-min: 1;
+  --alarm-pictogram-sat-max: 1.08;
   --alarm-seconds-pulse-min: 0.72;
   --alarm-seconds-pulse-max: 0.98;
   --alarm-seconds-accent: rgba(255, 220, 203, 0.92);
@@ -322,6 +360,22 @@
   --rm-critical-item-priority-medium-bg: rgba(245, 200, 66, 0.16);
   --rm-critical-item-priority-medium-border: rgba(245, 200, 66, 0.38);
   --rm-critical-item-priority-medium-text: #ffe9b3;
+  --rm-activity-feed-banner-width: 92px;
+  --rm-activity-feed-banner-height: 64px;
+  --rm-activity-feed-banner-radius: 12px;
+  --rm-activity-feed-banner-shell-bg: linear-gradient(165deg, rgba(255, 186, 146, 0.16), rgba(232, 67, 10, 0.06));
+  --rm-activity-feed-banner-shell-border: rgba(255, 206, 178, 0.28);
+  --rm-activity-feed-banner-shell-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 10px rgba(0, 0, 0, 0.22);
+  --rm-activity-feed-banner-fit: cover;
+  --rm-activity-feed-banner-position: 74% 60%;
+  --rm-activity-feed-banner-scale: 1.2;
+  --rm-activity-feed-banner-opacity: 0.96;
+  --rm-activity-feed-banner-filter: saturate(1) contrast(1.1);
+  --rm-activity-feed-banner-tone: linear-gradient(165deg, rgba(255, 176, 138, 0.18), rgba(232, 67, 10, 0.08));
+  --rm-activity-feed-banner-tone-opacity: 0.18;
+  --rm-activity-feed-banner-tone-blend: soft-light;
+  --rm-activity-feed-banner-overlay: radial-gradient(circle at 62% 60%, rgba(255, 159, 116, 0.24), rgba(232, 67, 10, 0.08) 68%, transparent 100%);
+  --rm-activity-feed-banner-overlay-opacity: 0.14;
   --rm-critical-screen-bg: #10131a;
   --rm-fall-meta-context: rgba(255, 255, 255, 0.62);
   --rm-fall-meta-text: rgba(255, 255, 255, 0.85);
@@ -715,19 +769,94 @@
   --rm-overview-room-out-chair-seat: rgba(255, 255, 255, 0.42);
   --rm-overview-room-radius: 14px;
   --rm-overview-room-content-gap: 3px;
-  --rm-overview-room-art-height: 72px;
+  --rm-overview-room-art-height: 78px;
   --rm-overview-room-art-margin-bottom: 6px;
   --rm-overview-room-icon-width: 76px;
   --rm-overview-room-icon-height: 47px;
   --rm-overview-room-icon-color: var(--rm-icon-solid);
   --rm-overview-room-icon-accent: var(--rm-pictogram-accent);
+  --rm-overview-room-raster-blend: multiply;
+  --rm-overview-raster-radius: 10px;
+  --rm-overview-raster-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 9px rgba(0, 0, 0, 0.18);
+  --rm-overview-room-sleep-raster-width: 100%;
+  --rm-overview-room-sleep-raster-fit: contain;
+  --rm-overview-room-sleep-raster-position: 52% 68%;
+  --rm-overview-room-sleep-raster-scale: 0.98;
+  --rm-overview-room-sleep-raster-opacity: 1;
+  --rm-overview-room-sleep-raster-filter: saturate(0.98) contrast(1.08);
+  --rm-overview-room-sleep-raster-tone: linear-gradient(165deg, rgba(124, 160, 233, 0.58), rgba(92, 130, 205, 0.44));
+  --rm-overview-room-sleep-raster-tint: radial-gradient(circle at 52% 62%, rgba(111, 153, 228, 0.64), rgba(44, 72, 126, 0.28) 72%, rgba(22, 34, 66, 0.16) 100%);
+  --rm-overview-room-sleep-raster-tint-opacity: 0.38;
+  --rm-overview-room-sleep-raster-tint-blend: color;
+  --rm-overview-room-sleep-raster-overlay: radial-gradient(circle at 52% 64%, rgba(132, 171, 237, 0.42), rgba(46, 70, 110, 0.16) 74%, transparent 100%);
+  --rm-overview-room-sleep-raster-overlay-opacity: 0.3;
+  --rm-overview-room-care-raster-width: 100%;
+  --rm-overview-room-care-raster-fit: contain;
+  --rm-overview-room-care-raster-position: 52% 66%;
+  --rm-overview-room-care-raster-scale: 0.94;
+  --rm-overview-room-care-raster-opacity: 1;
+  --rm-overview-room-care-raster-filter: saturate(0.98) contrast(1.06);
+  --rm-overview-room-care-raster-tone: linear-gradient(165deg, rgba(255, 209, 185, 0.62), rgba(201, 169, 144, 0.34));
+  --rm-overview-room-care-raster-tint: radial-gradient(circle at 54% 62%, rgba(255, 171, 128, 0.48), rgba(181, 142, 111, 0.24) 72%, rgba(55, 42, 33, 0.1) 100%);
+  --rm-overview-room-care-raster-tint-opacity: 0.3;
+  --rm-overview-room-care-raster-tint-blend: color;
+  --rm-overview-room-care-raster-overlay: radial-gradient(circle at 52% 64%, rgba(255, 210, 186, 0.32), rgba(117, 88, 67, 0.1) 74%, transparent 100%);
+  --rm-overview-room-care-raster-overlay-opacity: 0.18;
+  --rm-overview-room-out-raster-width: 100%;
+  --rm-overview-room-out-raster-fit: contain;
+  --rm-overview-room-out-raster-position: 50% 70%;
+  --rm-overview-room-out-raster-scale: 0.98;
+  --rm-overview-room-out-raster-opacity: 0.98;
+  --rm-overview-room-out-raster-filter: saturate(0.9) contrast(1.02);
+  --rm-overview-room-out-raster-tone: linear-gradient(165deg, rgba(167, 181, 206, 0.42), rgba(99, 113, 136, 0.24));
+  --rm-overview-room-out-raster-tint: radial-gradient(circle at 50% 64%, rgba(189, 209, 239, 0.24), rgba(107, 124, 154, 0.12) 74%, transparent 100%);
+  --rm-overview-room-out-raster-tint-opacity: 0.2;
+  --rm-overview-room-out-raster-tint-blend: color;
+  --rm-overview-room-out-raster-overlay: radial-gradient(circle at 50% 66%, rgba(220, 231, 246, 0.22), rgba(96, 109, 132, 0.08) 76%, transparent 100%);
+  --rm-overview-room-out-raster-overlay-opacity: 0.16;
   --rm-overview-room-alert-icon-width: 74px;
   --rm-overview-room-alert-icon-height: 63px;
   --rm-overview-room-alert-icon-color: var(--rm-icon-solid);
   --rm-overview-room-alert-icon-surface: var(--rm-pictogram-surface);
   --rm-overview-room-alert-icon-surface-muted: var(--rm-pictogram-surface-muted);
   --rm-overview-room-alert-icon-surface-soft: var(--rm-pictogram-surface-soft);
-  --rm-overview-room-out-art-height: 72px;
+  --rm-overview-room-falling-raster-width: 100%;
+  --rm-overview-room-falling-raster-fit: contain;
+  --rm-overview-room-falling-raster-position: 56% 68%;
+  --rm-overview-room-falling-raster-scale: 0.98;
+  --rm-overview-room-falling-raster-opacity: 1;
+  --rm-overview-room-falling-raster-filter: saturate(1.02) contrast(1.1);
+  --rm-overview-room-falling-raster-tone: linear-gradient(165deg, rgba(255, 162, 118, 0.6), rgba(232, 67, 10, 0.36));
+  --rm-overview-room-falling-raster-tint: radial-gradient(circle at 58% 62%, rgba(255, 153, 111, 0.72), rgba(232, 67, 10, 0.38) 72%, rgba(80, 30, 16, 0.2) 100%);
+  --rm-overview-room-falling-raster-tint-opacity: 0.5;
+  --rm-overview-room-falling-raster-tint-blend: color;
+  --rm-overview-room-falling-raster-overlay: radial-gradient(circle at 58% 62%, rgba(255, 165, 122, 0.42), rgba(232, 67, 10, 0.16) 72%, transparent 100%);
+  --rm-overview-room-falling-raster-overlay-opacity: 0.32;
+  --rm-overview-room-on-floor-raster-width: 100%;
+  --rm-overview-room-on-floor-raster-fit: contain;
+  --rm-overview-room-on-floor-raster-position: 56% 70%;
+  --rm-overview-room-on-floor-raster-scale: 0.97;
+  --rm-overview-room-on-floor-raster-opacity: 1;
+  --rm-overview-room-on-floor-raster-filter: saturate(1) contrast(1.08);
+  --rm-overview-room-on-floor-raster-tone: linear-gradient(165deg, rgba(255, 170, 130, 0.56), rgba(209, 82, 36, 0.3));
+  --rm-overview-room-on-floor-raster-tint: radial-gradient(circle at 58% 62%, rgba(255, 162, 124, 0.56), rgba(209, 82, 36, 0.24) 72%, rgba(77, 33, 19, 0.16) 100%);
+  --rm-overview-room-on-floor-raster-tint-opacity: 0.42;
+  --rm-overview-room-on-floor-raster-tint-blend: color;
+  --rm-overview-room-on-floor-raster-overlay: radial-gradient(circle at 58% 62%, rgba(255, 172, 138, 0.36), rgba(209, 82, 36, 0.12) 72%, transparent 100%);
+  --rm-overview-room-on-floor-raster-overlay-opacity: 0.24;
+  --rm-overview-room-alert-raster-width: var(--rm-overview-room-falling-raster-width);
+  --rm-overview-room-alert-raster-fit: var(--rm-overview-room-falling-raster-fit);
+  --rm-overview-room-alert-raster-position: var(--rm-overview-room-falling-raster-position);
+  --rm-overview-room-alert-raster-scale: var(--rm-overview-room-falling-raster-scale);
+  --rm-overview-room-alert-raster-opacity: var(--rm-overview-room-falling-raster-opacity);
+  --rm-overview-room-alert-raster-filter: var(--rm-overview-room-falling-raster-filter);
+  --rm-overview-room-alert-raster-tone: var(--rm-overview-room-falling-raster-tone);
+  --rm-overview-room-alert-raster-tint: var(--rm-overview-room-falling-raster-tint);
+  --rm-overview-room-alert-raster-tint-opacity: var(--rm-overview-room-falling-raster-tint-opacity);
+  --rm-overview-room-alert-raster-tint-blend: var(--rm-overview-room-falling-raster-tint-blend);
+  --rm-overview-room-alert-raster-overlay: var(--rm-overview-room-falling-raster-overlay);
+  --rm-overview-room-alert-raster-overlay-opacity: var(--rm-overview-room-falling-raster-overlay-opacity);
+  --rm-overview-room-out-art-height: 78px;
   --rm-overview-room-out-icon-width: 76px;
   --rm-overview-room-out-icon-height: 49px;
   --rm-overview-room-out-pill-radius: 9px;
@@ -756,11 +885,41 @@
   --rm-overview-dot-blue-bg: #4a90e2;
   --rm-overview-dot-blue-shadow: 0 0 7px rgba(74, 144, 226, 0.6);
   --rm-overview-dot-neutral-bg: #555;
+  --rm-room-seal-bg: linear-gradient(160deg, rgba(255, 136, 82, 0.95), rgba(232, 67, 10, 0.94));
+  --rm-room-seal-border: rgba(255, 220, 202, 0.74);
+  --rm-room-seal-text: #ffffff;
+  --rm-room-seal-shadow: 0 4px 10px rgba(232, 67, 10, 0.28);
   --rm-overview-countdown-bg: rgba(22, 25, 32, 0.92);
   --rm-overview-countdown-border: rgba(255, 255, 255, 0.12);
   --rm-overview-countdown-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   --rm-overview-countdown-label: rgba(255, 255, 255, 0.85);
   --rm-overview-countdown-track-bg: rgba(255, 255, 255, 0.12);
+  --rm-overview-toast-bg: linear-gradient(160deg, rgba(23, 28, 38, 0.92), rgba(17, 22, 32, 0.9));
+  --rm-overview-toast-border: rgba(255, 255, 255, 0.22);
+  --rm-overview-toast-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  --rm-overview-toast-title: rgba(255, 255, 255, 0.96);
+  --rm-overview-toast-meta: rgba(255, 249, 240, 0.74);
+  --rm-overview-toast-seconds-value: var(--critical-orange-600);
+  --rm-overview-toast-art-width: clamp(106px, 30vw, 122px);
+  --rm-overview-toast-art-height: calc(100% - 10px);
+  --rm-overview-toast-art-offset-x: 6px;
+  --rm-overview-toast-art-offset-y: 5px;
+  --rm-overview-toast-art-radius: 16px;
+  --rm-overview-toast-art-shell-bg: linear-gradient(165deg, rgba(255, 195, 160, 0.16), rgba(255, 125, 84, 0.04));
+  --rm-overview-toast-art-shell-border: rgba(255, 206, 178, 0.32);
+  --rm-overview-toast-art-shell-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 4px 12px rgba(0, 0, 0, 0.22);
+  --rm-overview-toast-art-fit: cover;
+  --rm-overview-toast-art-position: 74% 58%;
+  --rm-overview-toast-art-scale: 1.3;
+  --rm-overview-toast-art-opacity: 0.96;
+  --rm-overview-toast-art-filter: saturate(0.96) contrast(1.08);
+  --rm-overview-toast-art-tone: linear-gradient(165deg, rgba(255, 176, 138, 0.24), rgba(232, 67, 10, 0.1));
+  --rm-overview-toast-art-tone-opacity: 0.2;
+  --rm-overview-toast-art-tone-blend: soft-light;
+  --rm-overview-toast-art-overlay: radial-gradient(circle at 62% 58%, rgba(255, 159, 116, 0.3), rgba(232, 67, 10, 0.11) 68%, transparent 100%);
+  --rm-overview-toast-art-overlay-opacity: 0.18;
+  --rm-overview-toast-art-mask: linear-gradient(90deg, rgba(12, 15, 20, 0.34) 0%, rgba(12, 15, 20, 0.1) 32%, rgba(12, 15, 20, 0) 58%);
+  --rm-overview-toast-fallback-bg: rgba(255, 255, 255, 0.06);
   --rm-overview-countdown-progress: var(--critical-orange-600);
   --rm-overview-countdown-badge-bg: rgba(232, 67, 10, 0.2);
   --rm-overview-countdown-badge-border: var(--critical-orange-600);
@@ -778,6 +937,473 @@
 
 .monitor-app-root * {
   -webkit-tap-highlight-color: transparent;
+}
+
+.rm-overview-raster-art,
+.rm-alarm-raster-art {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.rm-alarm-event-card {
+  align-items: flex-start;
+  gap: var(--alarm-event-copy-gap, 14px);
+}
+
+.rm-alarm-event-content {
+  min-width: 0;
+  flex: 1 1 auto;
+  max-width: calc(100% - var(--alarm-event-art-width, 128px) - var(--alarm-event-copy-gap, 14px));
+}
+
+.rm-alarm-event-title {
+  max-inline-size: 100%;
+}
+
+.rm-alarm-event-pictogram {
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--alarm-event-art-width, 114px);
+  height: var(--alarm-event-art-height, 102px);
+  margin-top: var(--alarm-event-art-offset-y, -1px);
+  margin-right: var(--alarm-event-art-offset-x, -2px);
+  padding: var(--alarm-event-art-padding, 4px);
+  border-radius: var(--alarm-event-art-radius, 18px);
+  border: 1px solid var(--alarm-event-art-shell-border, rgba(255, 201, 172, 0.4));
+  background: var(--alarm-event-art-shell-bg, transparent);
+  box-shadow: var(--alarm-event-art-shell-shadow, inset 0 1px 0 rgba(255, 255, 255, 0.18));
+}
+
+.rm-alarm-event-raster,
+.rm-alarm-event-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--alarm-event-art-radius, 18px) - var(--alarm-event-art-padding, 4px));
+  filter: var(--alarm-event-art-drop-shadow, drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2)));
+}
+
+.rm-overview-raster-art {
+  border-radius: var(--rm-overview-raster-radius, 10px);
+  box-shadow: var(--rm-overview-raster-shadow, inset 0 1px 0 rgba(255, 255, 255, 0.16));
+}
+
+.rm-overview-toast {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 104px;
+  background: var(--rm-overview-toast-bg);
+  border-color: var(--rm-overview-toast-border);
+  box-shadow: var(--rm-overview-toast-shadow);
+}
+
+.rm-overview-toast > * {
+  position: relative;
+  z-index: 1;
+}
+
+.rm-overview-toast-copy {
+  padding-right: calc(var(--rm-overview-toast-art-width, 122px) + 10px);
+}
+
+.rm-overview-toast-seconds {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+}
+
+.rm-overview-toast-seconds-value {
+  display: inline-block;
+  color: var(--rm-overview-toast-seconds-value);
+  font-size: calc(var(--rm-fs-meta) + 2px);
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.rm-overview-toast-seconds-unit {
+  color: var(--rm-overview-toast-meta);
+  opacity: 0.92;
+}
+
+.rm-overview-toast-art {
+  position: absolute;
+  right: var(--rm-overview-toast-art-offset-x, 6px);
+  top: var(--rm-overview-toast-art-offset-y, 5px);
+  width: var(--rm-overview-toast-art-width, 124px);
+  height: var(--rm-overview-toast-art-height, calc(100% - 10px));
+  border-radius: var(--rm-overview-toast-art-radius, 16px);
+  border: 1px solid var(--rm-overview-toast-art-shell-border, rgba(255, 208, 177, 0.26));
+  background: var(--rm-overview-toast-art-shell-bg, transparent);
+  box-shadow: var(--rm-overview-toast-art-shell-shadow, inset 0 1px 0 rgba(255, 255, 255, 0.14));
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rm-overview-toast-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--rm-overview-toast-art-mask);
+  z-index: 3;
+}
+
+.rm-overview-toast-raster {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.rm-overview-toast-raster-base,
+.rm-overview-toast-raster-tone,
+.rm-overview-toast-raster-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rm-overview-toast-raster-base {
+  background: transparent;
+  z-index: 0;
+}
+
+.rm-overview-toast-raster-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--rm-overview-toast-art-fit, cover);
+  object-position: var(--rm-overview-toast-art-position, 74% 58%);
+  transform: scale(var(--rm-overview-toast-art-scale, 1.3));
+  filter: var(--rm-overview-toast-art-filter, saturate(0.96) contrast(1.08));
+  opacity: var(--rm-overview-toast-art-opacity, 0.96);
+  transform-origin: center center;
+  z-index: 1;
+}
+
+.rm-overview-toast-raster-tone {
+  background: var(--rm-overview-toast-art-tone, transparent);
+  mix-blend-mode: var(--rm-overview-toast-art-tone-blend, soft-light);
+  opacity: var(--rm-overview-toast-art-tone-opacity, 0.2);
+  z-index: 2;
+}
+
+.rm-overview-toast-raster-glow {
+  background: var(--rm-overview-toast-art-overlay, transparent);
+  opacity: var(--rm-overview-toast-art-overlay-opacity, 0.18);
+  z-index: 3;
+}
+
+.rm-overview-toast-raster--standing {
+  --rm-overview-toast-art-position: 74% 56%;
+  --rm-overview-toast-art-scale: 1.28;
+}
+
+.rm-overview-toast-raster--sitting-edge {
+  --rm-overview-toast-art-position: 76% 58%;
+  --rm-overview-toast-art-scale: 1.32;
+}
+
+.rm-overview-toast-raster--on-floor {
+  --rm-overview-toast-art-position: 72% 62%;
+  --rm-overview-toast-art-scale: 1.24;
+}
+
+.rm-activity-feed-banner {
+  position: relative;
+  width: var(--rm-activity-feed-banner-width, 92px);
+  height: var(--rm-activity-feed-banner-height, 64px);
+  border-radius: var(--rm-activity-feed-banner-radius, 12px);
+  border: 1px solid var(--rm-activity-feed-banner-shell-border, rgba(255, 206, 178, 0.24));
+  background: var(--rm-activity-feed-banner-shell-bg, transparent);
+  box-shadow: var(--rm-activity-feed-banner-shell-shadow, inset 0 1px 0 rgba(255, 255, 255, 0.12));
+  overflow: hidden;
+}
+
+.rm-activity-feed-banner-base,
+.rm-activity-feed-banner-tone,
+.rm-activity-feed-banner-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rm-activity-feed-banner-base {
+  background: transparent;
+  z-index: 0;
+}
+
+.rm-activity-feed-banner-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--rm-activity-feed-banner-fit, cover);
+  object-position: var(--rm-activity-feed-banner-position, 74% 58%);
+  transform: scale(var(--rm-activity-feed-banner-scale, 1.26));
+  filter: var(--rm-activity-feed-banner-filter, saturate(0.98) contrast(1.08));
+  opacity: var(--rm-activity-feed-banner-opacity, 0.96);
+  transform-origin: center center;
+  z-index: 1;
+}
+
+.rm-activity-feed-banner-tone {
+  background: var(--rm-activity-feed-banner-tone, transparent);
+  mix-blend-mode: var(--rm-activity-feed-banner-tone-blend, soft-light);
+  opacity: var(--rm-activity-feed-banner-tone-opacity, 0.18);
+  z-index: 2;
+}
+
+.rm-activity-feed-banner-glow {
+  background: var(--rm-activity-feed-banner-overlay, transparent);
+  opacity: var(--rm-activity-feed-banner-overlay-opacity, 0.14);
+  z-index: 3;
+}
+
+.rm-activity-feed-banner--standing-beside {
+  --rm-activity-feed-banner-position: 76% 58%;
+  --rm-activity-feed-banner-scale: 1.18;
+}
+
+.rm-activity-feed-banner--sitting-bed {
+  --rm-activity-feed-banner-position: 74% 60%;
+  --rm-activity-feed-banner-scale: 1.21;
+}
+
+.rm-activity-feed-banner--sitting-on-floor {
+  --rm-activity-feed-banner-position: 72% 64%;
+  --rm-activity-feed-banner-scale: 1.15;
+}
+
+.rm-activity-feed-banner--on-floor {
+  --rm-activity-feed-banner-position: 72% 64%;
+  --rm-activity-feed-banner-scale: 1.17;
+}
+
+.rm-activity-feed-banner--out-of-bed {
+  --rm-activity-feed-banner-position: 76% 60%;
+  --rm-activity-feed-banner-scale: 1.18;
+}
+
+.rm-activity-feed-banner--lying-center {
+  --rm-activity-feed-banner-position: 74% 60%;
+  --rm-activity-feed-banner-scale: 1.2;
+}
+
+.rm-alarm-raster-art {
+  border-radius: var(--alarm-raster-pictogram-radius, 16px);
+  box-shadow: var(--alarm-raster-pictogram-shadow, inset 0 1px 0 rgba(255, 255, 255, 0.18));
+}
+
+.rm-overview-raster-art-base,
+.rm-alarm-raster-art-base {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rm-overview-raster-art-image,
+.rm-alarm-raster-art-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  transform-origin: center center;
+}
+
+.rm-overview-raster-art-tint,
+.rm-alarm-raster-art-tone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.rm-overview-raster-art-highlight,
+.rm-alarm-raster-art-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: soft-light;
+}
+
+.rm-overview-raster-art--sleep {
+  --rm-overview-raster-fit: var(--rm-overview-room-sleep-raster-fit, cover);
+  --rm-overview-raster-position: var(--rm-overview-room-sleep-raster-position, 50% 70%);
+  --rm-overview-raster-scale: var(--rm-overview-room-sleep-raster-scale, 1.06);
+  --rm-overview-raster-opacity: var(--rm-overview-room-sleep-raster-opacity, 0.95);
+  --rm-overview-raster-filter: var(--rm-overview-room-sleep-raster-filter, saturate(0.88) contrast(1.03));
+  --rm-overview-raster-base: var(--rm-overview-room-sleep-raster-tone, transparent);
+  --rm-overview-raster-tint: var(--rm-overview-room-sleep-raster-tint, transparent);
+  --rm-overview-raster-tint-opacity: var(--rm-overview-room-sleep-raster-tint-opacity, 0.46);
+  --rm-overview-raster-tint-blend: var(--rm-overview-room-sleep-raster-tint-blend, color);
+  --rm-overview-raster-highlight: var(--rm-overview-room-sleep-raster-overlay, transparent);
+  --rm-overview-raster-highlight-opacity: var(--rm-overview-room-sleep-raster-overlay-opacity, 0.36);
+}
+
+.rm-overview-raster-art--care {
+  --rm-overview-raster-fit: var(--rm-overview-room-care-raster-fit, contain);
+  --rm-overview-raster-position: var(--rm-overview-room-care-raster-position, 50% 76%);
+  --rm-overview-raster-scale: var(--rm-overview-room-care-raster-scale, 1.01);
+  --rm-overview-raster-opacity: var(--rm-overview-room-care-raster-opacity, 1);
+  --rm-overview-raster-filter: var(--rm-overview-room-care-raster-filter, saturate(0.96) contrast(1.04));
+  --rm-overview-raster-base: var(--rm-overview-room-care-raster-tone, transparent);
+  --rm-overview-raster-tint: var(--rm-overview-room-care-raster-tint, transparent);
+  --rm-overview-raster-tint-opacity: var(--rm-overview-room-care-raster-tint-opacity, 0.24);
+  --rm-overview-raster-tint-blend: var(--rm-overview-room-care-raster-tint-blend, color);
+  --rm-overview-raster-highlight: var(--rm-overview-room-care-raster-overlay, transparent);
+  --rm-overview-raster-highlight-opacity: var(--rm-overview-room-care-raster-overlay-opacity, 0.16);
+}
+
+.rm-overview-raster-art--out {
+  --rm-overview-raster-fit: var(--rm-overview-room-out-raster-fit, contain);
+  --rm-overview-raster-position: var(--rm-overview-room-out-raster-position, 50% 80%);
+  --rm-overview-raster-scale: var(--rm-overview-room-out-raster-scale, 1.03);
+  --rm-overview-raster-opacity: var(--rm-overview-room-out-raster-opacity, 0.98);
+  --rm-overview-raster-filter: var(--rm-overview-room-out-raster-filter, saturate(0.9) contrast(1.02));
+  --rm-overview-raster-base: var(--rm-overview-room-out-raster-tone, transparent);
+  --rm-overview-raster-tint: var(--rm-overview-room-out-raster-tint, transparent);
+  --rm-overview-raster-tint-opacity: var(--rm-overview-room-out-raster-tint-opacity, 0.16);
+  --rm-overview-raster-tint-blend: var(--rm-overview-room-out-raster-tint-blend, color);
+  --rm-overview-raster-highlight: var(--rm-overview-room-out-raster-overlay, transparent);
+  --rm-overview-raster-highlight-opacity: var(--rm-overview-room-out-raster-overlay-opacity, 0.12);
+}
+
+.rm-overview-raster-art--falling {
+  --rm-overview-raster-fit: var(--rm-overview-room-falling-raster-fit, contain);
+  --rm-overview-raster-position: var(--rm-overview-room-falling-raster-position, 56% 78%);
+  --rm-overview-raster-scale: var(--rm-overview-room-falling-raster-scale, 1.04);
+  --rm-overview-raster-opacity: var(--rm-overview-room-falling-raster-opacity, 1);
+  --rm-overview-raster-filter: var(--rm-overview-room-falling-raster-filter, saturate(1) contrast(1.08));
+  --rm-overview-raster-base: var(--rm-overview-room-falling-raster-tone, transparent);
+  --rm-overview-raster-tint: var(--rm-overview-room-falling-raster-tint, transparent);
+  --rm-overview-raster-tint-opacity: var(--rm-overview-room-falling-raster-tint-opacity, 0.46);
+  --rm-overview-raster-tint-blend: var(--rm-overview-room-falling-raster-tint-blend, color);
+  --rm-overview-raster-highlight: var(--rm-overview-room-falling-raster-overlay, transparent);
+  --rm-overview-raster-highlight-opacity: var(--rm-overview-room-falling-raster-overlay-opacity, 0.28);
+}
+
+.rm-overview-raster-art--on-floor {
+  --rm-overview-raster-fit: var(--rm-overview-room-on-floor-raster-fit, contain);
+  --rm-overview-raster-position: var(--rm-overview-room-on-floor-raster-position, 56% 80%);
+  --rm-overview-raster-scale: var(--rm-overview-room-on-floor-raster-scale, 1.03);
+  --rm-overview-raster-opacity: var(--rm-overview-room-on-floor-raster-opacity, 1);
+  --rm-overview-raster-filter: var(--rm-overview-room-on-floor-raster-filter, saturate(1) contrast(1.06));
+  --rm-overview-raster-base: var(--rm-overview-room-on-floor-raster-tone, transparent);
+  --rm-overview-raster-tint: var(--rm-overview-room-on-floor-raster-tint, transparent);
+  --rm-overview-raster-tint-opacity: var(--rm-overview-room-on-floor-raster-tint-opacity, 0.38);
+  --rm-overview-raster-tint-blend: var(--rm-overview-room-on-floor-raster-tint-blend, color);
+  --rm-overview-raster-highlight: var(--rm-overview-room-on-floor-raster-overlay, transparent);
+  --rm-overview-raster-highlight-opacity: var(--rm-overview-room-on-floor-raster-overlay-opacity, 0.2);
+}
+
+.rm-overview-raster-art--alert {
+  --rm-overview-raster-fit: var(--rm-overview-room-alert-raster-fit, var(--rm-overview-room-falling-raster-fit, contain));
+  --rm-overview-raster-position: var(--rm-overview-room-alert-raster-position, var(--rm-overview-room-falling-raster-position, 56% 78%));
+  --rm-overview-raster-scale: var(--rm-overview-room-alert-raster-scale, var(--rm-overview-room-falling-raster-scale, 1.04));
+  --rm-overview-raster-opacity: var(--rm-overview-room-alert-raster-opacity, var(--rm-overview-room-falling-raster-opacity, 1));
+  --rm-overview-raster-filter: var(--rm-overview-room-alert-raster-filter, var(--rm-overview-room-falling-raster-filter, saturate(1) contrast(1.08)));
+  --rm-overview-raster-base: var(--rm-overview-room-alert-raster-tone, var(--rm-overview-room-falling-raster-tone, transparent));
+  --rm-overview-raster-tint: var(--rm-overview-room-alert-raster-tint, var(--rm-overview-room-falling-raster-tint, transparent));
+  --rm-overview-raster-tint-opacity: var(--rm-overview-room-alert-raster-tint-opacity, var(--rm-overview-room-falling-raster-tint-opacity, 0.46));
+  --rm-overview-raster-tint-blend: var(--rm-overview-room-alert-raster-tint-blend, var(--rm-overview-room-falling-raster-tint-blend, color));
+  --rm-overview-raster-highlight: var(--rm-overview-room-alert-raster-overlay, var(--rm-overview-room-falling-raster-overlay, transparent));
+  --rm-overview-raster-highlight-opacity: var(--rm-overview-room-alert-raster-overlay-opacity, var(--rm-overview-room-falling-raster-overlay-opacity, 0.28));
+}
+
+.rm-overview-raster-art-base {
+  background: var(--rm-overview-raster-base, transparent);
+}
+
+.rm-overview-raster-art-image {
+  object-fit: var(--rm-overview-raster-fit, cover);
+  object-position: var(--rm-overview-raster-position, 50% 64%);
+  transform: scale(var(--rm-overview-raster-scale, 1.06));
+  mix-blend-mode: var(--rm-overview-room-raster-blend, multiply);
+  filter: var(--rm-overview-raster-filter, saturate(0.9) contrast(1.04));
+  opacity: var(--rm-overview-raster-opacity, 0.95);
+}
+
+.rm-overview-raster-art-tint {
+  background: var(--rm-overview-raster-tint, transparent);
+  mix-blend-mode: var(--rm-overview-raster-tint-blend, color);
+  opacity: var(--rm-overview-raster-tint-opacity, 0);
+}
+
+.rm-overview-raster-art-highlight {
+  background: var(--rm-overview-raster-highlight, transparent);
+  opacity: var(--rm-overview-raster-highlight-opacity, 0.34);
+}
+
+.rm-alarm-raster-art {
+  --rm-alarm-raster-fit: var(--alarm-raster-pictogram-fit, contain);
+  --rm-alarm-raster-position: var(--alarm-raster-pictogram-position, 58% 60%);
+  --rm-alarm-raster-scale: var(--alarm-raster-pictogram-scale, 1.04);
+  --rm-alarm-raster-opacity: var(--alarm-raster-pictogram-opacity, 1);
+  --rm-alarm-raster-filter: var(--alarm-raster-pictogram-filter, saturate(1) contrast(1.04));
+  --rm-alarm-raster-base: var(--alarm-raster-pictogram-tone, transparent);
+  --rm-alarm-raster-tone: var(--alarm-raster-pictogram-tint, transparent);
+  --rm-alarm-raster-tone-opacity: var(--alarm-raster-pictogram-tint-opacity, 0.34);
+  --rm-alarm-raster-tone-blend: var(--alarm-raster-pictogram-tint-blend, soft-light);
+  --rm-alarm-raster-highlight: var(--alarm-raster-pictogram-overlay, transparent);
+  --rm-alarm-raster-highlight-opacity: var(--alarm-raster-pictogram-overlay-opacity, 0.2);
+}
+
+.rm-alarm-raster-art--falling {
+  --rm-alarm-raster-fit: var(--alarm-raster-pictogram-fit, contain);
+  --rm-alarm-raster-position: var(--alarm-raster-pictogram-position, 58% 60%);
+  --rm-alarm-raster-scale: var(--alarm-raster-pictogram-scale, 1.04);
+  --rm-alarm-raster-opacity: var(--alarm-raster-pictogram-opacity, 1);
+  --rm-alarm-raster-filter: var(--alarm-raster-pictogram-filter, saturate(1) contrast(1.04));
+  --rm-alarm-raster-base: var(--alarm-raster-pictogram-tone, transparent);
+  --rm-alarm-raster-tone: var(--alarm-raster-pictogram-tint, transparent);
+  --rm-alarm-raster-tone-opacity: var(--alarm-raster-pictogram-tint-opacity, 0.34);
+  --rm-alarm-raster-tone-blend: var(--alarm-raster-pictogram-tint-blend, soft-light);
+  --rm-alarm-raster-highlight: var(--alarm-raster-pictogram-overlay, transparent);
+  --rm-alarm-raster-highlight-opacity: var(--alarm-raster-pictogram-overlay-opacity, 0.2);
+}
+
+.rm-alarm-raster-art--on-floor {
+  --rm-alarm-raster-fit: var(--alarm-raster-on-floor-fit, contain);
+  --rm-alarm-raster-position: var(--alarm-raster-on-floor-position, 56% 62%);
+  --rm-alarm-raster-scale: var(--alarm-raster-on-floor-scale, 1);
+  --rm-alarm-raster-opacity: var(--alarm-raster-on-floor-opacity, 1);
+  --rm-alarm-raster-filter: var(--alarm-raster-on-floor-filter, saturate(1) contrast(1.03));
+  --rm-alarm-raster-base: var(--alarm-raster-on-floor-tone, transparent);
+  --rm-alarm-raster-tone: var(--alarm-raster-on-floor-tint, transparent);
+  --rm-alarm-raster-tone-opacity: var(--alarm-raster-on-floor-tint-opacity, 0.26);
+  --rm-alarm-raster-tone-blend: var(--alarm-raster-on-floor-tint-blend, soft-light);
+  --rm-alarm-raster-highlight: var(--alarm-raster-on-floor-overlay, transparent);
+  --rm-alarm-raster-highlight-opacity: var(--alarm-raster-on-floor-overlay-opacity, 0.16);
+}
+
+.rm-alarm-raster-art-base {
+  background: var(--rm-alarm-raster-base, transparent);
+}
+
+.rm-alarm-raster-art-image {
+  object-fit: var(--rm-alarm-raster-fit, contain);
+  object-position: var(--rm-alarm-raster-position, 58% 60%);
+  transform: scale(var(--rm-alarm-raster-scale, 1.04));
+  mix-blend-mode: var(--alarm-raster-pictogram-blend, normal);
+  filter: var(--rm-alarm-raster-filter, saturate(1) contrast(1.04));
+  opacity: var(--rm-alarm-raster-opacity, 1);
+}
+
+.rm-alarm-raster-art-tone {
+  background: var(--rm-alarm-raster-tone, transparent);
+  mix-blend-mode: var(--rm-alarm-raster-tone-blend, soft-light);
+  opacity: var(--rm-alarm-raster-tone-opacity, 0);
+}
+
+.rm-alarm-raster-art-glow {
+  background: var(--rm-alarm-raster-highlight, transparent);
+  opacity: var(--rm-alarm-raster-highlight-opacity, 0.34);
 }
 
 .monitor-app-root[data-alarm-escalation="medium"] {

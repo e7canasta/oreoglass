@@ -7,5 +7,11 @@ export {
   IconSittingOnBedLarge,
   IconStaffEnter,
   IconStanding,
+  OverviewRoomCareRasterArt,
+  OverviewRoomFallingRasterArt,
+  OverviewRoomOnFloorRasterArt,
+  OverviewRoomOutRasterArt,
+  OverviewRoomSleepRasterArt,
+  AlarmEventRasterArt,
   TimelineIcon,
 } from "./pictograms/index.js";

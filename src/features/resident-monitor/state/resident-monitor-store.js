@@ -47,6 +47,12 @@ export const useResidentMonitorStore = create((set) => ({
         state.screen && state.screen !== SCREENS.BED_ACTIVITY ? state.screen : null,
       bedActivityAnchorEventId: anchorEventId,
     })),
+  openActivityFeed: () =>
+    set((state) => ({
+      screen: SCREENS.ACTIVITY_FEED,
+      previousScreen:
+        state.screen && state.screen !== SCREENS.ACTIVITY_FEED ? state.screen : null,
+    })),
   openCriticalEvents: () =>
     set((state) => ({
       screen: SCREENS.CRITICAL_EVENTS,

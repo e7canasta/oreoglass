@@ -1,4 +1,5 @@
 export const SCREENS = Object.freeze({
+  ACTIVITY_FEED: "activity-feed",
   SLEEP_DETAIL: "sleepdetail",
   BED_ACTIVITY: "bed-activity",
   CRITICAL_EVENTS: "criticalevents",

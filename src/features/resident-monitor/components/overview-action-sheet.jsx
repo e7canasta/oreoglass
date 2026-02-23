@@ -31,7 +31,7 @@ const OverviewActionSheet = ({
     {
       id: "latest",
       label: "Latest activity",
-      meta: "Open full bed timeline",
+      meta: "Open recent updates across rooms",
       arrow: true,
       tone: "neutral",
       onClick: onOpenLatestActivity,

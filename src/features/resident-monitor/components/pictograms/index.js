@@ -7,3 +7,11 @@ export { IconStanding } from "./icon-standing.jsx";
 export { TimelineIcon } from "./timeline-icon.jsx";
 export { IconLayingOnFloor } from "./icon-laying-on-floor.jsx";
 export { IconStaffEnter } from "./icon-staff-enter.jsx";
+export {
+  OverviewRoomCareRasterArt,
+  OverviewRoomFallingRasterArt,
+  OverviewRoomOnFloorRasterArt,
+  OverviewRoomOutRasterArt,
+  OverviewRoomSleepRasterArt,
+} from "./overview-room-raster-art.jsx";
+export { AlarmEventRasterArt } from "./alarm-event-raster-art.jsx";
