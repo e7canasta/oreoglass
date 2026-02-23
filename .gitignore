@@ -3,3 +3,4 @@ dist
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
+package-lock.json
