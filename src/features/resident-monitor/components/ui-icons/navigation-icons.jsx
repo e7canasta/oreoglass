@@ -77,6 +77,32 @@ const IconFullscreenExit = ({ stroke = "rgba(255,255,255,0.7)" }) => (
   </svg>
 );
 
+const IconThemeSun = ({ stroke = "rgba(255,255,255,0.78)" }) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <circle cx="8" cy="8" r="2.7" stroke={stroke} strokeWidth="1.5" />
+    <path d="M8 1.6V3.1" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M8 12.9V14.4" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M1.6 8H3.1" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M12.9 8H14.4" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M3.5 3.5L4.55 4.55" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M11.45 11.45L12.5 12.5" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M11.45 4.55L12.5 3.5" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M3.5 12.5L4.55 11.45" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+);
+
+const IconThemeMoon = ({ stroke = "rgba(255,255,255,0.78)" }) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path
+      d="M8 2A4 4 0 1 0 14 8A6 6 0 1 1 8 2Z"
+      stroke={stroke}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export {
   IconArrowLeft,
   IconArrowRight,
@@ -85,5 +111,7 @@ export {
   IconChevronRight,
   IconFullscreenEnter,
   IconFullscreenExit,
+  IconThemeMoon,
+  IconThemeSun,
   IconWideChevronDown,
 };
