@@ -85,14 +85,14 @@
 
 .room-detail-room-number {
   color: white;
-  font-size: 28px;
+  font-size: var(--rm-fs-display);
   font-weight: 700;
   line-height: 1.1;
 }
 
 .room-detail-room-location {
   color: rgba(255, 255, 255, 0.72);
-  font-size: 15px;
+  font-size: var(--rm-fs-body);
   line-height: 1.24;
 }
 
@@ -140,24 +140,24 @@
 
 .room-detail-section-title {
   color: white;
-  font-size: 20px;
+  font-size: var(--rm-fs-title);
   font-weight: 700;
 }
 
 .room-detail-sleep-glyph {
   color: white;
-  font-size: 20px;
+  font-size: var(--rm-fs-title);
   letter-spacing: -1px;
   line-height: 1;
 }
 
 .room-detail-sleep-glyph sup {
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
 }
 
 .room-detail-section-meta {
   color: rgba(255, 255, 255, 0.58);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   white-space: nowrap;
 }
 

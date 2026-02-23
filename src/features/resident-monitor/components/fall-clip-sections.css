@@ -13,7 +13,7 @@
 
 .fall-clip-meta-label {
   color: rgba(255, 255, 255, 0.85);
-  font-size: 15px;
+  font-size: var(--rm-fs-body);
   font-weight: 600;
 }
 
@@ -35,7 +35,7 @@
 
 .fall-clip-chip-dashed-label {
   color: rgba(255, 255, 255, 0.75);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 600;
 }
 
@@ -48,13 +48,13 @@
 
 .fall-clip-chip-warning-label {
   color: white;
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 700;
 }
 
 .fall-clip-review-question {
   color: white;
-  font-size: 16px;
+  font-size: var(--rm-fs-body);
   font-weight: 700;
   margin-bottom: 12px;
   letter-spacing: -0.2px;
@@ -75,7 +75,7 @@
   padding: 13px 8px;
   cursor: pointer;
   color: white;
-  font-size: 15px;
+  font-size: var(--rm-fs-body);
   font-weight: 600;
   line-height: 1.24;
   text-align: center;
@@ -99,7 +99,7 @@
 
 .fall-clip-chip-critical-label {
   color: white;
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 700;
 }
 
@@ -112,7 +112,7 @@
 
 .fall-clip-chip-reviewed-label {
   color: white;
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 700;
 }
 
@@ -129,7 +129,7 @@
 
 .fall-clip-edit-label {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 600;
 }
 
@@ -143,7 +143,7 @@
 
 .fall-clip-reviewed-status-label {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 500;
 }
 
@@ -163,7 +163,7 @@
 
 .fall-clip-stat-label {
   color: rgba(255, 255, 255, 0.45);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 500;
   margin-bottom: 8px;
 }
@@ -176,7 +176,7 @@
 
 .fall-clip-stat-value {
   color: white;
-  font-size: 22px;
+  font-size: var(--rm-fs-title-strong);
   font-weight: 700;
   letter-spacing: -0.5px;
 }
@@ -265,7 +265,7 @@
 
 .fall-clip-timeline-time {
   color: rgba(255, 255, 255, 0.45);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 500;
   min-width: 38px;
   font-variant-numeric: tabular-nums;
@@ -273,7 +273,7 @@
 
 .fall-clip-timeline-label {
   color: white;
-  font-size: 15px;
+  font-size: var(--rm-fs-body);
   font-weight: 600;
   letter-spacing: -0.1px;
   line-height: 1.22;
@@ -309,7 +309,7 @@
 
 .fall-clip-back-label {
   color: white;
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 600;
 }
 

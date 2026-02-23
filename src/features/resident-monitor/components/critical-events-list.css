@@ -22,7 +22,7 @@
 
 .critical-events-header-title {
   color: white;
-  font-size: 20px;
+  font-size: var(--rm-fs-title);
   font-weight: 700;
   letter-spacing: -0.3px;
 }
@@ -82,13 +82,13 @@
 
 .critical-events-featured-date {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 500;
 }
 
 .critical-events-featured-time {
   color: white;
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 700;
   letter-spacing: 0.2px;
 }
@@ -182,7 +182,7 @@
   padding: 3px 8px;
   width: fit-content;
   color: white;
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 700;
   letter-spacing: 0.1px;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -200,7 +200,7 @@
 
 .critical-events-item-reaction {
   color: rgba(255, 255, 255, 0.56);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 500;
   line-height: 1.25;
 }

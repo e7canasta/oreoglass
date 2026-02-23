@@ -38,7 +38,7 @@
 
 .live-view-screen-back-label {
   color: white;
-  font-size: 20px;
+  font-size: var(--rm-fs-title);
   font-weight: 700;
   letter-spacing: -0.3px;
   line-height: 1.2;
@@ -69,7 +69,7 @@
 
 .live-view-screen-live-label {
   color: white;
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 700;
   letter-spacing: 0.5px;
 }
@@ -103,7 +103,7 @@
 .live-view-screen-event-label,
 .live-view-screen-event-time {
   color: rgba(255, 255, 255, 0.45);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 500;
 }
 
@@ -124,7 +124,7 @@
 
 .live-view-screen-event-title {
   color: white;
-  font-size: 17px;
+  font-size: var(--rm-fs-body-strong);
   font-weight: 700;
   letter-spacing: -0.2px;
   line-height: 1.25;
@@ -146,7 +146,7 @@
   cursor: pointer;
   color: white;
   font-weight: 700;
-  font-size: 17px;
+  font-size: var(--rm-fs-body-strong);
   letter-spacing: -0.2px;
 }
 

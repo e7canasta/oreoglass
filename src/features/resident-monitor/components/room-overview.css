@@ -34,7 +34,7 @@
 
 .room-overview-room-number {
   color: white;
-  font-size: 18px;
+  font-size: var(--rm-fs-body-strong);
   font-weight: 700;
   font-family: "SF Pro Display", system-ui, -apple-system, sans-serif;
 }
@@ -65,7 +65,7 @@
 
 .room-overview-out-pill span {
   color: white;
-  font-size: 12px;
+  font-size: var(--rm-fs-caption);
   font-weight: 700;
 }
 
@@ -121,7 +121,7 @@
 
 .room-overview-section-title {
   color: white;
-  font-size: 18px;
+  font-size: var(--rm-fs-body-strong);
   font-weight: 700;
   margin: 0 0 12px 2px;
   font-family: "SF Pro Display", system-ui, -apple-system, sans-serif;
@@ -163,13 +163,13 @@
 
 .room-overview-countdown-badge span {
   color: var(--critical-orange-600);
-  font-size: 14px;
+  font-size: var(--rm-fs-meta);
   font-weight: 800;
 }
 
 .room-overview-countdown-label {
   color: rgba(255, 255, 255, 0.85);
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 600;
 }
 

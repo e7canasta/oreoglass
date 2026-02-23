@@ -9,7 +9,7 @@
 
 .app-chrome-status-time {
   color: white;
-  font-size: 17px;
+  font-size: var(--rm-fs-body-strong);
   font-weight: 600;
   letter-spacing: -0.3px;
 }
@@ -61,7 +61,7 @@
 
 .app-chrome-overview-title {
   color: white;
-  font-size: 22px;
+  font-size: var(--rm-fs-title-strong);
   font-weight: 700;
   letter-spacing: -0.5px;
 }

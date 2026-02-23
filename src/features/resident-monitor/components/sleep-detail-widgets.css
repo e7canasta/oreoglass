@@ -11,14 +11,14 @@
 
 .sleep-detail-summary-value {
   color: white;
-  font-size: 22px;
+  font-size: var(--rm-fs-title-strong);
   font-weight: 800;
   letter-spacing: -0.3px;
 }
 
 .sleep-detail-summary-label {
   color: rgba(255, 255, 255, 0.45);
-  font-size: 16px;
+  font-size: var(--rm-fs-body);
 }
 
 .sleep-detail-now-row {
@@ -32,7 +32,7 @@
   left: var(--now-pct);
   transform: translateX(-50%);
   color: #f5c842;
-  font-size: 12px;
+  font-size: var(--rm-fs-caption);
   font-weight: 700;
 }
 
@@ -77,7 +77,7 @@
 
 .sleep-detail-axis-label {
   color: rgba(255, 255, 255, 0.4);
-  font-size: 11px;
+  font-size: var(--rm-fs-micro);
   font-weight: 400;
 }
 
@@ -113,12 +113,12 @@
 
 .sleep-detail-legend-name {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 12px;
+  font-size: var(--rm-fs-caption);
 }
 
 .sleep-detail-legend-value {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 12px;
+  font-size: var(--rm-fs-caption);
   font-weight: 600;
 }
 
@@ -136,7 +136,7 @@
 
 .sleep-trends-label {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 12px;
+  font-size: var(--rm-fs-caption);
   font-weight: 500;
   min-width: 58px;
   text-align: right;
@@ -185,7 +185,7 @@
 
 .sleep-insight-text {
   color: white;
-  font-size: 14px;
+  font-size: var(--rm-fs-meta);
   font-weight: 500;
   line-height: 1.4;
   flex: 1;

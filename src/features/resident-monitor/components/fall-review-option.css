@@ -14,7 +14,7 @@
 
 .fall-review-option-label {
   color: white;
-  font-size: 17px;
+  font-size: var(--rm-fs-body-strong);
   font-weight: 500;
   text-align: left;
   letter-spacing: -0.15px;

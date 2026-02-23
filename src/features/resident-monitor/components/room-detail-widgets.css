@@ -34,7 +34,7 @@
 
 .sleep-chart-legend-label {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 12px;
+  font-size: var(--rm-fs-caption);
   line-height: 1.2;
 }
 
@@ -52,7 +52,7 @@
 
 .sleep-chart-axis-label {
   color: rgba(255, 255, 255, 0.45);
-  font-size: 11px;
+  font-size: var(--rm-fs-micro);
   font-weight: 400;
 }
 
@@ -102,7 +102,7 @@
 
 .activity-tile-time {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 12px;
+  font-size: var(--rm-fs-caption);
 }
 
 .activity-tile-current-strip {
@@ -118,7 +118,7 @@
 
 .activity-tile-current-strip span {
   color: rgba(255, 255, 255, 0.65);
-  font-size: 11px;
+  font-size: var(--rm-fs-micro);
   font-weight: 600;
 }
 
@@ -135,7 +135,7 @@
 
 .activity-tile-duration {
   color: white;
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
   font-weight: 700;
   line-height: 1.2;
 }

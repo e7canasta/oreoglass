@@ -72,7 +72,7 @@
 }
 
 .video-control-button-cc {
-  font-size: 10px;
+  font-size: var(--rm-fs-micro);
 }
 
 .video-control-button-kebab {
@@ -80,7 +80,7 @@
 }
 
 .video-control-button-share {
-  font-size: 13px;
+  font-size: var(--rm-fs-meta);
 }
 
 .video-control-button:focus-visible {
