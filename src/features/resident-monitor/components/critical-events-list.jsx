@@ -1,5 +1,7 @@
 import { ThermalThumb, ThermalView } from "./thermal.jsx";
 import { IconArrowLeft, IconChevronRight, IconPlay } from "./ui-icons/index.js";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import "./critical-events-list.css";
 
 const CriticalEventsHeader = ({ onBack }) => (
@@ -8,7 +10,13 @@ const CriticalEventsHeader = ({ onBack }) => (
       <div className="critical-events-header-dot" />
       <span className="critical-events-header-title">Critical events</span>
     </div>
-    <button type="button" onClick={onBack} className="critical-events-header-back">
+    <Button
+      type="button"
+      variant="unstyled"
+      size="unstyled"
+      onClick={onBack}
+      className="critical-events-header-back"
+    >
       <IconArrowLeft
         width={22}
         height={18}
@@ -17,12 +25,18 @@ const CriticalEventsHeader = ({ onBack }) => (
         strokeWidth={2.4}
         path="M20 9H2M9 2L2 9L9 16"
       />
-    </button>
+    </Button>
   </div>
 );
 
 const FeaturedClipCard = ({ clip, onOpen }) => (
-  <button type="button" onClick={onOpen} className="critical-events-featured-card">
+  <Button
+    type="button"
+    variant="unstyled"
+    size="unstyled"
+    onClick={onOpen}
+    className="critical-events-featured-card"
+  >
     <div className="critical-events-featured-media">
       <ThermalView />
     </div>
@@ -31,14 +45,20 @@ const FeaturedClipCard = ({ clip, onOpen }) => (
       <span className="critical-events-featured-date">{clip.date}</span>
       <span className="critical-events-featured-time">{clip.time}</span>
     </div>
-  </button>
+  </Button>
 );
 
 const CriticalEventListItem = ({ clip, idx, onOpen }) => {
   const isHighSeverity = clip.label.toLowerCase().includes("with injury");
 
   return (
-    <button type="button" onClick={onOpen} className="critical-events-item">
+    <Button
+      type="button"
+      variant="unstyled"
+      size="unstyled"
+      onClick={onOpen}
+      className="critical-events-item"
+    >
       <div className="critical-events-item-thumb">
         <ThermalThumb variant={idx} />
         <div className="critical-events-item-play-wrap">
@@ -56,15 +76,12 @@ const CriticalEventListItem = ({ clip, idx, onOpen }) => {
       </div>
 
       <div className="critical-events-item-copy">
-        <span
-          className={
-            isHighSeverity
-              ? "critical-events-item-chip critical-events-item-chip-high"
-              : "critical-events-item-chip critical-events-item-chip-medium"
-          }
+        <Badge
+          variant={isHighSeverity ? "critical" : "critical-muted"}
+          className="critical-events-item-chip rounded-md border border-white/18 px-2 py-[3px] text-[length:var(--rm-fs-meta)] font-bold tracking-[0.1px]"
         >
           {clip.label}
-        </span>
+        </Badge>
         <span className="critical-events-item-reaction">Reaction time {clip.reaction}</span>
       </div>
 
@@ -76,7 +93,7 @@ const CriticalEventListItem = ({ clip, idx, onOpen }) => {
         strokeWidth={2}
         path="M1 1L7 6.5L1 12"
       />
-    </button>
+    </Button>
   );
 };
 

@@ -178,24 +178,7 @@
 .critical-events-item-chip {
   display: inline-flex;
   align-items: center;
-  border-radius: 6px;
-  padding: 3px 8px;
   width: fit-content;
-  color: white;
-  font-size: var(--rm-fs-meta);
-  font-weight: 700;
-  letter-spacing: 0.1px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.critical-events-item-chip-high {
-  background: var(--critical-orange-600);
-  box-shadow: 0 0 8px rgba(232, 67, 10, 0.35);
-}
-
-.critical-events-item-chip-medium {
-  background: #c84000;
-  box-shadow: 0 0 8px rgba(200, 64, 0, 0.3);
 }
 
 .critical-events-item-reaction {

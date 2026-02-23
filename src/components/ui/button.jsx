@@ -18,6 +18,12 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        surface:
+          "border border-white/12 bg-[#252830] text-white hover:bg-[#2d313a] active:bg-[#21242c]",
+        "surface-pill":
+          "rounded-full border border-white/12 bg-[#252830] text-white hover:bg-[#2d313a] active:bg-[#21242c]",
+        glass:
+          "border border-white/10 bg-[rgba(19,21,26,0.70)] text-white backdrop-blur-md hover:bg-[rgba(19,21,26,0.78)] active:bg-[rgba(19,21,26,0.64)]",
         unstyled: "",
       },
       size: {

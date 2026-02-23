@@ -17,6 +17,16 @@ const badgeVariants = cva(
           "border-border text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         ghost: "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         link: "text-primary underline-offset-4 [a&]:hover:underline",
+        critical:
+          "bg-[var(--critical-orange-600)] text-white shadow-[0_0_8px_rgba(232,67,10,0.35)]",
+        "critical-muted":
+          "bg-[#c84000] text-white shadow-[0_0_8px_rgba(200,64,0,0.3)]",
+        warning:
+          "bg-[#d4860a] text-white shadow-[0_2px_10px_rgba(212,134,10,0.4)]",
+        success:
+          "border border-[#2ea855] bg-[#1a7a3a] text-white",
+        dashed:
+          "border-[1.5px] border-dashed border-white/35 bg-transparent text-white/75 shadow-none",
         unstyled: "",
       },
     },

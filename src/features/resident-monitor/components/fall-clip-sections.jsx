@@ -8,6 +8,8 @@ import {
   IconStatClock,
   IconStatReaction,
 } from "./ui-icons/index.js";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import "./fall-clip-sections.css";
 
 const FallClipMetaRow = () => (
@@ -26,22 +28,35 @@ const FallClipMetaRow = () => (
 const FallClipNeedsReview = ({ onClassify }) => (
   <>
     <div className="fall-clip-review-header">
-      <div className="fall-clip-chip-dashed">
+      <Badge
+        variant="dashed"
+        className="fall-clip-chip-dashed px-3 py-[5px] text-[length:var(--rm-fs-meta)] font-semibold"
+      >
         <span className="fall-clip-chip-dashed-label">Fall</span>
         <IconQuestionCircle />
-      </div>
-      <div className="fall-clip-chip-warning">
+      </Badge>
+      <Badge
+        variant="warning"
+        className="fall-clip-chip-warning px-[14px] py-[6px] text-[length:var(--rm-fs-meta)] font-bold"
+      >
         <span className="fall-clip-chip-warning-label">Needs review</span>
-      </div>
+      </Badge>
     </div>
 
     <div className="fall-clip-review-question">Please review the clip. What happened?</div>
 
     <div className="fall-clip-review-grid">
       {["Fall", "Not a fall", "Uncertain", "Safe to ground"].map((opt) => (
-        <button type="button" key={opt} onClick={() => onClassify(opt)} className="fall-clip-review-option">
+        <Button
+          type="button"
+          key={opt}
+          variant="surface"
+          size="unstyled"
+          onClick={() => onClassify(opt)}
+          className="fall-clip-review-option"
+        >
           {opt}
-        </button>
+        </Button>
       ))}
     </div>
   </>
@@ -49,16 +64,28 @@ const FallClipNeedsReview = ({ onClassify }) => (
 
 const FallClipReviewed = ({ classification, onEdit }) => (
   <div className="fall-clip-reviewed-row">
-    <div className="fall-clip-chip-critical">
+    <Badge
+      variant="critical"
+      className="fall-clip-chip-critical px-3 py-[5px] text-[length:var(--rm-fs-meta)] font-bold"
+    >
       <span className="fall-clip-chip-critical-label">Fall</span>
-    </div>
-    <div className="fall-clip-chip-reviewed">
+    </Badge>
+    <Badge
+      variant="success"
+      className="fall-clip-chip-reviewed px-3 py-[5px] text-[length:var(--rm-fs-meta)] font-bold"
+    >
       <span className="fall-clip-chip-reviewed-label">{classification || "Without injury"}</span>
-    </div>
-    <button type="button" onClick={onEdit} className="fall-clip-edit-button">
+    </Badge>
+    <Button
+      type="button"
+      variant="surface-pill"
+      size="unstyled"
+      onClick={onEdit}
+      className="fall-clip-edit-button"
+    >
       <IconEdit />
       <span className="fall-clip-edit-label">Edit</span>
-    </button>
+    </Button>
     <div className="fall-clip-reviewed-status">
       <span className="fall-clip-reviewed-status-label">Reviewed</span>
       <IconCheckCircle />
@@ -131,7 +158,13 @@ const FallClipTimeline = ({ events }) => (
 
 const FallClipBackButton = ({ onBack }) => (
   <div className="fall-clip-back-wrap">
-    <button type="button" onClick={onBack} className="fall-clip-back-button">
+    <Button
+      type="button"
+      variant="glass"
+      size="unstyled"
+      onClick={onBack}
+      className="fall-clip-back-button"
+    >
       <IconArrowLeft
         width={16}
         height={13}
@@ -140,7 +173,7 @@ const FallClipBackButton = ({ onBack }) => (
         path="M14 6.5H2M7 1L2 6.5L7 12"
       />
       <span className="fall-clip-back-label">Back</span>
-    </button>
+    </Button>
   </div>
 );
 
