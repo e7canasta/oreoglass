@@ -27,7 +27,7 @@ const FallClipScreen = ({ onBack }) => {
   const timelineEvents = [
     {
       time: "07:29",
-      dotColor: "var(--critical-orange-600)",
+      dotTone: "critical",
       icon: (
         <TimelineIcon>
           <IconSittingOnBedLarge size={32} />
@@ -37,7 +37,7 @@ const FallClipScreen = ({ onBack }) => {
     },
     {
       time: "07:31",
-      dotColor: "var(--critical-orange-600)",
+      dotTone: "critical",
       icon: (
         <TimelineIcon>
           <IconStanding size={26} />
@@ -47,7 +47,7 @@ const FallClipScreen = ({ onBack }) => {
     },
     {
       time: "07:31",
-      dotColor: "var(--critical-orange-600)",
+      dotTone: "critical",
       icon: (
         <TimelineIcon>
           <IconLayingOnFloor size={22} />
@@ -57,7 +57,7 @@ const FallClipScreen = ({ onBack }) => {
     },
     {
       time: "07:32",
-      dotColor: "#4cd68a",
+      dotTone: "success",
       icon: (
         <TimelineIcon>
           <IconStaffEnter size={38} />

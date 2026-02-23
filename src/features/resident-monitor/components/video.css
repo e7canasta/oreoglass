@@ -1,0 +1,93 @@
+.video-scrubber-root {
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+}
+
+.video-scrubber-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-scrubber-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--video-pos);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 3px;
+  transition: width 0.08s linear;
+}
+
+.video-scrubber-thumb {
+  position: absolute;
+  left: calc(var(--video-pos) - 7px);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.video-controls-row {
+  position: absolute;
+  top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.video-controls-row-left {
+  left: 12px;
+}
+
+.video-controls-row-right {
+  right: 12px;
+}
+
+.video-control-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(30, 32, 38, 0.72);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.video-control-button-text {
+  color: white;
+  font-weight: 700;
+}
+
+.video-control-button-cc {
+  font-size: 10px;
+}
+
+.video-control-button-kebab {
+  font-size: 18px;
+}
+
+.video-control-button-share {
+  font-size: 13px;
+}
+
+.video-control-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.78);
+  outline-offset: 2px;
+}
+
+.video-control-button:active {
+  transform: scale(0.97);
+}

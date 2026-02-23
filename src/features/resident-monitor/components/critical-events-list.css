@@ -189,7 +189,13 @@
 }
 
 .critical-events-item-chip-high {
+  background: var(--critical-orange-600);
   box-shadow: 0 0 8px rgba(232, 67, 10, 0.35);
+}
+
+.critical-events-item-chip-medium {
+  background: #c84000;
+  box-shadow: 0 0 8px rgba(200, 64, 0, 0.3);
 }
 
 .critical-events-item-reaction {

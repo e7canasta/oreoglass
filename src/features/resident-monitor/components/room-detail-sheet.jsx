@@ -3,6 +3,22 @@ import { ActivityTile, SleepChart } from "./room-detail-widgets.jsx";
 import { IconChevronRight, IconClose, IconWideChevronDown } from "./ui-icons/index.js";
 import "./room-detail-sheet.css";
 
+const getRoomStatusDotClass = (dotColor) => {
+  const normalized = (dotColor || "").toLowerCase();
+
+  if (normalized === "#e8621a" || normalized.includes("critical-orange")) {
+    return "room-detail-status-dot is-alert";
+  }
+  if (normalized === "#f5c842") {
+    return "room-detail-status-dot is-warm";
+  }
+  if (normalized === "#4a90e2") {
+    return "room-detail-status-dot is-info";
+  }
+
+  return "room-detail-status-dot";
+};
+
 const RoomDetailSheet = ({ room, onClose, onOpenFallClip, onOpenSleep }) => (
   <div className="room-detail-root">
     <button type="button" onClick={onClose} className="room-detail-overlay" aria-label="Close room details" />
@@ -13,7 +29,7 @@ const RoomDetailSheet = ({ room, onClose, onOpenFallClip, onOpenSleep }) => (
 
       <header className="room-detail-header">
         <div className="room-detail-title-wrap">
-          <div className="room-detail-status-dot" style={{ background: room.dotColor, boxShadow: `0 0 8px ${room.dotColor}` }} />
+          <div className={getRoomStatusDotClass(room.dotColor)} />
           <div className="room-detail-heading">
             <div className="room-detail-room-number">{room.number}</div>
             <div className="room-detail-room-location">{room.location}</div>

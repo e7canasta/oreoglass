@@ -30,11 +30,10 @@ const Sleep24hBar = () => {
         {blocks.map(([s, w, rest], i) => (
           <div
             key={i}
-            className="sleep-detail-bars-segment"
+            className={rest ? "sleep-detail-bars-segment is-restless" : "sleep-detail-bars-segment"}
             style={{
               "--bar-left": `${s}%`,
               "--bar-width": `${w}%`,
-              "--bar-color": rest ? "#d946ef" : "#8b5cf6",
             }}
           />
         ))}
@@ -48,11 +47,11 @@ const Sleep24hBar = () => {
         ))}
       </div>
       <div className="sleep-detail-legend-row">
-        {[["#8b5cf6", "Calm", "7 hours"], ["#d946ef", "Restless", "0 hours"]].map(([c, l, v]) => (
-          <div key={l} className="sleep-detail-legend-item">
-            <div className="sleep-detail-legend-dot" style={{ "--dot-color": c }} />
-            <span className="sleep-detail-legend-name">{l}:</span>
-            <span className="sleep-detail-legend-value">{v}</span>
+        {[["calm", "Calm", "7 hours"], ["restless", "Restless", "0 hours"]].map(([tone, label, value]) => (
+          <div key={label} className="sleep-detail-legend-item">
+            <div className={`sleep-detail-legend-dot sleep-detail-legend-dot-${tone}`} />
+            <span className="sleep-detail-legend-name">{label}:</span>
+            <span className="sleep-detail-legend-value">{value}</span>
           </div>
         ))}
       </div>
@@ -88,11 +87,10 @@ const TrendsChart = ({ period }) => {
             {day.bars.map(([s, w, rest], j) => (
               <div
                 key={j}
-                className="sleep-trends-segment"
+                className={rest ? "sleep-trends-segment is-restless" : "sleep-trends-segment"}
                 style={{
                   "--trend-left": `${s}%`,
                   "--trend-width": `${w}%`,
-                  "--trend-color": rest ? "#d946ef" : "#8b5cf6",
                 }}
               />
             ))}

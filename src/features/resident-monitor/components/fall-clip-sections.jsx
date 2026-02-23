@@ -10,9 +10,6 @@ import {
 } from "./ui-icons/index.js";
 import "./fall-clip-sections.css";
 
-const getTimelineDotShadow = (dotColor) =>
-  dotColor.startsWith("var(") ? "0 0 8px var(--critical-glow)" : `0 0 8px ${dotColor}88`;
-
 const FallClipMetaRow = () => (
   <div className="fall-clip-meta-row">
     <div className="fall-clip-meta-item">
@@ -97,14 +94,20 @@ const FallClipTimeline = ({ events }) => (
         <div className="fall-clip-timeline-rail">
           {i > 0 && (
             <div
-              className="fall-clip-timeline-connector-top"
-              style={{ background: i === events.length - 1 ? "#4cd68a" : "rgba(255,255,255,0.1)" }}
+              className={
+                i === events.length - 1
+                  ? "fall-clip-timeline-connector-top is-success"
+                  : "fall-clip-timeline-connector-top"
+              }
             />
           )}
 
           <div
-            className="fall-clip-timeline-dot"
-            style={{ background: ev.dotColor, boxShadow: getTimelineDotShadow(ev.dotColor) }}
+            className={
+              ev.dotTone === "success"
+                ? "fall-clip-timeline-dot is-success"
+                : "fall-clip-timeline-dot is-critical"
+            }
           />
 
           {!ev.isLast && <div className="fall-clip-timeline-connector" />}
@@ -116,7 +119,7 @@ const FallClipTimeline = ({ events }) => (
           )}
         </div>
 
-        <div className="fall-clip-timeline-content" style={{ paddingBottom: ev.isLast ? 6 : 20 }}>
+        <div className={ev.isLast ? "fall-clip-timeline-content is-last" : "fall-clip-timeline-content"}>
           <span className="fall-clip-timeline-time">{ev.time}</span>
           {ev.icon}
           <span className="fall-clip-timeline-label">{ev.label}</span>

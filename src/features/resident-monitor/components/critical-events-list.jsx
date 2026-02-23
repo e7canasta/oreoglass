@@ -57,8 +57,11 @@ const CriticalEventListItem = ({ clip, idx, onOpen }) => {
 
       <div className="critical-events-item-copy">
         <span
-          className={isHighSeverity ? "critical-events-item-chip critical-events-item-chip-high" : "critical-events-item-chip"}
-          style={{ background: clip.labelColor }}
+          className={
+            isHighSeverity
+              ? "critical-events-item-chip critical-events-item-chip-high"
+              : "critical-events-item-chip critical-events-item-chip-medium"
+          }
         >
           {clip.label}
         </span>

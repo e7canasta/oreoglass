@@ -204,6 +204,11 @@
   width: 2px;
   height: 20px;
   margin-bottom: -2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.fall-clip-timeline-connector-top.is-success {
+  background: #4cd68a;
 }
 
 .fall-clip-timeline-dot {
@@ -212,6 +217,16 @@
   border-radius: 50%;
   flex-shrink: 0;
   z-index: 1;
+}
+
+.fall-clip-timeline-dot.is-critical {
+  background: var(--critical-orange-600);
+  box-shadow: 0 0 8px var(--critical-glow);
+}
+
+.fall-clip-timeline-dot.is-success {
+  background: #4cd68a;
+  box-shadow: 0 0 8px rgba(76, 214, 138, 0.53);
 }
 
 .fall-clip-timeline-connector {
@@ -241,6 +256,11 @@
   gap: 12px;
   flex: 1;
   min-width: 0;
+  padding-bottom: 20px;
+}
+
+.fall-clip-timeline-content.is-last {
+  padding-bottom: 6px;
 }
 
 .fall-clip-timeline-time {

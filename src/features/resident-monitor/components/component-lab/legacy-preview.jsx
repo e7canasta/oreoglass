@@ -3,6 +3,7 @@ import { FallReviewOption } from "../fall-review-option.jsx";
 import { IconFalling, IconInBed, IconStanding } from "../icons.jsx";
 import { ActivityTile } from "../room-detail-widgets.jsx";
 import { RoomCard } from "../room-overview.jsx";
+import "./legacy-preview.css";
 
 const PREVIEW_ROOMS = [
   { number: "513", location: "Bellevue", status: "alert", dots: ["orange"] },
@@ -50,7 +51,7 @@ const LegacyPreview = ({
   if (activeItemId === "fall-review") {
     return (
       <div className="lab-preview-stack">
-        <div style={{ display: "grid", gap: 8 }}>
+        <div className="lab-legacy-review-options-grid">
           {FALL_REVIEW_OPTIONS.map((option) => (
             <FallReviewOption
               key={option}
@@ -63,7 +64,7 @@ const LegacyPreview = ({
 
         <div className="lab-legacy-timeline">
           <span className="lab-legacy-timeline-label">Timeline sample</span>
-          <div style={{ display: "flex", gap: 8 }}>
+          <div className="lab-legacy-timeline-row">
             <ActivityTile time="08:12" icon={<IconInBed size={32} />} />
             <ActivityTile time="09:04" icon={<IconStanding size={24} />} />
             <ActivityTile time="10:52" icon={<IconFalling size={24} />} isAlarm />
@@ -75,7 +76,7 @@ const LegacyPreview = ({
 
   return (
     <div className="lab-preview-stack">
-      <div style={{ display: "flex", gap: 8 }}>
+      <div className="lab-legacy-room-row">
         {PREVIEW_ROOMS.map((room) => (
           <RoomCard key={room.number} room={room} onSelect={noop} />
         ))}

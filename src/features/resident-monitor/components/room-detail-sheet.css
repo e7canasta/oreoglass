@@ -61,6 +61,22 @@
   height: 16px;
   border-radius: 999px;
   flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.room-detail-status-dot.is-alert {
+  background: #e8621a;
+  box-shadow: 0 0 8px rgba(232, 98, 26, 0.7);
+}
+
+.room-detail-status-dot.is-warm {
+  background: #f5c842;
+  box-shadow: 0 0 8px rgba(245, 200, 66, 0.65);
+}
+
+.room-detail-status-dot.is-info {
+  background: #4a90e2;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
 }
 
 .room-detail-heading {

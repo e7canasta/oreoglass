@@ -1,0 +1,14 @@
+.lab-legacy-review-options-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.lab-legacy-timeline-row {
+  display: flex;
+  gap: 8px;
+}
+
+.lab-legacy-room-row {
+  display: flex;
+  gap: 8px;
+}

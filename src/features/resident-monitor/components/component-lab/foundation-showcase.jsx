@@ -35,6 +35,7 @@ import {
 import { VideoControls, VideoScrubber } from "../video.jsx";
 import { IconGrid } from "./icon-grid.jsx";
 import { LabSection } from "./lab-section.jsx";
+import "./foundation-showcase.css";
 
 const LAB_ROOMS = [
   { number: "513", location: "Bellevue", status: "alert", dots: ["orange"] },
@@ -97,16 +98,16 @@ const FoundationShowcase = () => {
       </LabSection>
 
       <LabSection title="Thermal Primitives">
-        <div style={{ display: "grid", gap: 10 }}>
-          <div style={{ height: 150, borderRadius: 12, overflow: "hidden", background: "#8da5bc" }}>
+        <div className="lab-foundation-stack">
+          <div className="lab-thermal-preview-tile">
             <ThermalView />
           </div>
-          <div style={{ height: 150, borderRadius: 12, overflow: "hidden", background: "#8da5bc" }}>
+          <div className="lab-thermal-preview-tile">
             <ThermalViewLive />
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 8 }}>
+          <div className="lab-thermal-thumb-grid">
             {[0, 1, 2].map((variant) => (
-              <div key={variant} style={{ height: 72, borderRadius: 10, overflow: "hidden", background: "#8da5bc" }}>
+              <div key={variant} className="lab-thermal-thumb-tile">
                 <ThermalThumb variant={variant} />
               </div>
             ))}
@@ -115,21 +116,21 @@ const FoundationShowcase = () => {
       </LabSection>
 
       <LabSection title="Legacy Widgets">
-        <div style={{ display: "grid", gap: 10 }}>
-          <div style={{ position: "relative", height: 180, borderRadius: 12, overflow: "hidden", background: "#8da5bc" }}>
+        <div className="lab-foundation-stack">
+          <div className="lab-legacy-video-stage">
             <ThermalView />
             <VideoControls isPlaying={isPlaying} onToggle={() => setIsPlaying((prev) => !prev)} />
           </div>
-          <div style={{ background: "#10131a", borderRadius: 12, border: "1px solid rgba(255,255,255,0.08)", padding: "10px 12px" }}>
+          <div className="lab-scrubber-shell">
             <VideoScrubber />
           </div>
-          <div style={{ display: "flex", gap: 8 }}>
+          <div className="lab-room-row">
             {LAB_ROOMS.map((room) => (
               <RoomCard key={room.number} room={room} onSelect={noop} />
             ))}
           </div>
-          <div style={{ background: "#10131a", borderRadius: 12, border: "1px solid rgba(255,255,255,0.08)", padding: 8, overflowX: "auto" }}>
-            <div style={{ display: "flex", gap: 8, minWidth: "max-content" }}>
+          <div className="lab-activity-shell">
+            <div className="lab-activity-row">
               <ActivityTile time="08:12" icon={<IconInBed size={32} />} />
               <ActivityTile time="09:04" icon={<IconStanding size={24} />} />
               <ActivityTile time="10:52" icon={<IconFalling size={24} />} isAlarm />
@@ -141,7 +142,7 @@ const FoundationShowcase = () => {
       </LabSection>
 
       <LabSection title="Overlay Example">
-        <div style={{ position: "relative", height: 140, borderRadius: 12, overflow: "hidden", background: "#10131a", border: "1px solid rgba(255,255,255,0.08)" }}>
+        <div className="lab-overlay-shell">
           <CountdownBar seconds={5} total={8} />
         </div>
       </LabSection>

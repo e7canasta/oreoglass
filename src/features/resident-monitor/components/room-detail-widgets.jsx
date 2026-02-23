@@ -21,10 +21,10 @@ const SleepChart = () => {
   return (
     <div className="sleep-chart">
       <div className="sleep-chart-legend">
-        {[["#8b5cf6", "Calm: 12 hours"], ["#ec4899", "Restless: 0 hours"]].map(([c, l]) => (
-          <div key={l} className="sleep-chart-legend-item">
-            <div className="sleep-chart-legend-dot" style={{ background: c }} />
-            <span className="sleep-chart-legend-label">{l}</span>
+        {[["calm", "Calm: 12 hours"], ["restless", "Restless: 0 hours"]].map(([tone, label]) => (
+          <div key={label} className="sleep-chart-legend-item">
+            <div className={`sleep-chart-legend-dot sleep-chart-legend-dot-${tone}`} />
+            <span className="sleep-chart-legend-label">{label}</span>
           </div>
         ))}
       </div>

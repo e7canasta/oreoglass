@@ -1,6 +1,8 @@
+import "./thermal.css";
+
 /* Thermal rendering primitives */
 const ThermalView = ({ blurred = false }) => (
-  <div style={{ position:"relative", width:"100%", height:"100%", filter: blurred ? "blur(8px)" : "none", transform: blurred ? "scale(1.05)" : "none" }}>
+  <div className={blurred ? "thermal-view-root is-blurred" : "thermal-view-root"}>
     <svg width="100%" height="100%" viewBox="0 0 320 220" preserveAspectRatio="xMidYMid slice">
       <defs>
         <radialGradient id="roomBg2" cx="50%" cy="50%" r="60%">
